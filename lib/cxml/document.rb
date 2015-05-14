@@ -3,6 +3,7 @@ module CXML
     attr_accessor :version
     attr_accessor :payload_id
     attr_accessor :timestamp
+    attr_accessor :xml_lang
 
     attr_accessor :header
     attr_accessor :request
@@ -12,7 +13,7 @@ module CXML
       if data.kind_of?(Hash) && !data.empty?
         @version = data['version']
         @payload_id = data['payloadID']
-
+        @xml_lang = data['xml:lang']
         if data['timestamp']
           @timestamp = Time.parse(data['timestamp'])
         end
@@ -31,11 +32,11 @@ module CXML
       end
     end
 
-    def setup
-      @version    = CXML::Protocol.version
-      @timestamp  = Time.now.utc
-      @payload_id = "#{@timestamp.to_i}.process.#{Process.pid}@domain.com"
-    end
+    # def setup
+    #   @version    = CXML::Protocol.version
+    #   @timestamp  = Time.now.utc
+    #   @payload_id = "#{@timestamp.to_i}.process.#{Process.pid}@domain.com"
+    # end
 
     # Check if document is request
     # @return [Boolean]
@@ -51,7 +52,7 @@ module CXML
 
     def render
       node = CXML.builder
-      node.cXML('version' => version, 'payloadID' => payload_id, 'timestamp' => timestamp.iso8601) do |doc|
+      node.cXML('version' => version, 'payloadID' => payload_id, 'timestamp' => Time.now.utc.iso8601, 'xml:lang' => xml_lang) do |doc|
         doc.Header { |n| @header.render(n) } if @header
         @request.render(node) if @request
         @response.render(node) if @response
