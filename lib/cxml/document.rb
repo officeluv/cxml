@@ -8,6 +8,7 @@ module CXML
     attr_accessor :header
     attr_accessor :request
     attr_accessor :response
+    attr_accessor :punch_out_order_message
 
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
@@ -29,6 +30,11 @@ module CXML
         if data['Response']
           @response = CXML::Response.new(data['Response'])
         end
+
+        if data['PunchOutOrderMessage']
+          @punch_out_order_message = CXML::PunchOutOrderMessage.new(data['PunchOutOrderMessage'])
+        end
+
       end
     end
 
@@ -50,12 +56,20 @@ module CXML
       !response.nil?
     end
 
+    # Check if document is a punch out order message
+    # @return [Boolean]
+    def punch_out_order_message?
+      !punch_out_order_message.nil?
+    end
+
     def render
       node = CXML.builder
       node.cXML('version' => version, 'payloadID' => payload_id, 'timestamp' => Time.now.utc.iso8601, 'xml:lang' => xml_lang) do |doc|
         doc.Header { |n| @header.render(n) } if @header
         @request.render(node) if @request
         @response.render(node) if @response
+        # TODO: Need to wrap this in a Message Node
+        @punch_out_order_message.render(node) if @punch_out_order_message
       end
       node
     end
