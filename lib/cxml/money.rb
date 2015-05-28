@@ -20,22 +20,28 @@ module CXML
     attr_accessor :amount
     attr_accessor :alternate_currency
     attr_accessor :alternate_amount
-  end
 
-  def initialize(data={})
-    @currency = data['current']
-  end
+    def initialize(data={})
+      if data.kind_of?(Hash) && !data.empty?
+        @currency = data['Currency'] if data['Currency']
+        @alternate_currency = data['AlternateCurrency'] if data['AlternateCurrency']
+        @amount = data['Amount'] if data['Amount']
+        @alternate_amount = data['AlternateAmount'] if data['AlternateAmount']
+      end
+    end
 
-  def build_attributes
-    attributes = {}
-    attributes << {'currency' => currency} if currency
-    attributes << {'alternateCurrency' => alternate_currency} if alternate_currency
-    attributes << {'alternateAmount' => alternate_amount} if alternate_amount
-  end
+    def build_attributes
+      attributes = {}
+      attributes.merge!({'currency' => currency.nil? ? 'GBP' : currency})
+      attributes.merge!({'alternateCurrency' => alternate_currency}) if alternate_currency
+      attributes.merge!({'alternateAmount' => alternate_amount}) if alternate_amount
+      attributes
+    end
 
-  def render(node)
-    node.Money(build_attributes){amount}
-  end
+    def render(node)
+      node.Money(amount, build_attributes)
+    end
 
+  end
 
 end
