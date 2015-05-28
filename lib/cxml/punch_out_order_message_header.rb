@@ -5,19 +5,20 @@ module CXML
   class PunchOutOrderMessageHeader
     attr_accessor :money
 
-    def initialize(money=nil)
+    def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
-        @money = money
+        @money = CXML::Money.new(data['Money']) if data['Money']
       end
     end
 
+    def money?
+      !money.nil?
+    end
 
     def render(node)
-
-
-      node.PunchOutOrderMessageHeader{ |n|
-        n.Total{ |t|
-          t.Money(:currency => "GBP") money  }}
+      node.PunchOutOrderMessageHeader('operationAllowed' => :create) do |n|
+        n.Total{ |t| money.render(node) if money? }
+      end
     end
 
   end
