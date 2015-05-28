@@ -30,11 +30,31 @@ module CXML
       end
     end
 
-    def render(node)
-      node.From   { |n| @from.render(n) }
-      node.To     { |n| @to.render(n) }
+    def from?
+      !to.nil?
+    end
 
-      @sender.render(node)
+    def to?
+      !from.nil?
+    end
+
+    def sender?
+      !sender.nil?
+    end
+
+    # Note: If an original request header is been used for a response then
+    #       swap the to and from nodes
+    def render(node, swap_to_from=false)
+      if to? && from?
+        if swap_to_from
+          node.From   { |n| @to.render(n) }
+          node.To     { |n| @from.render(n) }
+        else
+          node.From   { |n| @from.render(n)  }
+          node.To     { |n| @to.render(n) }
+        end
+      end
+      @sender.render(node) if sender?
       node
     end
   end

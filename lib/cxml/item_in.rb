@@ -19,6 +19,7 @@ module CXML
       if data.kind_of?(Hash) && !data.empty?
         @item_id = data['item_id']
         @item_detail = data['item_detail']
+        @quantity = data['quantity']
       end
     end
 
