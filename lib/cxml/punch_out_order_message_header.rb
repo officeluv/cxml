@@ -7,7 +7,7 @@ module CXML
 
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
-        @money = CXML::Money.new(data['Money']) if data['Money']
+        @money = CXML::Money.new(data['Total']['Money']) if data['Total']['Money']
       end
     end
 

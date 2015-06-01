@@ -24,7 +24,7 @@ module CXML
 
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
-        @buyer_cookie = data['BuyerCookie'] if data['buyer_cookie']
+        @buyer_cookie = data['BuyerCookie'] if data['BuyerCookie']
         @punch_out_order_message_header = CXML::PunchOutOrderMessageHeader.new(data['PunchOutOrderMessageHeader']) if data['PunchOutOrderMessageHeader']
         @items_in = []
       end
