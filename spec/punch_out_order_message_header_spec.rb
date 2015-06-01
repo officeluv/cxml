@@ -24,11 +24,8 @@ describe CXML::PunchOutOrderMessageHeader do
     let(:punch_out_order_message_output_data) { output_data['Message']['PunchOutOrderMessage'] }
     let(:punch_out_order_message_header_output_data) {punch_out_order_message_output_data['PunchOutOrderMessageHeader'] }
 
-    it "returns xml content" do
-      output_xml.should_not be_nil
-    end
-
-    it 'returns xml content with with required xml nodes' do
+    it 'contains the required nodes' do
+      punch_out_order_message_header_output_data["operationAllowed"].should_not be_empty
       punch_out_order_message_header_output_data["Total"].should_not be_empty
       punch_out_order_message_header_output_data["Total"]["Money"].should_not be_empty
     end

@@ -16,7 +16,7 @@ describe CXML::PunchOutOrderMessage do
 
   describe "#add_item" do
     it "adds items to the order" do
-      punch_out_order_message.add_item(build_item_in)
+      punch_out_order_message.add_item(build_item_in(parser))
       punch_out_order_message.items_in.count.should == 1
     end
   end
@@ -26,21 +26,12 @@ describe CXML::PunchOutOrderMessage do
     let(:output_data) {parser.parse(output_xml)}
     let(:punch_out_order_message_output_data) { output_data['Message']['PunchOutOrderMessage'] }
 
-    it "returns xml content" do
-      output_xml.should_not be_nil
-    end
-
-    it 'returns xml content with with required xml nodes' do
+    it 'contains the required nodes' do
       punch_out_order_message_output_data["PunchOutOrderMessageHeader"].should_not be_empty
+      punch_out_order_message_output_data.should include("BuyerCookie")
     end
 
   end
 
-  def build_item_in
-    # TODO - Use fixture data here ....
-    {'Quantity' => '1',
-     'ItemDetail' => {'Description' => 'Test Product', 'UnitOfMeasure' => 'EA', 'UnitPrice' => 788.78 },
-     'ItemID' => {'SupplierPartID' => 'PartCode', 'SupplierPartAuxillaryID' => 'StockCode' }}
-  end
 
 end

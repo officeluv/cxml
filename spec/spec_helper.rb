@@ -3,6 +3,8 @@ $:.unshift File.expand_path("../..", __FILE__)
 require 'cxml'
 require 'ruby-debug'
 
+Dir["./spec/support/**/*.rb"].sort.each { |f| require f}
+
 RSpec.configure do |conf|
 end
 
