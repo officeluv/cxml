@@ -14,7 +14,8 @@ module CXML
       if data.kind_of?(Hash) && !data.empty?
         @version = data['version']
         @payload_id = data['payloadID']
-        @xml_lang = data['xml:lang']
+        @xml_lang = data['xml:lang'] if data['xml:lang']
+
         if data['timestamp']
           @timestamp = Time.parse(data['timestamp'])
         end
@@ -31,8 +32,8 @@ module CXML
           @response = CXML::Response.new(data['Response'])
         end
 
-        if data['PunchOutOrderMessage']
-          @punch_out_order_message = CXML::PunchOutOrderMessage.new(data['PunchOutOrderMessage'])
+        if data['Message'] && data['Message']['PunchOutOrderMessage']
+          @punch_out_order_message = CXML::PunchOutOrderMessage.new(data['Message']['PunchOutOrderMessage'])
         end
 
       end
@@ -62,9 +63,15 @@ module CXML
       !punch_out_order_message.nil?
     end
 
+    def build_attributes
+      attrs = {'version' => version, 'payloadID' => payload_id, 'timestamp' => Time.now.utc.iso8601}
+      attrs.merge!({'xml:lang' => xml_lang})
+      attrs
+    end
+
     def render
       node = CXML.builder
-      node.cXML('version' => version, 'payloadID' => payload_id, 'timestamp' => Time.now.utc.iso8601, 'xml:lang' => xml_lang) do |doc|
+      node.cXML(build_attributes) do |doc|
         doc.Header { |n| @header.render(n, punch_out_order_message?) } if @header
         @request.render(node) if @request
         @response.render(node) if @response
