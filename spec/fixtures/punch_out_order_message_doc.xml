@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+  <cxml version="1.2.011" payloadID="1346769469000.process.162998590@officedepot.com" timestamp="2012-09-04T02:37:49-05:00">
+    <Header>
+      <From>
+        <Credential domain="DUNS">
+          <Identity>punchout@test.com</Identity>
+        </Credential>
+      </From>
+      <To>
+        <Credential domain="DUNS">
+          <Identity>punchout@test.com</Identity>
+        </Credential>
+      </To>
+     <Sender>
+      <Credential domain="IESAnetworkUserID">
+        <Identity>{identity in here}</Identity>
+        <SharedSecret>{shared secret in here}</SharedSecret>
+      </Credential>
+      <UserAgent>IESAonlinevers1</UserAgent>
+    </Sender>
+  </Header>
+  <Message>
+    <PunchOutOrderMessage>
+      <BuyerCookie>
+      </BuyerCookie>
+      <PunchOutOrderMessageHeader operationAllowed="create">
+        <Total> <Money currency="GBP">5.35</Money> </Total>
+      </PunchOutOrderMessageHeader>
+      <ItemIn quantity="1">
+        <ItemID>
+          <SupplierPartID>ACC8000160K</SupplierPartID>
+          <SupplierPartAuxiliaryID></SupplierPartAuxiliaryID>
+        </ItemID>
+        <ItemDetail>
+          <Description xml:lang="en">AGENDA MAGAZINE RACK A4 CHARCOAL 25990</Description>
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <UnitPrice> <Money currency="GBP">5.35</Money> </UnitPrice>
+        </ItemDetail>
+      </ItemIn>
+    </PunchOutOrderMessage>
+  </Message>
+  </cxml>

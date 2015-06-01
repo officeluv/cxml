@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cXML version="1.2.011" payloadID="1346769469000.process.162998590@officedepot.com" timestamp="2012-09-04T02:37:49-05:00">
+    <Response>
+        <Status code="200" text="OK"/>
+    </Response>
+    <PunchOutSetupResponse>
+        <StartPage>
+            <URL>http://localhost:3000/products</URL>
+        </StartPage>
+    </PunchOutSetupResponse>
+</cXML>
