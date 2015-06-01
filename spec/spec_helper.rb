@@ -1,6 +1,7 @@
 $:.unshift File.expand_path("../..", __FILE__)
 
 require 'cxml'
+require 'ruby-debug'
 
 RSpec.configure do |conf|
 end

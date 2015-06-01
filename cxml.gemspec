@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake'
   s.add_development_dependency 'rspec',     '~> 2.13'
   s.add_development_dependency 'simplecov', '~> 0.7'
+  s.add_development_dependency 'ruby-debug'
 
   s.add_dependency 'nokogiri',  '~> 1.5.10'
   s.add_dependency 'xml-simple'
