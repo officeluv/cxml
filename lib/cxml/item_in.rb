@@ -19,7 +19,7 @@ module CXML
       if data.kind_of?(Hash) && !data.empty?
         @item_id = CXML::ItemId.new(data['ItemID']) if data['ItemID']
         @item_detail = CXML::ItemDetail.new(data['ItemDetail']) if data['ItemDetail']
-        @quantity = data['Quantity']
+        @quantity = data['quantity']
       end
     end
 

@@ -5,9 +5,10 @@
 
 module CXML
   class ItemId
+
     attr_accessor :supplier_part_id
     attr_accessor :supplier_part_auxillary_id
-    attr_accessor :quantity
+
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
         @supplier_part_id = data['SupplierPartID']
