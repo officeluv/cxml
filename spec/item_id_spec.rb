@@ -13,11 +13,11 @@ describe CXML::ItemId do
   let(:builder) {doc.render}
 
   describe '#initialize' do
-    let(:item_in) { CXML::ItemIn.new(build_item_in(parser))}
-    let(:item_id) { item_in.item_id}
+    let(:item_in) {CXML::ItemIn.new(build_item_in(parser))}
+    let(:item_id) {item_in.item_id}
 
-    it "sets the mandatory attributes" do
-      item_id.supplier_part_auxillary_id.should_not be_nil
+    it "sets the attributes that are passed" do
+      item_id.supplier_part_id.should_not be_nil
     end
   end
 

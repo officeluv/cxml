@@ -14,6 +14,13 @@ describe CXML::PunchOutOrderMessage do
   let(:punch_out_order_message){doc.punch_out_order_message}
   let(:builder) {doc.render}
 
+  describe '#initialize' do
+    it "sets the mandatory attributes" do
+      punch_out_order_message.punch_out_order_message_header.should be_an_instance_of CXML::PunchOutOrderMessageHeader
+    end
+  end
+
+
   describe "#add_item" do
     it "adds items to the order" do
       punch_out_order_message.add_item(build_item_in(parser))

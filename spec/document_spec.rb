@@ -128,6 +128,10 @@ describe CXML::Document do
         output_data["Response"]["Status"]["code"].should == "200"
       end
 
+      it "outputs the punch out setup response" do
+        output_data["PunchOutSetupResponse"].should_not be_empty
+      end
+
     end
 
     context "when a invalid response is rendered" do
