@@ -14,7 +14,7 @@ module CXML
       if data.kind_of?(Hash) && !data.empty?
         @description = data['Description']
         @unit_of_measure = data['UnitOfMeasure']
-        @unit_price = data['UnitPrice']
+        @unit_price = CXML::Money.new(data['UnitPrice']['Money'])
       end
     end
 
@@ -22,7 +22,7 @@ module CXML
       node.ItemDetail do
         node.Description(description)
         node.UnitOfMeasure(unit_of_measure)
-        node.UnitPrice(unit_price)
+        node.UnitPrice{unit_price.render(node)}
       end
     end
 

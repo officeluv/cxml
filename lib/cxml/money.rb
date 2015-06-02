@@ -23,10 +23,10 @@ module CXML
 
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
-        @currency = data['Currency'] if data['Currency']
-        @alternate_currency = data['AlternateCurrency'] if data['AlternateCurrency']
-        @amount = data['Amount'] if data['Amount']
-        @alternate_amount = data['AlternateAmount'] if data['AlternateAmount']
+        @currency = data['currency'] if data['currency']
+        @amount = data['content'] if data['content']
+        @alternate_currency = data['alternateCurrency'] if data['alternateCurrency']
+        @alternate_amount = data['alternateAmount'] if data['alternateAmount']
       end
     end
 

@@ -5,7 +5,6 @@
 
 module CXML
   class Request
-    attr_accessor :id
     attr_accessor :deployment_mode
     attr_accessor :punch_out_setup_request
 
@@ -17,8 +16,9 @@ module CXML
       end
     end
 
+    # NOTE - No need to implement this yet as we don't render requests
     def render(node)
-
     end
+
   end
 end
