@@ -32,9 +32,11 @@ module CXML
     end
 
     def render(node)
-      node.ItemIn('quantity' => quantity) do |item_in|
-        item_id.render(node)
-        item_detail.render(node)
+      if item_id? && item_detail?
+        node.ItemIn('quantity' => quantity) do |item_in|
+          item_id.render(node)
+          item_detail.render(node)
+        end
       end
     end
 
