@@ -1,4 +1,4 @@
-require 'cxml/version'
+# require 'cxml/version'
 require 'cxml/errors'
 require 'time'
 require 'nokogiri'
