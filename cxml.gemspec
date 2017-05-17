@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov', '~> 0.7'
   s.add_development_dependency 'ruby-debug'
 
-  s.add_dependency 'nokogiri',  '~> 1.5.10'
+  s.add_dependency 'nokogiri'
   s.add_dependency 'xml-simple'
   s.add_dependency 'hashr'
 
