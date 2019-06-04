@@ -19,8 +19,10 @@ module CXML
     def render(node)
       options = {:id => @id}
       options.delete_if{ |k,v| v.nil? }
-      node.Response(options) { |n| @status.render(n) }
-      node.PunchOutSetupResponse{ |n| punch_out_setup_response.render(n) } if status.success?
+      node.Response(options) do |n|
+        @status.render(n)
+        node.PunchOutSetupResponse{ |n| punch_out_setup_response.render(n) } if status.success?
+      end
     end
   end
 end
