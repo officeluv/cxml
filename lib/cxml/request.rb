@@ -5,6 +5,7 @@
 
 module CXML
   class Request
+    attr_accessor :id
     attr_accessor :deployment_mode
     attr_accessor :punch_out_setup_request
 
