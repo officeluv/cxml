@@ -12,7 +12,7 @@ module CXML
     end
 
     def response_return_url
-      browser_form_post_url.blank? ? '' : browser_form_post_url.squish
+      browser_form_post_url.empty? ? '' : browser_form_post_url.squish
     end
 
   end

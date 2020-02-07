@@ -25,7 +25,7 @@ module CXML
         node.Description(description)
         node.UnitOfMeasure(unit_of_measure)
         node.UnitPrice{unit_price.render(node)}
-        node.Classification(unspsc, {'domain' => 'UNSPSC'}) unless unspsc.blank?
+        node.Classification(unspsc, {'domain' => 'UNSPSC'}) unless unspsc.nil? || unspsc.empty?
       end
     end
 
