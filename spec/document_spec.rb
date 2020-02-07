@@ -129,7 +129,7 @@ describe CXML::Document do
       end
 
       it "outputs the punch out setup response" do
-        output_data["PunchOutSetupResponse"].should_not be_empty
+        output_data["Response"]["PunchOutSetupResponse"].should_not be_empty
       end
 
     end

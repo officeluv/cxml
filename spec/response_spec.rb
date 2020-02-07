@@ -33,12 +33,12 @@ describe CXML::Response do
 
       it 'outputs the response with a valid status code' do
         output_data["Response"].should_not be_empty
-        output_data["PunchOutSetupResponse"].should_not be_empty
+        output_data["Response"]["PunchOutSetupResponse"].should_not be_empty
         output_data["Response"]["Status"]["code"].should == "200"
       end
 
       it "outputs the punch out setup response" do
-        output_data["PunchOutSetupResponse"].should_not be_empty
+        output_data["Response"]["PunchOutSetupResponse"].should_not be_empty
       end
 
     end
