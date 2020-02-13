@@ -6,8 +6,10 @@ module CXML
 
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
-        @browser_form_post_url = data['BrowserFormPost']['URL']
-        @supplier_setup_url = data['SupplierSetup']['URL']
+        browser_form_post = data['BrowserFormPost'] || {}
+        @browser_form_post_url = browser_form_post['URL']
+        supplier_setup = data['SupplierSetup'] || {}
+        @supplier_setup_url = supplier_setup['URL']
       end
     end
 

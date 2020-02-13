@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cxml.org/schemas/cXML/1.2.014/cXML.dtd">
+<cXML payloadID="1211221788.71299@ip-10-251-122-83" timestamp="Mon May 19 18:29:48 +0000 2008" xml:lang="en-US">
+<Header>
+<From>
+<Credential domain="DUNS">
+<Identity>coupa-t</Identity>
+</Credential>
+</From>
+<To>
+<Credential domain="DUNS">
+<Identity>coupa-t</Identity>
+</Credential>
+</To>
+<Sender>
+<Credential domain="DUNS">
+<Identity>coupa-t</Identity>
+<SharedSecret>test</SharedSecret>
+</Credential>
+<UserAgent>Coupa Procurement 1.0</UserAgent>
+</Sender>
+</Header>
+<Request>
+<PunchOutSetupRequest operation="create">
+<BuyerCookie>c64af92dc27e68172e030d3dfd1bc944</BuyerCookie>
+<Extrinsic name="FirstName">Jim</Extrinsic>
+<Extrinsic name="LastName">Halpert</Extrinsic>
+<Extrinsic name="UniqueName">jim</Extrinsic>
+<Extrinsic name="UserEmail">noah+jim@coupa.com</Extrinsic>
+<Extrinsic name="User">jim</Extrinsic>
+<Extrinsic name="BusinessUnit">COUPA</Extrinsic>
+<Contact role="endUser">
+<Name xml:lang="en-US">jim</Name>
+<Email>noah+jim@coupa.com</Email>
+</Contact>
+<BrowserFormPost>
+<URL>https://qa.coupahost.com/punchout/checkout/4</URL>
+</BrowserFormPost>
+</PunchOutSetupRequest>
+</Request>
+</cXML>
+
