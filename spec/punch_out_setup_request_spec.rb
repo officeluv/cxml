@@ -24,7 +24,11 @@ describe CXML::PunchOutSetupRequest do
     end
     it "sets the mandatory coupa attributes" do
       punch_out_setup_request_coupa.browser_form_post_url.should_not be_nil
+      punch_out_setup_request_coupa.buyer_cookie.should_not be_nil
+      punch_out_setup_request_coupa.contact.email.should_not be_nil
+      punch_out_setup_request_coupa.extrinsics.should be_a Array
+      punch_out_setup_request_coupa.extrinsics.first.should be_a CXML::Extrinsic
+      punch_out_setup_request_coupa.extrinsics.first.name.should_not be_nil
     end
   end
-
 end

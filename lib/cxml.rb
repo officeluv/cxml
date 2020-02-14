@@ -22,6 +22,8 @@ module CXML
   autoload :ItemIn,                       'cxml/item_in'
   autoload :ItemDetail,                   'cxml/item_detail'
   autoload :Money,                        'cxml/money'
+  autoload :Contact,                      'cxml/contact'
+  autoload :Extrinsic,                    'cxml/extrinsic'
 
   def self.parse(str)
     CXML::Parser.new.parse(str)
