@@ -7,19 +7,19 @@ module CXML
   class ItemId
 
     attr_accessor :supplier_part_id
-    attr_accessor :supplier_part_auxillary_id
+    attr_accessor :supplier_part_auxiliary_id
 
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
         @supplier_part_id = data['SupplierPartID']
-        @supplier_part_auxillary_id = data['SupplierPartAuxilaryID']
+        @supplier_part_auxiliary_id = data['SupplierPartAuxiliaryID']
       end
     end
 
     def render(node)
       node.ItemID do |item_in|
         node.SupplierPartID(supplier_part_id)
-        node.SupplierPartAuxiliaryID(supplier_part_auxillary_id)
+        node.SupplierPartAuxiliaryID(supplier_part_auxiliary_id)
       end
     end
 

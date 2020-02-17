@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CXML::ItemId do
 
   it { should respond_to :supplier_part_id }
-  it { should respond_to :supplier_part_auxillary_id }
+  it { should respond_to :supplier_part_auxiliary_id }
 
 
   let(:parser) { CXML::Parser.new }
