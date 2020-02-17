@@ -12,7 +12,7 @@ module CXML
     def initialize(data={})
       if data.kind_of?(Hash) && !data.empty?
         @supplier_part_id = data['SupplierPartID']
-        @supplier_part_auxillary_id = data['SupplierPartAuxillaryID']
+        @supplier_part_auxillary_id = data['SupplierPartAuxilaryID']
       end
     end
 
