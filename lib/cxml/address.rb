@@ -22,6 +22,7 @@ module CXML
       @state = data['PostalAddress']['State']
       @postal_code = data['PostalAddress']['PostalCode']
       @country = data['PostalAddress']['Country']
+      @email = data['Email']
     end
 
     def render(node)
@@ -35,6 +36,7 @@ module CXML
           pa.PostalCode(postal_code)
           pa.Country(country)
         end
+        n.Email(email)
       end
     end
   end
