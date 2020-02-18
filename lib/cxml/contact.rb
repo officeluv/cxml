@@ -15,8 +15,8 @@ module CXML
 
     def render(node)
       node.Contact do |n|
-        n.Name(@name)
-        n.Email(@email)
+        n.Name(name)
+        n.Email(email)
       end
     end
   end
