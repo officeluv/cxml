@@ -34,8 +34,10 @@ describe CXML::PunchOutOrderMessage do
     let(:punch_out_order_message_output_data) { output_data['Message']['PunchOutOrderMessage'] }
 
     it 'contains the required nodes' do
+      punch_out_order_message.add_item(build_item_in(parser))
       punch_out_order_message_output_data["PunchOutOrderMessageHeader"].should_not be_empty
       punch_out_order_message_output_data.should include("BuyerCookie")
+      punch_out_order_message_output_data.should include("ItemIn")
     end
 
   end

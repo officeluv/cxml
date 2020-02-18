@@ -22,12 +22,12 @@ module CXML
     attr_accessor :punch_out_order_message_header
     attr_accessor :items_in
 
-    def initialize(data={})
-      if data.kind_of?(Hash) && !data.empty?
-        @buyer_cookie = data['BuyerCookie'] if data['BuyerCookie']
-        @punch_out_order_message_header = CXML::PunchOutOrderMessageHeader.new(data['PunchOutOrderMessageHeader']) if data['PunchOutOrderMessageHeader']
-        @items_in = []
-      end
+    def initialize(data = {})
+      return unless data.is_a?(Hash) && !data.empty?
+
+      @buyer_cookie = data['BuyerCookie'] if data['BuyerCookie']
+      @punch_out_order_message_header = CXML::PunchOutOrderMessageHeader.new(data['PunchOutOrderMessageHeader']) if data['PunchOutOrderMessageHeader']
+      @items_in = []
     end
 
     def add_item(item_in_data)

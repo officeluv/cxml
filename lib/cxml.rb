@@ -20,10 +20,17 @@ module CXML
   autoload :PunchOutOrderMessageHeader,   'cxml/punch_out_order_message_header'
   autoload :ItemId,                       'cxml/item_id'
   autoload :ItemIn,                       'cxml/item_in'
+  autoload :ItemOut,                      'cxml/item_out'
   autoload :ItemDetail,                   'cxml/item_detail'
   autoload :Money,                        'cxml/money'
   autoload :Contact,                      'cxml/contact'
   autoload :Extrinsic,                    'cxml/extrinsic'
+  autoload :OrderRequest,                 'cxml/order_request'
+  autoload :OrderRequestHeader,           'cxml/order_request_header'
+  autoload :Address,                      'cxml/address'
+  autoload :Distribution,                 'cxml/distribution'
+  autoload :Accounting,                   'cxml/accounting'
+  autoload :Segment,                      'cxml/segment'
 
   def self.parse(str)
     CXML::Parser.new.parse(str)

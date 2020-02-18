@@ -8,18 +8,21 @@ module CXML
     attr_accessor :id
     attr_accessor :deployment_mode
     attr_accessor :punch_out_setup_request
+    attr_accessor :order_request
 
-    def initialize(data={})
-      if data.kind_of?(Hash) && !data.empty?
-        @id = data['id']
-        @deployment_mode = data['deploymentMode']
-        @punch_out_setup_request = CXML::PunchOutSetupRequest.new(data['PunchOutSetupRequest'])
+    def initialize(data = {})
+      return unless data.is_a?(Hash) && !data.empty?
+
+      @id = data['id']
+      @deployment_mode = data['deploymentMode']
+      @punch_out_setup_request = CXML::PunchOutSetupRequest.new(data['PunchOutSetupRequest'])
+      @order_request = CXML::OrderRequest.new(data['OrderRequest'])
+    end
+
+    def render(node)
+      node.Request do |n|
+        order_request&.render(n)
       end
     end
-
-    # NOTE - No need to implement this yet as we don't render requests
-    def render(node)
-    end
-
   end
 end
