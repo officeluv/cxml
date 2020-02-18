@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cxml.org/schemas/cXML/1.2.014/cXML.dtd">
+<cXML xml:lang="en-US" payloadID="1452186890.009162@ip-10-7-14-126" timestamp="2008-01-07T09:14:50-08:00">
+   <Header>
+      <From>
+         <Credential domain="duns">
+            <!-- Customer domain typically provided by Supplier, typically DUNS -->
+            <Identity>dell</Identity>
+            <!-- Customer id typically provided by Supplier, string -->
+         </Credential>
+      </From>
+      <To>
+         <Credential domain="Duns">
+            <!-- Supplier domain typically provided by Supplier, typically DUNS -->
+            <Identity>128293714</Identity>
+            <!-- Supplier id typically provided by Supplier, string -->
+         </Credential>
+      </To>
+      <Sender>
+         <Credential domain="duns">
+            <Identity>dell</Identity>
+            <!-- same as From -->
+            <Identity>dell</Identity>
+            <!-- same as From -->
+         </Credential>
+         <UserAgent>Coupa Procurement 1.0</UserAgent>
+         <!-- does not change -->
+      </Sender>
+   </Header>
+   <Request deploymentMode="production">
+      <OrderRequest>
+         <OrderRequestHeader orderID="6112" orderDate="2008-01-07T09:14:50-08:00" type="new">
+         <!-- Coupa supports "new" and "update" -->
+            <Total>
+               <Money currency="USD">1505.0</Money>
+               <!-- Currency code configured in Coupa -->
+            </Total>
+            <ShipTo>
+               <Address isoCountryCode="US" addressID="3119">
+                  <Name xml:lang="en">jmadden</Name>
+                  <PostalAddress name="default">
+                     <DeliverTo>j maddedn</DeliverTo>
+                     <Street>333 East Hill Dr</Street>
+                     <City>san leandro</City>
+                     <State>ca</State>
+                     <PostalCode>22222</PostalCode>
+                     <Country isoCountryCode="US">United States</Country>
+                  </PostalAddress>
+                  <Email name="default">jmadden@coupa1.com</Email>
+               </Address>
+            </ShipTo>
+            <BillTo>
+               <Address isoCountryCode="US" addressID="142">
+                  <Name xml:lang="en">SOB1</Name>
+                  <!-- Company Name under Company Information in Coupa -->
+                  <PostalAddress name="default">
+                     <DeliverTo>Noah Sanity Attn: Noah Noah</DeliverTo>
+                     <Street>3420 Flatiron Way</Street>
+                     <City>West Index</City>
+                     <State>NJ</State>
+                     <PostalCode>43023</PostalCode>
+                     <Country isoCountryCode="US">United States</Country>
+                  </PostalAddress>
+               </Address>
+            </BillTo>
+            <Contact role="endUser">
+               <Name xml:lang="en">j maddedn</Name>
+               <Email name="default">jmadden@coupa1.com</Email>
+            </Contact>
+            <Comments xml:lang="en">header comment goes here if entered by user</Comments>
+         </OrderRequestHeader>
+         <ItemOut quantity="1" lineNumber="1">
+            <ItemID>
+               <SupplierPartID>223-4511</SupplierPartID>
+               <!-- Coupa Item Part Number -->
+               <SupplierPartAuxiliaryID>1005379527029\1</SupplierPartAuxiliaryID>
+               <!-- Auxiliary Part Number is optional, typically used by punchout suppliers -->
+            </ItemID>
+            <ItemDetail>
+               <UnitPrice>
+                  <Money currency="USD">1505.0</Money>
+                  <!-- Currency code configured in Coupa -->
+               </UnitPrice>
+               <Description xml:lang="en">OptiPlex 755 Energy Smart Minitower;IntelREG CoreTM 2 Quad Processor Q6600 (2.40GHz, 2X4M, 1066MHz FSB)</Description>
+               <UnitOfMeasure>EA</UnitOfMeasure>
+               <Classification domain="UNSPSC">44000000</Classification>
+               <!-- Future expansion -->
+            </ItemDetail>
+            <Distribution>
+               <Accounting name="bbbb">
+                  <!-- Coupa Account name -->
+                  <Segment id="bbb" description="ORG" type="Organization" />
+                  <Segment id="b" description="DEPT" type="Department" />
+                  <Segment id="bb" description="PROJ" type="Project" />
+               </Accounting>
+               <Charge>
+                  <Money currency="USD">1505.0</Money>
+               </Charge>
+            </Distribution>
+            <Comments xml:lang="en">line item comment goes here if entered by user</Comments>
+         </ItemOut>
+         <ItemOut quantity="2" lineNumber="2">
+            <ItemID>
+               <SupplierPartID>223-4511</SupplierPartID>
+               <!-- Coupa Item Part Number -->
+               <SupplierPartAuxiliaryID>1005379527029\1</SupplierPartAuxiliaryID>
+               <!-- Auxiliary Part Number is optional, typically used by punchout suppliers -->
+            </ItemID>
+            <ItemDetail>
+               <UnitPrice>
+                  <Money currency="USD">1505.0</Money>
+                  <!-- Currency code configured in Coupa -->
+               </UnitPrice>
+               <Description xml:lang="en">OptiPlex 755 Energy Smart Minitower;IntelREG CoreTM 2 Quad Processor Q6600 (2.40GHz, 2X4M, 1066MHz FSB)</Description>
+               <UnitOfMeasure>EA</UnitOfMeasure>
+               <Classification domain="UNSPSC">44000000</Classification>
+               <!-- Future expansion -->
+            </ItemDetail>
+            <Distribution>
+               <Accounting name="bbbb">
+                  <!-- Coupa Account name -->
+                  <Segment id="bbb" description="ORG" type="Organization" />
+                  <Segment id="b" description="DEPT" type="Department" />
+                  <Segment id="bb" description="PROJ" type="Project" />
+               </Accounting>
+               <Charge>
+                  <Money currency="USD">1505.0</Money>
+               </Charge>
+            </Distribution>
+            <Comments xml:lang="en">line item comment goes here if entered by user</Comments>
+         </ItemOut>
+      </OrderRequest>
+   </Request>
+</cXML>

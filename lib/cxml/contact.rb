@@ -12,5 +12,12 @@ module CXML
       @name = data['Name']
       @email = data['Email']
     end
+
+    def render(node)
+      node.Contact do |n|
+        n.Name(name)
+        n.Email(email)
+      end
+    end
   end
 end
