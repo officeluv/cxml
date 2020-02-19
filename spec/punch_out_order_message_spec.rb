@@ -5,7 +5,6 @@ describe CXML::PunchOutOrderMessage do
   it { should respond_to :add_item }
   it { should respond_to :buyer_cookie }
   it { should respond_to :items_in }
-  it { should respond_to :punch_out_order_message_header? }
   it { should respond_to :render }
 
   let(:parser) { CXML::Parser.new }
