@@ -17,7 +17,6 @@ describe CXML::Header do
 
   it { should respond_to :from? }
   it { should respond_to :to? }
-  it { should respond_to :sender? }
   it { should respond_to :render }
 
   let(:parser) { CXML::Parser.new }
