@@ -2,6 +2,13 @@
 require 'cxml/errors'
 require 'time'
 require 'nokogiri'
+require 'digest'
+require 'cxml/invoice/invoice_generator'
+require 'cxml/invoice/invoice_header'
+require 'cxml/invoice/invoice_request'
+require 'cxml/invoice/invoice_detail_order'
+require 'cxml/invoice/invoice_detail_summary'
+require 'cxml/invoice/invoice_distribution'
 
 module CXML
   autoload :Protocol,                     'cxml/protocol'
@@ -31,6 +38,12 @@ module CXML
   autoload :Distribution,                 'cxml/distribution'
   autoload :Accounting,                   'cxml/accounting'
   autoload :Segment,                      'cxml/segment'
+  autoload :InvoiceGenerator,             'cxml/invoice/invoice_generator'
+  autoload :InvoiceHeader,                'cxml/invoice/invoice_header'
+  autoload :InvoiceRequest,               'cxml/invoice/invoice_request'
+  autoload :InvoiceDetailOrder,           'cxml/invoice/invoice_detail_order'
+  autoload :InvoiceDetailSummary,         'cxml/invoice/invoice_detail_summary'
+  autoload :InvoiceDistribution,          'cxml/invoice/invoice_distribution'
 
   def self.parse(str)
     CXML::Parser.new.parse(str)
