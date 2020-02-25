@@ -10,10 +10,8 @@ module CXML
       def self.generate(invoice_data = {}, print = false)
         cxml_invoice = Nokogiri::XML::Builder.new(:encoding => "UTF-8") do |xml|
           xml.cXML {
-            CXML::Invoice::InvoiceHeader.compose(xml, {})
-            CXML::Invoice::InvoiceRequest.compose(xml, {})
-            CXML::Invoice::InvoiceDetailOrder.compose(xml, [])
-            CXML::Invoice::InvoiceDetailSummary.compose(xml, {})
+            CXML::Invoice::InvoiceHeader.compose(xml, invoice_data[:header])
+            CXML::Invoice::InvoiceRequest.compose(xml, invoice_data)
           }
         end
         print_file(cxml_invoice) if print #debugging purposes

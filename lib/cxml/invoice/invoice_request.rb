@@ -15,9 +15,11 @@ module CXML
               xml.InvoiceDetailLineIndicator('isAccountingInLine': 'yes')
               xml.PaymentTerm('payInNumberOfDays': '30')
             }
+            CXML::Invoice::InvoiceDetailOrder.compose(xml, data[:invoice_detail_order][:data])
+            CXML::Invoice::InvoiceDetailSummary.compose(xml, data[:invoice_detail_summary])
           }
         }
       end
     end
   end
-end 
+end

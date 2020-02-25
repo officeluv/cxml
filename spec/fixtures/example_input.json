@@ -1,0 +1,53 @@
+{
+	"header": {
+		"from": "officeluv",
+		"to": "dentsu",
+		"sender": {
+			"identity": "supplier id",
+			"shared_secret": "secret"
+		},
+		"user_agent": "user agent"
+	},
+
+	"invoice_request": {
+		"invoice_date": "Date.today",
+		"invoice_id": "1234"
+	},
+  
+	"invoice_detail_order": {
+		"data": [{
+				"document_reference": "123",
+				"invoice_detail_item": {
+					"quantity": "5",
+					"unit_of_measure": "EA",
+					"unit_price": "10.00",
+					"description": "Box of hammers",
+					"subtotal_amount": "50.00",
+					"invoice_distribution": "[]"
+				}
+			},
+			{
+				"document_reference": "122",
+				"invoice_detail_item": {
+					"quantity": "10",
+					"unit_of_measure": "BT",
+					"unit_price": "20.00",
+					"description": "Box of horses",
+					"subtotal_amount": "100.00",
+					"invoice_distribution": "[]"
+				}
+			}
+
+		]
+	},
+	"invoice_detail_summar": {
+		"subtotal_amount": "5",
+		"tax": 4,
+		"tax_point_date": "Date.today",
+		"tax_amount": "5",
+		"tax_locatio": "CA",
+		"special_handling": "5",
+		"shipping_amount": "4",
+		"net_amount": "4"
+	}
+}

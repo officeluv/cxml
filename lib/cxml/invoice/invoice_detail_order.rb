@@ -10,28 +10,27 @@ module CXML
       end
 
       def self.compose(xml, data = [])
-        data.each_with_index do |i, datum| #TODO Plug in invoice_distribution class here
+        data.each_with_index do |datum, i|
           xml.InvoiceDetailOrderInfo {
             xml.OrderReference {
-              xml.DocumentReference('payloadID': "#{rand(1000)}")
+              xml.DocumentReference('payloadID': "#{datum[:document_reference]}")
             }
-            xml.InvoiceDetailItem('invoiceLineNumber': "#{i}", 'quantity': "#{rand(5)}") {
-              xml.UnitOfMeasure "EA"
+            xml.InvoiceDetailItem('invoiceLineNumber': "#{i}", 'quantity': "#{datum[:quantity]}") {
+              xml.UnitOfMeasure "#{datum[:unit_of_measure]}"
               xml.UnitPrice {
-                xml.Money('currency': "#{USD_CURRENCY}") { xml.text("#{rand(1000)}") }
+                xml.Money('currency': "#{USD_CURRENCY}") { xml.text("#{datum[:unit_price]}") }
               }
               xml.InvoiceDetailItemReference('lineNumber': "#{i}") {
-                xml.Description('xml:lang': 'en') { xml.text("Item Description") }
+                xml.Description('xml:lang': 'en') { xml.text("#{datum[:description]}") }
               }
               xml.SubtotalAmount {
-                xml.Money('currency': USD_CURRENCY) { xml.text("#{rand(100)}") }
+                xml.Money('currency': USD_CURRENCY) { xml.text("#{datum[:subtotal_amount]}") }
               }
             }
           }
         end
         xml
       end
-
     end
   end
 end 

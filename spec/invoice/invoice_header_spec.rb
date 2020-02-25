@@ -3,16 +3,16 @@ require 'spec_helper'
 
 describe CXML::Invoice::InvoiceHeader do
   let(:invoice) { Nokogiri::XML::Builder.new(:encoding => "UTF-8") }
-  let(:doc) { CXML::Invoice::InvoiceHeader.compose(invoice, {}).to_xml.pretty_inspect }
+  let(:data) { JSON.parse(fixture('example_input.json'), symbolize_names: true) }
+  let(:doc) { CXML::Invoice::InvoiceHeader.compose(invoice, data[:header]).to_xml.pretty_inspect }
 
   describe '#compose' do
-    let(:keys) { ['Header', 'From', 'Credential', 
+    keys = ['Header', 'From', 'Credential', 
                   'Identity', 'To', 'Sender', 'SharedSecret', 
-                  'UserAgent'] }
-
-    it 'should return a document with specified keys' do
-      keys.each do |key|
-        expect(doc.include?("#{key}")).to be_true
+                  'UserAgent']
+    keys.each do |key|
+      it "should return a document with the key, #{key}" do
+        expect(doc.include?("#{key}")).to eq(true)
       end
     end
 

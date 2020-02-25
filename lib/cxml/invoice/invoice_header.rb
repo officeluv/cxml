@@ -11,22 +11,20 @@ module CXML
         xml.Header {
           xml.From {
             xml.Credential('domain': 'COUPA') {
-              xml.Identity "SUPPLIER ID"
+              xml.Identity data[:from]
             }
           }
           xml.To {
             xml.Credential('domain': 'COUPA') {
-              xml.Identity "BUYER ID"
+              xml.Identity data[:to]
             }
           }
           xml.Sender {
             xml.Credential('domain': 'COUPA') {
-              xml.Identity {
-
-              }
-              xml.SharedSecret "123456secret"
+              xml.Identity data[:sender][:identity]
+              xml.SharedSecret data[:sender][:shared_secret]
             }
-            xml.UserAgent "Coupa Integration V01"
+            xml.UserAgent data[:user_agent]
           }
         }
       end
