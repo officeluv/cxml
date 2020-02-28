@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CXML
   module Invoice
     class InvoiceDetailOrder
@@ -5,32 +7,32 @@ module CXML
 
       USD_CURRENCY = 'USD'
 
-      def initialize(xml, data)
+      def initialize(_xml, data)
         @data = new(data)
       end
 
       def self.compose(xml, data = [])
         data.each_with_index do |datum, i|
-          xml.InvoiceDetailOrderInfo {
-            xml.OrderReference {
-              xml.DocumentReference('payloadID': "#{datum[:document_reference]}")
-            }
-            xml.InvoiceDetailItem('invoiceLineNumber': "#{i}", 'quantity': "#{datum[:quantity]}") {
-              xml.UnitOfMeasure "#{datum[:unit_of_measure]}"
-              xml.UnitPrice {
-                xml.Money('currency': "#{USD_CURRENCY}") { xml.text("#{datum[:unit_price]}") }
-              }
-              xml.InvoiceDetailItemReference('lineNumber': "#{i}") {
-                xml.Description('xml:lang': 'en') { xml.text("#{datum[:description]}") }
-              }
-              xml.SubtotalAmount {
-                xml.Money('currency': USD_CURRENCY) { xml.text("#{datum[:subtotal_amount]}") }
-              }
-            }
-          }
+          xml.InvoiceDetailOrderInfo do
+            xml.OrderReference do
+              xml.DocumentReference('payloadID': (datum[:document_reference]).to_s)
+            end
+            xml.InvoiceDetailItem('invoiceLineNumber': i.to_s, 'quantity': (datum[:quantity]).to_s) do
+              xml.UnitOfMeasure((datum[:unit_of_measure]).to_s)
+              xml.UnitPrice do
+                xml.Money('currency': USD_CURRENCY.to_s) { xml.text((datum[:unit_price]).to_s) }
+              end
+              xml.InvoiceDetailItemReference('lineNumber': i.to_s) do
+                xml.Description('xml:lang': 'en') { xml.text((datum[:description]).to_s) }
+              end
+              xml.SubtotalAmount do
+                xml.Money('currency': USD_CURRENCY) { xml.text((datum[:subtotal_amount]).to_s) }
+              end
+            end
+          end
         end
         xml
       end
     end
   end
-end 
+end
