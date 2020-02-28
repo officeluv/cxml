@@ -23,7 +23,41 @@
 					"unit_price": "10.00",
 					"description": "Box of hammers",
 					"subtotal_amount": "50.00",
-					"invoice_distribution": "[]"
+          "invoice_distribution": [{}],
+          "invoice_detail_line_item_references": [
+            {
+              "line_number": "12",
+              "product_id": "13",
+              "gtin": "OL-123",
+              "description": "desc"
+            },
+            {
+              "line_number": "12",
+              "product_id": "13",
+              "gtin": "OL-123",
+              "description": "desc"
+            }
+          ],
+          "taxes":[
+            {
+              "amount": "10.00",
+              "description": "desc",
+              "category": "CAT",
+              "percentage_rate": "5%",
+              "taxable_amount": "42.00",
+              "tax_amount": "12.00",
+              "location": "CA"
+            },
+            {
+              "amount": "10.00",
+              "description": "desc",
+              "category": "CAT",
+              "percentage_rate": "5%",
+              "taxable_amount": "42.00",
+              "tax_amount": "12.00",
+              "location": "CA"
+            }
+          ]
 				}
 			},
 			{
@@ -34,7 +68,32 @@
 					"unit_price": "20.00",
 					"description": "Box of horses",
 					"subtotal_amount": "100.00",
-					"invoice_distribution": "[]"
+          "invoice_distribution": [],
+          "invoice_detail_line_item_references": [
+            {
+              "line_number": "12",
+              "product_id": "13",
+              "gtin": "OL-123",
+              "description": "desc"
+            },
+            {
+              "line_number": "12",
+              "product_id": "13",
+              "gtin": "OL-123",
+              "description": "desc"
+            }
+          ],
+          "taxes": [
+            {
+              "amount": "10.00",
+              "description": "desc",
+              "category": "CAT",
+              "percentage_rate": "5%",
+              "taxable_amount": "42.00",
+              "tax_amount": "12.00",
+              "location": "CA"
+            }
+          ]
 				}
 			}
 
@@ -45,9 +104,10 @@
 		"tax": 4,
 		"tax_point_date": "Date.today",
 		"tax_amount": "5",
-		"tax_locatio": "CA",
+		"tax_location": "CA",
 		"special_handling": "5",
 		"shipping_amount": "4",
-		"net_amount": "4"
+    "net_amount": "4",
+    "gross_amount": "130"
 	}
 }
