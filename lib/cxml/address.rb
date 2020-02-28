@@ -11,6 +11,8 @@ module CXML
     attr_accessor :postal_code
     attr_accessor :country
     attr_accessor :email
+    attr_accessor :iso_country_code
+    attr_accessor :address_id
 
     def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
@@ -23,10 +25,12 @@ module CXML
       @postal_code = data['PostalAddress']['PostalCode']
       @country = data['PostalAddress']['Country']
       @email = data['Email']
+      @iso_country_code = data['isoCountryCode']
+      @address_id = data['addressID']
     end
 
     def render(node)
-      node.Address do |n|
+      node.Address(node_attributes) do |n|
         n.Name(name)
         n.PostalAddress do |pa|
           pa.DeliverTo(deliver_to)
@@ -38,6 +42,15 @@ module CXML
         end
         n.Email(email)
       end
+    end
+
+    private
+
+    def node_attributes
+      {
+        'isoCountryCode' => iso_country_code,
+        'addressID' => address_id
+      }
     end
   end
 end
