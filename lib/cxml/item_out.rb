@@ -8,6 +8,7 @@ module CXML
     attr_accessor :quantity
     attr_accessor :distribution
     attr_accessor :comments
+    attr_accessor :line_number
 
     def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
@@ -17,6 +18,7 @@ module CXML
       @quantity = data['quantity']
       @distribution = CXML::Distribution.new(data['Distribution'])
       @comments = data['Comments']
+      @line_number = data['lineNumber']
     end
 
     def item_id?
@@ -30,12 +32,21 @@ module CXML
     def render(node)
       return unless item_id? && item_detail?
 
-      node.ItemOut('quantity' => quantity) do
+      node.ItemOut(node_attributes) do
         item_id.render(node)
         item_detail.render(node)
         distribution.render(node)
         node.Comments(@comments)
       end
+    end
+
+    private
+
+    def node_attributes
+      {
+        'quantity' => quantity,
+        'lineNumber' => line_number
+      }
     end
   end
 end

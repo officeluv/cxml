@@ -23,4 +23,11 @@ describe CXML::OrderRequest do
       order_request_output_data['ItemOut'].length.should eq 2
     end
   end
+  describe '#initialize' do
+    it 'sets the required nodes' do
+      order_request.order_request_header.should_not be_nil
+      order_request.order_request_header.order_id.should_not be_nil
+      order_request.items_out.first.should_not be_nil
+    end
+  end
 end
