@@ -17,11 +17,10 @@ module CXML
               xml.InvoiceDetailLineIndicator('isAccountingInLine': data[:is_accounting_line])
               xml.PaymentTerm('payInNumberOfDays': data[:terms])
             }
-            # binding.pry
             CXML::Invoice::InvoiceDetailOrder.compose(xml, data[:invoice_detail_order][:data])
             CXML::Invoice::InvoiceDetailSummary.compose(xml, data[:invoice_detail_summary])
-          end
-        end
+          }
+        }
       end
     end
   end
