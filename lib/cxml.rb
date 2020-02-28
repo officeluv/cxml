@@ -9,6 +9,9 @@ require 'cxml/invoice/invoice_request'
 require 'cxml/invoice/invoice_detail_order'
 require 'cxml/invoice/invoice_detail_summary'
 require 'cxml/invoice/invoice_distribution'
+require 'cxml/invoice/invoice_detail_item'
+require 'cxml/invoice/invoice_detail_line_item_reference'
+require 'cxml/invoice/invoice_taxes'
 
 module CXML
   autoload :Protocol,                     'cxml/protocol'
@@ -44,6 +47,9 @@ module CXML
   autoload :InvoiceDetailOrder,           'cxml/invoice/invoice_detail_order'
   autoload :InvoiceDetailSummary,         'cxml/invoice/invoice_detail_summary'
   autoload :InvoiceDistribution,          'cxml/invoice/invoice_distribution'
+  autoload :InvoiceDetailItem,            'cxml/invoice/invoice_detail_item'
+  autoload :InvoiceDetailLineItemReference, 'cxml/invoice/invoice_detail_line_item_reference'
+  autoload :InvoiceTaxes,                   'cxml/invoice/invoice_taxes'
 
   def self.parse(str)
     CXML::Parser.new.parse(str)
