@@ -15,14 +15,17 @@ module CXML
     def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
 
-      @total = CXML::Money.new(data['Total']['Money'])
-      @ship_to = CXML::Address.new(data['ShipTo']['Address'])
-      @bill_to = CXML::Address.new(data['BillTo']['Address'])
-      @contact = CXML::Contact.new(data['Contact'])
-      @order_id = data['orderID']
-      @order_date = data['orderDate']
+      @total = CXML::Money.new(data['total']) if data['total']
+      @total = CXML::Money.new(data['Total']['Money']) if data['Total']
+      @ship_to = CXML::Address.new(data['ship_to']) if data['ship_to']
+      @ship_to = CXML::Address.new(data['ShipTo']['Address']) if data['ShipTo']
+      @bill_to = CXML::Address.new(data['bill_to']) if data['bill_to']
+      @bill_to = CXML::Address.new(data['BillTo']['Address']) if data['BillTo']
+      @contact = CXML::Contact.new(data['Contact'] || data['contact'])
+      @order_id = data['orderID'] || data['order_id']
+      @order_date = data['orderDate'] || data['order_date']
       @type = data['type'] || 'new'
-      @comments = data['Comments']
+      @comments = data['Comments'] || data['comments']
     end
 
     def render(node)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CXML
   class Status
     attr_accessor :code
@@ -6,14 +8,14 @@ module CXML
 
     # Initialize a new Status instance
     # @params data [Hash] optional hash with attributes
-    def initialize(data={})
-      data = CXML.parse(data) if data.kind_of?(String)
+    def initialize(data = {})
+      data = CXML.parse(data) if data.is_a?(String)
 
-      if data.kind_of?(Hash) && !data.empty?
-        @code     = data['code'].to_i
-        @text     = data['text']
-        @xml_lang = data['xml:lang']
-      end
+      return unless data.is_a?(Hash) && !data.empty?
+
+      @code     = data['code'].to_i
+      @text     = data['text']
+      @xml_lang = data['xml:lang']
     end
 
     # Check if status is success
@@ -29,7 +31,7 @@ module CXML
     end
 
     def render(node)
-      node.Status(:code => @code, :text => @text)
+      node.Status(code: @code, text: @text)
     end
   end
 end

@@ -9,8 +9,9 @@ module CXML
     def initialize(data)
       return unless data.is_a?(Hash) && !data.empty?
 
-      @accounting = CXML::Accounting.new(data['Accounting'])
-      @charge = CXML::Money.new(data['Charge']['Money'])
+      @accounting = CXML::Accounting.new(data['Accounting'] || data['accounting'])
+      @charge = CXML::Money.new(data['charge']) if data['charge']
+      @charge = CXML::Money.new(data['Charge']['Money']) if data['Charge']
     end
 
     def render(node)

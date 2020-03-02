@@ -14,22 +14,25 @@ module CXML
       return unless data.is_a?(Hash) && !data.empty?
 
       @version = data['version']
-      @payload_id = data['payloadID']
+      @payload_id = data['payloadID'] || data['payload_id']
       @xml_lang = data['xml:lang'] if data['xml:lang']
 
-      data['timestamp'] && @timestamp = Time.parse(data['timestamp'])
-
-      data['Header'] && @header = CXML::Header.new(data['Header'])
-
-      data['Request'] && @request = CXML::Request.new(data['Request'])
-
-      data['Response'] && @response = CXML::Response.new(data['Response'])
-
-      return unless data['Message'] && data['Message']['PunchOutOrderMessage']
-
-      @punch_out_order_message = CXML::PunchOutOrderMessage.new(
-        data['Message']['PunchOutOrderMessage']
-      )
+      @timestamp = Time.parse(data['timestamp']) if data['timestamp']
+      @header = CXML::Header.new(data['header']) if data['header']
+      @header = CXML::Header.new(data['Header']) if data['Header']
+      @request = CXML::Request.new(data['request']) if data['request']
+      @request = CXML::Request.new(data['Request']) if data['Request']
+      @response = CXML::Response.new(data['response']) if data['response']
+      @response = CXML::Response.new(data['Response']) if data['Response']
+      if data['Message'] && data['Message']['PunchOutOrderMessage']
+        @punch_out_order_message = CXML::PunchOutOrderMessage.new(
+          data['Message']['PunchOutOrderMessage']
+        )
+      elsif data['punch_out_order_message']
+        @punch_out_order_message = CXML::PunchOutOrderMessage.new(
+          data['punch_out_order_message']
+        )
+      end
     end
 
     # def setup
