@@ -14,9 +14,9 @@ module CXML
       return unless data.is_a?(Hash) && !data.empty?
 
       @id = data['id']
-      @deployment_mode = data['deploymentMode']
-      @punch_out_setup_request = CXML::PunchOutSetupRequest.new(data['PunchOutSetupRequest'])
-      @order_request = CXML::OrderRequest.new(data['OrderRequest'])
+      @deployment_mode = data['deploymentMode'] || data['deployment_mode']
+      @punch_out_setup_request = CXML::PunchOutSetupRequest.new(data['PunchOutSetupRequest'] || data['punch_out_setup_request'])
+      @order_request = CXML::OrderRequest.new(data['OrderRequest'] || data['order_request'])
     end
 
     def render(node)

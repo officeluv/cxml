@@ -17,16 +17,24 @@ module CXML
     def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
 
-      @name = data['Name']
+      @name = data['Name'] || data['name']
+      @email = data['Email'] || data['email']
+      @iso_country_code = data['isoCountryCode'] || data['iso_country_code']
+      @address_id = data['addressID'] || data['address_id']
+      @deliver_to = data['deliver_to']
+      @street = data['street']
+      @city = data['city']
+      @state = data['state']
+      @postal_code = data['postal_code']
+      @country = data['country']
+      return unless data['PostalAddress']
+
       @deliver_to = data['PostalAddress']['DeliverTo']
       @street = data['PostalAddress']['Street']
       @city = data['PostalAddress']['City']
       @state = data['PostalAddress']['State']
       @postal_code = data['PostalAddress']['PostalCode']
       @country = data['PostalAddress']['Country']
-      @email = data['Email']
-      @iso_country_code = data['isoCountryCode']
-      @address_id = data['addressID']
     end
 
     def render(node)

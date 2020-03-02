@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # The Header element contains addressing and authentication information. The Header
 # element is the same regardless of the specific Request or Response within the body of
 # the cXML message. Applications need the requestor's identity, but not validation that
@@ -22,12 +24,14 @@ module CXML
     attr_accessor :to
     attr_accessor :sender
 
-    def initialize(data={})
-      if data.kind_of?(Hash) && !data.empty?
-        @from       = CXML::Credential.new(data['From']['Credential'])
-        @to         = CXML::Credential.new(data['To']['Credential'])
-        @sender     = CXML::Sender.new(data['Sender'])
-      end
+    def initialize(data = {})
+      return unless data.is_a?(Hash) && !data.empty?
+
+      @from   = CXML::Credential.new(data['From']['Credential']) if data['From']
+      @from   = CXML::Credential.new(data['From']) if data['from']
+      @to     = CXML::Credential.new(data['To']['Credential']) if data['To']
+      @to     = CXML::Credential.new(data['to']) if data['to']
+      @sender = CXML::Sender.new(data['Sender'] || data['sender'])
     end
 
     def from?

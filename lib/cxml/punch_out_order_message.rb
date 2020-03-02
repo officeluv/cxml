@@ -25,7 +25,8 @@ module CXML
     def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
 
-      @buyer_cookie = data['BuyerCookie'] if data['BuyerCookie']
+      @buyer_cookie = data['BuyerCookie'] || data['buyer_cookie']
+      @punch_out_order_message_header = CXML::PunchOutOrderMessageHeader.new(data['punch_out_order_message_header']) if data['punch_out_order_message_header']
       @punch_out_order_message_header = CXML::PunchOutOrderMessageHeader.new(data['PunchOutOrderMessageHeader']) if data['PunchOutOrderMessageHeader']
       @items_in = []
     end
@@ -37,7 +38,7 @@ module CXML
     def render(node)
       node.Message do
         node.PunchOutOrderMessage do
-          node.BuyerCookie{ @buyer_cookie } if buyer_cookie
+          node.BuyerCookie { @buyer_cookie } if buyer_cookie
           punch_out_order_message_header&.render(node)
           items_in.each { |item_in| item_in.render(node) }
         end

@@ -5,10 +5,11 @@ module CXML
   class PunchOutOrderMessageHeader
     attr_accessor :money
 
-    def initialize(data={})
+    def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
 
-      @money = CXML::Money.new(data['Total']['Money']) if data['Total']['Money']
+      @money = CXML::Money.new(data['total']) if data['total']
+      @money = CXML::Money.new(data['Total']['Money']) if data['Total']
     end
 
     def money?

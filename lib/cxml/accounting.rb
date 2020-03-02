@@ -8,7 +8,7 @@ module CXML
     def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
 
-      @segments = (data['Segment'] || []).map do |segment|
+      @segments = (data['Segment'] || data['segments'] || []).map do |segment|
         CXML::Segment.new(segment)
       end
     end

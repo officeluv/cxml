@@ -9,8 +9,8 @@ module CXML
     def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
 
-      @name = data['Name']
-      @email = data['Email']
+      @name = data['Name'] || data['name']
+      @email = data['Email'] || data['email']
     end
 
     def render(node)

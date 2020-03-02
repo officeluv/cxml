@@ -13,12 +13,12 @@ module CXML
     def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
 
-      @item_id = CXML::ItemId.new(data['ItemID']) if data['ItemID']
-      @item_detail = CXML::ItemDetail.new(data['ItemDetail']) if data['ItemDetail']
+      @item_id = CXML::ItemId.new(data['ItemID'] || data['item_id']) if data['ItemID'] || data['item_id']
+      @item_detail = CXML::ItemDetail.new(data['ItemDetail'] || data['item_detail']) if data['ItemDetail'] || data['item_detail']
       @quantity = data['quantity']
-      @distribution = CXML::Distribution.new(data['Distribution'])
-      @comments = data['Comments']
-      @line_number = data['lineNumber']
+      @distribution = CXML::Distribution.new(data['Distribution'] || data['distribution'])
+      @comments = data['Comments' || data['comments']]
+      @line_number = data['lineNumber' || data['line_number']]
     end
 
     def item_id?

@@ -9,8 +9,8 @@ module CXML
     def initialize(data = {})
       return unless data.is_a?(Hash) && !data.empty?
 
-      @order_request_header = CXML::OrderRequestHeader.new(data['OrderRequestHeader'])
-      @items_out = (data['ItemOut'] || []).map do |item|
+      @order_request_header = CXML::OrderRequestHeader.new(data['OrderRequestHeader'] || data['order_request_header'])
+      @items_out = (data['ItemOut'] || data['items_out'] || []).map do |item|
         CXML::ItemOut.new(item)
       end
     end

@@ -16,11 +16,13 @@ module CXML
     attr_accessor :quantity
 
     def initialize(data={})
-      if data.kind_of?(Hash) && !data.empty?
-        @item_id = CXML::ItemId.new(data['ItemID']) if data['ItemID']
-        @item_detail = CXML::ItemDetail.new(data['ItemDetail']) if data['ItemDetail']
-        @quantity = data['quantity']
-      end
+      return unless data.is_a?(Hash) && !data.empty?
+
+      @item_id = CXML::ItemId.new(data['item_id']) if data['item_id']
+      @item_id = CXML::ItemId.new(data['ItemID']) if data['ItemID']
+      @item_detail = CXML::ItemDetail.new(data['item_detail']) if data['item_detail']
+      @item_detail = CXML::ItemDetail.new(data['ItemDetail']) if data['ItemDetail']
+      @quantity = data['quantity']
     end
 
     def item_id?
@@ -32,13 +34,12 @@ module CXML
     end
 
     def render(node)
-      if item_id? && item_detail?
-        node.ItemIn('quantity' => quantity) do |item_in|
-          item_id.render(node)
-          item_detail.render(node)
-        end
+      return unless item_id? && item_detail?
+
+      node.ItemIn('quantity' => quantity) do |item_in|
+        item_id.render(node)
+        item_detail.render(node)
       end
     end
-
   end
 end
