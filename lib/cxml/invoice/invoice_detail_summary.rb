@@ -11,29 +11,33 @@ module CXML
         @data = new(data)
       end
 
-
       def self.compose(xml, data)
         xml.InvoiceDetailSummary {
           xml.SubtotalAmount {
             xml_money(xml, data[:subtotal_amount])
           }
-          xml.Tax {
-            xml_money(xml, data[:tax])
-            xml.Description('xml:lang': US_LANG) { xml.text(data[:tax_description]) }
-            xml.TaxDetail('category': TAX, 'purpose': TAX, 'taxPointDate': "#{data[:tax_point_date]}") {
-
-              xml.Category {
-                xml.Category { xml.text(data[:tax_category]) }
-              }
-              xml.TaxableAmount {
-                xml.Money('currency': USD_CURRENCY)
-              }
-              xml.TaxAmount {
-                xml_money(xml, data[:tax_amount])
-              }
-              xml.TaxLocation('xml:lang': US_LANG) { xml.text( data[:tax_location] ) }
-            }
+          xml.Description {
+            xml.text(data[:description])
           }
+          data[:tax_details].each do |tax_details|
+            xml.Tax {
+              xml_money(xml, tax_details[:tax])
+              xml.Description('xml:lang': US_LANG) { xml.text(tax_details[:tax_description]) }
+              xml.TaxDetail('category': TAX, 'purpose': TAX, 'taxPointDate': "#{tax_details[:tax_point_date]}") {
+  
+                xml.Category {
+                  xml.Category { xml.text(tax_details[:tax_category]) }
+                }
+                xml.TaxableAmount {
+                  xml.Money('currency': USD_CURRENCY)
+                }
+                xml.TaxAmount {
+                  xml_money(xml, tax_details[:tax_amount])
+                }
+                xml.TaxLocation('xml:lang': US_LANG) { xml.text( tax_details[:tax_location] ) }
+              }
+            }
+          end
           
           xml.ShippingAmount {
             xml_money(xml, data[:shipping_amount])
