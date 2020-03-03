@@ -100,7 +100,26 @@
 		]
 	},
 	"invoice_detail_summary": {
-		"subtotal_amount": "5",
+    "subtotal_amount": "5",
+    "description": "description",
+    "tax_details": [
+      {
+        "category": "CAT",
+        "percentage_rate": "0.03",
+        "taxable_amount": "12.12",
+        "tax_amount": "14.00",
+        "tax_location": "CA",
+        "tax_point_date": "12-12-12"
+      },
+      {
+        "category": "CAT",
+        "percentage_rate": "0.03",
+        "taxable_amount": "12.12",
+        "tax_amount": "14.00",
+        "tax_location": "CA",
+        "tax_point_date": "12-12-12"
+      }
+    ],
 		"tax": 4,
 		"tax_point_date": "Date.today",
 		"tax_amount": "5",
@@ -108,6 +127,7 @@
 		"special_handling": "5",
 		"shipping_amount": "4",
     "net_amount": "4",
-    "gross_amount": "130"
+    "gross_amount": "130",
+    "total_charges": "200.00"
 	}
 }
