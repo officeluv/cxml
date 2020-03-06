@@ -14,7 +14,7 @@ module CXML
       def self.compose(xml, data)
         xml.InvoiceDetailSummary {
           xml.SubtotalAmount {
-            xml_money(xml, data[:subtotal_amount])
+            xml_money(xml, data[:amount])
           }
           xml.Description {
             xml.text(data[:description])
@@ -22,19 +22,20 @@ module CXML
           data[:tax_details].each do |tax_details|
             xml.Tax {
               xml_money(xml, tax_details[:tax])
-              xml.Description('xml:lang': US_LANG) { xml.text(tax_details[:tax_description]) }
-              xml.TaxDetail('category': TAX, 'purpose': TAX, 'taxPointDate': "#{tax_details[:tax_point_date]}") {
-  
+              xml.Description('xml:lang': US_LANG) { xml.text(tax_details[:description]) }
+              xml.TaxDetail('category': TAX, 'purpose': TAX, 'rate': tax_details[:rate]) {
                 xml.Category {
-                  xml.Category { xml.text(tax_details[:tax_category]) }
+                  xml.Category { xml.text(tax_details[:description]) }
                 }
                 xml.TaxableAmount {
-                  xml.Money('currency': USD_CURRENCY)
+                  xml_money(xml, tax_details[:taxable_amount])
                 }
                 xml.TaxAmount {
                   xml_money(xml, tax_details[:tax_amount])
                 }
-                xml.TaxLocation('xml:lang': US_LANG) { xml.text( tax_details[:tax_location] ) }
+                xml.TaxLocation('xml:lang': US_LANG) { 
+                  xml.text( tax_details[:location] )
+                }
               }
             }
           end
@@ -44,7 +45,7 @@ module CXML
           }
 
           xml.SpecialHandlingAmount {
-            xml_money(xml, data[:special_handling])
+            xml_money(xml, data[:special_handling_amount])
           }
 
           xml.NetAmount {
@@ -52,7 +53,7 @@ module CXML
           }
 
           xml.TotalCharges {
-            xml_money(xml, data[:total_charges])
+            xml_money(xml, data[:net_amount])
           }
         }
       end
