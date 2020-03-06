@@ -17,5 +17,5 @@ bundle install
 Run suite:
 
 ```
-rake test
+rspec spec
 ```
