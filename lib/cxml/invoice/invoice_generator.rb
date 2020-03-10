@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CXML
   module Invoice
     class InvoiceGenerator
@@ -8,18 +10,18 @@ module CXML
       end
 
       def self.generate(invoice_data = {}, print = false)
-        cxml_invoice = Nokogiri::XML::Builder.new(:encoding => "UTF-8") do |xml|
-          xml.cXML {
+        cxml_invoice = Nokogiri::XML::Builder.new(encoding: 'UTF-8') do |xml|
+          xml.cXML do
             CXML::Invoice::InvoiceHeader.compose(xml, invoice_data[:header])
             CXML::Invoice::InvoiceRequest.compose(xml, invoice_data)
-          }
+          end
         end
-        print_file(cxml_invoice) if print #debugging purposes
+        print_file(cxml_invoice) if print # debugging purposes
         cxml_invoice.to_xml
       end
 
       def self.print_file(cxml_invoice)
-        output = File.open( "outputfile.xml","w" )
+        output = File.open('outputfile.xml', 'w')
         output << cxml_invoice.to_xml
         output.close
       end

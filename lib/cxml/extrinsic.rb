@@ -12,5 +12,11 @@ module CXML
       @name = data['name']
       @content = data['content']
     end
+
+    def render(node)
+      node.Extrinsic(name: name) do |n|
+        n.content(content)
+      end
+    end
   end
 end

@@ -1,15 +1,17 @@
-$:.unshift File.expand_path("../..", __FILE__)
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift File.expand_path('..', __dir__)
 
 require 'cxml'
 require 'pry'
 
-Dir["./spec/support/**/*.rb"].sort.each { |f| require f}
+Dir['./spec/support/**/*.rb'].sort.each { |f| require f }
 
 RSpec.configure do |conf|
 end
 
-def fixture_path(filename=nil)
-  path = File.expand_path("../fixtures", __FILE__)
+def fixture_path(filename = nil)
+  path = File.expand_path('fixtures', __dir__)
   filename.nil? ? path : File.join(path, filename)
 end
 

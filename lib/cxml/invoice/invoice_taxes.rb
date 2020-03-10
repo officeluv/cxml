@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CXML
   module Invoice
     class InvoiceTaxes
@@ -8,18 +10,18 @@ module CXML
 
       def self.compose(xml, datum)
         datum[:invoice_detail_item][:taxes].each do |tax|
-          xml.Tax {
-            xml.Money('currency': "#{USD_CURRENCY}") { xml.text("#{tax[:amount]}") }
-            xml.Description('xml:lang': "#{XML_LANG}") { xml.text("#{tax[:description]}") }
-            xml.TaxDetail('category': "#{tax[:category]}", 'percentageRate': "#{tax[:percentage_rate]}")
-            xml.TaxableAmount {
-              xml.Money('currency': "#{USD_CURRENCY}") { xml.text("#{tax[:taxable_amount]}") }
-            }
-            xml.TaxAmount {
-              xml.Money('currency': "#{USD_CURRENCY}") { xml.text("#{tax[:tax_amount]}") }
-            }
-            xml.TaxLocation('xml:lang': "#{XML_LANG}") { xml.text("#{tax[:location]}") }
-          }
+          xml.Tax do
+            xml.Money('currency': USD_CURRENCY.to_s) { xml.text((tax[:amount]).to_s) }
+            xml.Description('xml:lang': XML_LANG.to_s) { xml.text((tax[:description]).to_s) }
+            xml.TaxDetail('category': (tax[:category]).to_s, 'percentageRate': (tax[:percentage_rate]).to_s)
+            xml.TaxableAmount do
+              xml.Money('currency': USD_CURRENCY.to_s) { xml.text((tax[:taxable_amount]).to_s) }
+            end
+            xml.TaxAmount do
+              xml.Money('currency': USD_CURRENCY.to_s) { xml.text((tax[:tax_amount]).to_s) }
+            end
+            xml.TaxLocation('xml:lang': XML_LANG.to_s) { xml.text((tax[:location]).to_s) }
+          end
         end
         xml
       end

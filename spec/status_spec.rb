@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe CXML::Status do
@@ -20,7 +22,7 @@ describe CXML::Status do
     end
 
     it 'assigns attributes from hash' do
-      hash = {'xml:lang' => 'en-US', 'code' => "200", 'text' => 'OK'}
+      hash = { 'xml:lang' => 'en-US', 'code' => '200', 'text' => 'OK' }
       status = CXML::Status.new(hash)
 
       status.code.should eq(200)

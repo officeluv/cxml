@@ -1,5 +1,6 @@
-require 'spec_helper'
+# frozen_string_literal: true
 
+require 'spec_helper'
 
 describe CXML::Invoice::InvoiceGenerator do
   let(:data) { JSON.parse(fixture('example_input.json'), symbolize_names: true) }
@@ -13,4 +14,4 @@ describe CXML::Invoice::InvoiceGenerator do
       expect(CXML::Invoice::InvoiceGenerator.generate(data, true)).to include('?xml')
     end
   end
-end 
+end

@@ -10,17 +10,17 @@ module CXML
       end
 
       def self.compose(xml, data)
-        xml.Request('deploymentMode': 'production') {
-          xml.InvoiceDetailRequest {
-            xml.InvoiceDetailRequestHeader('invoiceDate': data[:invoice_created_at], 'invoiceID': data[:invoice_id], 'operation': "new", 'purpose': "standard") {
+        xml.Request('deploymentMode': 'production') do
+          xml.InvoiceDetailRequest do
+            xml.InvoiceDetailRequestHeader('invoiceDate': data[:invoice_created_at], 'invoiceID': data[:invoice_id], 'operation': 'new', 'purpose': 'standard') do
               xml.InvoiceDetailHeaderIndicator
               xml.InvoiceDetailLineIndicator('isAccountingInLine': data[:is_accounting_line])
               xml.PaymentTerm('payInNumberOfDays': data[:terms])
-            }
+            end
             CXML::Invoice::InvoiceDetailOrder.compose(xml, data[:invoice_detail_order][:data])
             CXML::Invoice::InvoiceDetailSummary.compose(xml, data[:invoice_detail_summary])
-          }
-        }
+          end
+        end
       end
     end
   end
