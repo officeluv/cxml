@@ -71,6 +71,11 @@ module CXML
 
     def render
       node = CXML.builder
+      node.doc.create_internal_subset(
+        'cXML',
+        nil,
+        'http://xml.cxml.org/schemas/cXML/1.2.037/cXML.dtd'
+      )
       node.cXML(build_attributes) do |doc|
         doc.Header { |n| header&.render(n) }
         request&.render(node)
