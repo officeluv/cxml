@@ -4,7 +4,6 @@
 require 'cxml/errors'
 require 'time'
 require 'nokogiri'
-require 'digest'
 
 module CXML
   autoload :Accounting,                   'cxml/accounting'
