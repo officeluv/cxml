@@ -5,6 +5,7 @@ module CXML
     attr_accessor :browser_form_post_url
     attr_accessor :supplier_setup_url
     attr_accessor :buyer_cookie
+    attr_accessor :ship_to
     attr_accessor :extrinsics
     attr_accessor :contact
 
@@ -19,10 +20,26 @@ module CXML
       @extrinsics = (data['Extrinsic'] || data['extrinsics'] || [])
                     .map { |e| CXML::Extrinsic.new(e) }
       @contact = CXML::Contact.new(data['Contact'] || data['contact'])
+      @ship_to = CXML::ShipTo.new(data['ShipTo'] || data['ship_to'])
     end
 
     def response_return_url
       browser_form_post_url.empty? ? '' : browser_form_post_url.squish
+    end
+
+    def render(node)
+      node.PunchOutSetupRequest do |n|
+        n.BrowserFormPost do
+          n.URL(browser_form_post_url)
+        end
+        n.SupplierSetup do
+          n.URL(supplier_setup_url)
+        end
+        n.BuyerCookie(buyer_cookie)
+        contact&.render(node)
+        ship_to&.render(node)
+        extrinsics.each { |ext| ext.render(node) }
+      end
     end
   end
 end

@@ -29,5 +29,28 @@ describe CXML::PunchOutSetupRequest do
       punch_out_setup_request_coupa.extrinsics.first.should be_a CXML::Extrinsic
       punch_out_setup_request_coupa.extrinsics.first.name.should_not be_nil
     end
+    it 'sets the shipping attributes when present' do
+      data = parser.parse(fixture('punch_out_setup_request_doc_with_ship_to.xml'))
+      doc = CXML::Document.new(data)
+      doc.request.punch_out_setup_request.ship_to.should_not be_nil
+      doc.request.punch_out_setup_request.ship_to.address.name.should_not be_nil
+    end
+  end
+
+  describe '#render' do
+    it 'contains the required nodes' do
+      parser = CXML::Parser.new
+      data = parser.parse(fixture('punch_out_setup_request_doc_with_ship_to.xml'))
+      doc = CXML::Document.new(data)
+      builder = doc.render
+      output_xml = builder.to_xml
+      output_data = parser.parse(output_xml)
+      output_data['Request']['PunchOutSetupRequest']['BuyerCookie']
+        .should eq data['Request']['PunchOutSetupRequest']['BuyerCookie']
+      output_data['Request']['PunchOutSetupRequest']['BrowserFormPost']
+        .should eq data['Request']['PunchOutSetupRequest']['BrowserFormPost']
+      output_data['Request']['PunchOutSetupRequest']['ShipTo']['Address']
+        .keys.sort.should eq data['Request']['PunchOutSetupRequest']['ShipTo']['Address'].keys.sort
+    end
   end
 end
