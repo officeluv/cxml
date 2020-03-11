@@ -10,6 +10,7 @@ module CXML
 
       def self.compose(xml, datum)
         datum[:invoice_detail_item][:taxes].each do |tax|
+          next if tax.nil?
           xml.Tax do
             xml.Money('currency': USD_CURRENCY.to_s) { xml.text((tax[:amount]).to_s) }
             xml.Description('xml:lang': XML_LANG.to_s) { xml.text((tax[:description]).to_s) }
