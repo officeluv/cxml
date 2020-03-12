@@ -1,0 +1,60 @@
+{
+  "header": {
+    "from": 84946923,
+    "to": "DAN_Coupa",
+    "sender": {
+      "identity": "development@officeluv.com",
+      "shared_secret": "a66ee3b0ed71ecc10458eb52a75eaf73"
+    }
+  },
+  "invoice_request": {
+    "invoice_date": "Wed, 11 Mar 2020 15 30 07 CDT -0500",
+    "invoice_id": 8000
+  },
+  "invoice_detail_order": {
+    "data": [
+      {
+        "invoice_detail_item": {
+          "quantity": "1.0",
+          "unit_of_measure": "EA",
+          "description": "Order #2348 Shipping/Fees",
+          "sub_total_amount": "1201",
+          "invoice_detail_line_item_references": [],
+          "taxes": []
+        }
+      },
+      {
+        "invoice_detail_item": {
+          "quantity": "20.0",
+          "unit_of_measure": "EA",
+          "description": "Order #2348 Bathroom Supplies Silk Caramel Almond Creamer",
+          "sub_total_amount": "200000",
+          "invoice_detail_line_item_references": [],
+          "taxes": [
+            null
+          ]
+        }
+      },
+      {
+        "invoice_detail_item": {
+          "quantity": "11.0",
+          "unit_of_measure": "EA",
+          "description": "Order #2348 Food & Beverage Dave's Gourmet - Overnight Oats - Applenut - Case of 8 - 2.1 oz.",
+          "sub_total_amount": "15400",
+          "invoice_detail_line_item_references": [],
+          "taxes": [
+            null
+          ]
+        }
+      }
+    ]
+  },
+  "invoice_detail_summary": {
+    "shipping_amount": "1201",
+    "net_amount": "216601",
+    "amount": "216601",
+    "special_handling_amount": 0,
+    "description": "Total Tax",
+    "tax_details": []
+  }
+}
