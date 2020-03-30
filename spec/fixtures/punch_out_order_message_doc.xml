@@ -22,6 +22,7 @@
     <Message>
       <PunchOutOrderMessage>
         <BuyerCookie>
+          example_buyer_cookie
         </BuyerCookie>
         <PunchOutOrderMessageHeader operationAllowed="create">
           <Total> <Money currency="GBP">5.35</Money> </Total>

@@ -37,8 +37,8 @@ module CXML
 
     def render(node)
       node.Message do
-        node.PunchOutOrderMessage do
-          node.BuyerCookie { @buyer_cookie } if buyer_cookie
+        node.PunchOutOrderMessage do |n|
+          n.BuyerCookie(buyer_cookie)
           punch_out_order_message_header&.render(node)
           items_in.each { |item_in| item_in.render(node) }
         end
