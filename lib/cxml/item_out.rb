@@ -17,8 +17,8 @@ module CXML
       @item_detail = CXML::ItemDetail.new(data['ItemDetail'] || data['item_detail']) if data['ItemDetail'] || data['item_detail']
       @quantity = data['quantity']
       @distribution = CXML::Distribution.new(data['Distribution'] || data['distribution'])
-      @comments = data['Comments' || data['comments']]
-      @line_number = data['lineNumber' || data['line_number']]
+      @comments = data['Comments'] || data['comments']
+      @line_number = data['lineNumber'] || data['line_number']
     end
 
     def item_id?
