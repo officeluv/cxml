@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cXML.org/schemas/cXML/1.2.020/InvoiceDetail.dtd">
+<cXML version="1.0" payloadID="1240598937@devtrunk.coupahost.com" timestamp="2009-05-04T01:24:51-07:00">
+  <Header>
+    <From>
+      <Credential domain="DUNS">
+        <Identity>supplierid</Identity>
+      </Credential>
+    </From>
+    <To>
+      <Credential domain="DUNS">
+        <Identity>buyerid</Identity>
+      </Credential>
+    </To>
+    <Sender>
+      <Credential domain="DUNS">
+        <Identity>supplierid</Identity>
+        <SharedSecret>secret</SharedSecret>
+      </Credential>
+      <UserAgent>Your Very Own Agent 1.23</UserAgent>
+    </Sender>
+  </Header>
+  <Request deploymentMode="production">
+    <InvoiceDetailRequest>
+      <InvoiceDetailRequestHeader invoiceID="3495" purpose="standard" operation="new" invoiceDate="2009-05-01T11:45:51-07:00">
+        <InvoiceDetailHeaderIndicator />
+        <InvoiceDetailLineIndicator isTaxInLine="yes" isAccountingInLine="yes" />
+        <PaymentTerm payInNumberOfDays="30" />
+      </InvoiceDetailRequestHeader>
+      <InvoiceDetailOrder>
+        <InvoiceDetailOrderInfo>
+          <OrderReference>
+            <DocumentReference payloadID="123" />
+          </OrderReference>
+        </InvoiceDetailOrderInfo>
+        <InvoiceDetailItem invoiceLineNumber="1" quantity="1">
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <UnitPrice>
+            <Money currency="USD">365</Money>
+          </UnitPrice>
+          <InvoiceDetailItemReference lineNumber="1">
+            <Description xml:lang="en">NEW 1 NINTENDO WII GAME CONSOLE + WII FIT BUNDLE +GAMES</Description>
+          </InvoiceDetailItemReference>
+          <SubtotalAmount>
+            <Money currency="USD">365</Money>
+          </SubtotalAmount>
+          <Tax>
+            <Money currency="USD">8</Money>
+            <Description xml:lang="en">total tax</Description>
+            <TaxDetail purpose="tax" category="CA" percentageRate="8.25" taxPointDate="2009-04-24T11:45:51-07:00">
+              <TaxableAmount>
+                <Money currency="USD">365</Money>
+              </TaxableAmount>
+              <TaxAmount>
+                <Money currency="USD">8</Money>
+              </TaxAmount>
+              <TaxLocation xml:lang="en">CA</TaxLocation>
+            </TaxDetail>
+          </Tax>
+        </InvoiceDetailItem>
+      </InvoiceDetailOrder>
+      <InvoiceDetailSummary>
+        <SubtotalAmount>
+          <Money currency="USD">365</Money>
+        </SubtotalAmount>
+        <Tax>
+          <Money currency="USD">8</Money>
+          <Description xml:lang="en">total tax</Description>
+        </Tax>
+        <SpecialHandlingAmount>
+          <Money currency="USD">5</Money>
+        </SpecialHandlingAmount>
+        <ShippingAmount>
+          <Money currency="USD">30</Money>
+        </ShippingAmount>
+        <NetAmount>
+          <Money currency="USD" />
+        </NetAmount>
+      </InvoiceDetailSummary>
+    </InvoiceDetailRequest>
+  </Request>
+</cXML>

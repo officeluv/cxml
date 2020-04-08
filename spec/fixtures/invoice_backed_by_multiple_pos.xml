@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cXML.org/schemas/cXML/1.2.020/InvoiceDetail.dtd">
+<cXML payloadID="20101222 190337.2999" timestamp="2010-12-22T19:03:37" version="1.0">
+   <Header>
+      <From>
+         <Credential domain="COUPA">
+            <Identity>SupplierID</Identity>
+         </Credential>
+      </From>
+      <To>
+         <Credential domain="COUPA">
+            <Identity>BuyerID</Identity>
+         </Credential>
+      </To>
+      <Sender>
+         <Credential domain="COUPA">
+            <Identity>SupplierID</Identity>
+            <SharedSecret>123456secret</SharedSecret>
+         </Credential>
+         <UserAgent>Coupa Integration V01</UserAgent>
+      </Sender>
+   </Header>
+   <Request deploymentMode="production">
+      <InvoiceDetailRequest>
+         <InvoiceDetailRequestHeader invoiceDate="2010-12-16T00:00:00" invoiceID="INV00001" operation="new" purpose="standard">
+            <InvoiceDetailHeaderIndicator />
+            <InvoiceDetailLineIndicator isAccountingInLine="yes" />
+            <PaymentTerm payInNumberOfDays="30" />
+         </InvoiceDetailRequestHeader>
+         <InvoiceDetailOrder>
+            <InvoiceDetailOrderInfo>
+               <OrderReference>
+                  <DocumentReference payloadID="2252" />
+               </OrderReference>
+            </InvoiceDetailOrderInfo>
+            <InvoiceDetailItem invoiceLineNumber="1" quantity="2.00">
+               <UnitOfMeasure>EA</UnitOfMeasure>
+               <UnitPrice>
+                  <Money currency="USD">100</Money>
+               </UnitPrice>
+               <InvoiceDetailItemReference lineNumber="1">
+                  <Description xml:lang="en">Item1</Description>
+               </InvoiceDetailItemReference>
+               <SubtotalAmount>
+                  <Money currency="USD">200</Money>
+               </SubtotalAmount>
+            </InvoiceDetailItem>
+         </InvoiceDetailOrder>
+         <InvoiceDetailOrder>
+            <InvoiceDetailOrderInfo>
+               <OrderReference>
+                  <DocumentReference payloadID="2253" />
+               </OrderReference>
+            </InvoiceDetailOrderInfo>
+            <InvoiceDetailItem invoiceLineNumber="2" quantity="2">
+               <UnitOfMeasure>EA</UnitOfMeasure>
+               <UnitPrice>
+                  <Money currency="USD">10</Money>
+               </UnitPrice>
+               <InvoiceDetailItemReference lineNumber="1">
+                  <Description xml:lang="en">Test Item</Description>
+               </InvoiceDetailItemReference>
+               <SubtotalAmount>
+                  <Money currency="USD">20</Money>
+               </SubtotalAmount>
+            </InvoiceDetailItem>
+         </InvoiceDetailOrder>
+         <InvoiceDetailSummary>
+            <SubtotalAmount>
+               <Money currency="USD">220.00</Money>
+            </SubtotalAmount>
+            <Tax>
+               <Money currency="USD">0</Money>
+               <Description xml:lang="en">TaxStuff</Description>
+               <TaxDetail category="tax" purpose="tax" taxPointDate="2010-12-16T00:00:00">
+                  <TaxableAmount>
+                     <Money currency="USD" />
+                  </TaxableAmount>
+                  <TaxAmount>
+                     <Money currency="USD">0</Money>
+                  </TaxAmount>
+                  <TaxLocation xml:lang="en">CA</TaxLocation>
+               </TaxDetail>
+            </Tax>
+            <SpecialHandlingAmount>
+               <Money currency="USD">0</Money>
+            </SpecialHandlingAmount>
+            <ShippingAmount>
+               <Money currency="USD">0</Money>
+            </ShippingAmount>
+            <NetAmount>
+               <Money currency="USD">0</Money>
+            </NetAmount>
+         </InvoiceDetailSummary>
+      </InvoiceDetailRequest>
+   </Request>
+</cXML>

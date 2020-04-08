@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE cXML SYSTEM "http://xml.cXML.org/schemas/cXML/1.2...oiceDetail.dtd">
+
+<cXML version="1.0" payloadID="1240598937@SUBDOMAIN.coupahost.com" timestamp="2018-05-04T01:24:51-07:00">
+
+  <Header>
+
+    <From>
+
+      <Credential domain="DUNS">
+
+        <Identity>Kyle</Identity>
+
+      </Credential>
+
+    </From>
+
+    <To>
+
+      <Credential domain="DUNS">
+
+        <Identity>Coupa</Identity>
+
+      </Credential>
+
+    </To>
+
+    <Sender>
+
+      <Credential domain="DUNS">
+
+        <Identity>Kyle</Identity>
+
+        <SharedSecret>Secret</SharedSecret>
+
+      </Credential>
+
+      <UserAgent>Your Very Own Agent 1.23</UserAgent>
+
+    </Sender>
+
+  </Header>
+
+    <Request deploymentMode="production">
+
+        <InvoiceDetailRequest>
+
+            <InvoiceDetailRequestHeader invoiceID="new_cxml_invoice" purpose="standard" operation="new" invoiceDate="invoice_date">
+
+                <InvoiceDetailHeaderIndicator/>
+
+                <InvoiceDetailLineIndicator isAccountingInLine="yes" isTaxInLine="yes"/>
+
+                <InvoicePartner>
+
+                    <Contact role="invoiceFrom" addressID="supplier_address_code">
+
+                        <Name xml:lang="en"></Name>
+
+                        <PostalAddress name="default">
+
+                            <Street></Street>
+
+                            <Street></Street>
+
+                            <City></City>
+
+                            <State></State>
+
+                            <PostalCode></PostalCode>
+
+                            <Country isoCountryCode="CA"></Country>
+
+                        </PostalAddress>
+
+                    </Contact>
+
+                    <IdReference domain="taxNumber" identifier="supplier_tax_registration"/>
+
+                </InvoicePartner>
+
+                <InvoicePartner>
+
+                    <Contact role="remitTo" addressID="supplier_address_code">
+
+                        <Name xml:lang="en"></Name>
+
+                    </Contact>
+
+                </InvoicePartner>
+
+                <InvoicePartner>
+
+                    <Contact role="billTo" addressID="bill_to_address">
+
+                        <Name xml:lang="en">"bill_to_address"</Name>
+
+                        <PostalAddress name="">
+
+                            <DeliverTo></DeliverTo>
+
+                            <Street></Street>
+
+                            <Street></Street>
+
+                            <City></City>
+
+                            <State></State>
+
+                            <PostalCode></PostalCode>
+
+                            <Country isoCountryCode="CA"></Country>
+
+                        </PostalAddress>
+
+                    </Contact>
+
+                    <IdReference domain="taxNumber" identifier="buyer_tax_registration"></IdReference>
+
+                </InvoicePartner>
+
+                <InvoiceDetailShipping>
+
+                    <Contact role="shipFrom" addressID="supplier_address_code">
+
+                        <Name xml:lang="en"></Name>
+
+                        <PostalAddress name="default">
+
+                            <Street></Street>
+
+                            <Street></Street>
+
+                            <City></City>
+
+                            <State></State>
+
+                            <PostalCode></PostalCode>
+
+                            <Country isoCountryCode="CA"></Country>
+
+                        </PostalAddress>
+
+                    </Contact>
+
+                    <Contact role="shipTo">
+
+                        <Name xml:lang="en">Test</Name>
+
+                        <PostalAddress name="">
+
+                            <DeliverTo></DeliverTo>
+
+                            <Street>Street</Street>
+
+                            <Street></Street>
+
+                            <City>City</City>
+
+                            <State>State</State>
+
+                            <PostalCode>00001</PostalCode>
+
+                            <Country isoCountryCode="US"></Country>
+
+                        </PostalAddress>
+
+                    </Contact>
+
+                </InvoiceDetailShipping>
+
+                <PaymentTerm payInNumberOfDays="">
+
+                    <Discount>
+
+                        <DiscountPercent percent="" />
+
+                        <DiscountDueDays></DiscountDueDays>
+
+                    </Discount>
+
+                    <NetDueDays></NetDueDays>
+
+                </PaymentTerm>
+
+                <Extrinsic name="ExchangeRate">1</Extrinsic>
+
+            </InvoiceDetailRequestHeader>
+
+            <InvoiceDetailOrder>
+
+                <InvoiceDetailOrderInfo>
+
+                  <MasterAgreementReference>
+
+                    <DocumentReference payloadID=""/>
+
+                  </MasterAgreementReference>
+
+                </InvoiceDetailOrderInfo>
+
+                <InvoiceDetailItem invoiceLineNumber="1" quantity="1">
+
+                    <UnitOfMeasure>EA</UnitOfMeasure>
+
+                    <UnitPrice>
+
+                        <Money currency="currency_code">10</Money>
+
+                    </UnitPrice>
+
+                    <InvoiceDetailItemReference lineNumber="1">
+
+                        <ItemID>
+
+                            <SupplierPartID></SupplierPartID>
+
+                        </ItemID>
+
+                        <Description xml:lang="en">Goods</Description>
+
+                    </InvoiceDetailItemReference>
+
+                    <SubtotalAmount>
+
+                        <Money currency="currency_code">10</Money>
+
+                    </SubtotalAmount>
+
+                    <Tax>
+
+                        <Money currency="currency_code" alternateAmount="10" alternateCurrency="currency_code">1.3</Money>
+
+                        <Description xml:lang="en">This is not used</Description>
+
+                        <TaxDetail purpose="tax" category="HST" percentageRate="13" taxPointDate="2018-08-06T11:45:51-07:00">
+
+                            <TaxableAmount>
+
+                                <Money currency="currency_code">10</Money>
+
+                            </TaxableAmount>
+
+                            <TaxAmount>
+
+                                <Money currency="currency_code">1.3</Money>
+
+                            </TaxAmount>
+
+                            <TaxLocation xml:lang="en"></TaxLocation>
+
+                            <Description xml:lang="en"></Description>
+
+                        </TaxDetail>
+
+                    </Tax>
+
+                  <Extrinsic name="HSN/SAC">HSN/SAC value</Extrinsic>
+
+                </InvoiceDetailItem>
+
+            </InvoiceDetailOrder>
+
+            <InvoiceDetailSummary>
+
+                <SubtotalAmount>
+
+                    <Money currency="currency_code">11.3</Money>
+
+                </SubtotalAmount>
+
+                <Tax>
+
+                    <Money currency="currency_code" alternateAmount="10" alternateCurrency="currency_code"></Money>
+
+                    <Description xml:lang="en">This is the header tax description that defaults</Description>
+
+                    <TaxDetail purpose="tax" category="" percentageRate="" taxPointDate="2018-08-07T11:45:51-07:00">
+
+                        <TaxableAmount>
+
+                            <Money currency="currency_code">100</Money>
+
+                        </TaxableAmount>
+
+                        <TaxAmount>
+
+                            <Money currency="currency_code">0</Money>
+
+                        </TaxAmount>
+
+                        <TaxLocation xml:lang="en">CA</TaxLocation>
+
+                    </TaxDetail>
+
+                       <TaxDetail purpose="specialHandlingTax" category="HST" percentageRate="13" taxPointDate="2015-04-07T11:45:51-07:00">
+
+                          <TaxableAmount>
+
+                             <Money currency="currency_code">10</Money>
+
+                          </TaxableAmount>
+
+                          <TaxAmount>
+
+                             <Money currency="currency_code">1.30</Money>
+
+                          </TaxAmount>
+
+                          <TaxLocation xml:lang="en">CA</TaxLocation>
+
+                       </TaxDetail>
+
+                       <TaxDetail purpose="specialHandlingTax" category="GST" percentageRate="5" taxPointDate="2015-04-07T11:45:51-07:00">
+
+                          <TaxableAmount>
+
+                             <Money currency="currency_code">10</Money>
+
+                          </TaxableAmount>
+
+                          <TaxAmount>
+
+                             <Money currency="currency_code">0.50</Money>
+
+                          </TaxAmount>
+
+                          <TaxLocation xml:lang="en">CA</TaxLocation>
+
+                       </TaxDetail>
+
+                       <TaxDetail purpose="shippingTax" category="HST" percentageRate="13" taxPointDate="2015-04-07T11:45:51-07:00">
+
+                          <TaxableAmount>
+
+                             <Money currency="currency_code">10</Money>
+
+                          </TaxableAmount>
+
+                          <TaxAmount>
+
+                             <Money currency="currency_code">1.30</Money>
+
+                          </TaxAmount>
+
+                          <TaxLocation xml:lang="en">CA</TaxLocation>
+
+                       </TaxDetail>
+
+                       <TaxDetail purpose="shippingTax" category="QST" percentageRate="9.975" taxPointDate="2015-04-07T11:45:51-07:00">
+
+                          <TaxableAmount>
+
+                             <Money currency="currency_code">10</Money>
+
+                          </TaxableAmount>
+
+                          <TaxAmount>
+
+                             <Money currency="currency_code">1.00</Money>
+
+                          </TaxAmount>
+
+                          <TaxLocation xml:lang="en">CA</TaxLocation>
+
+                       </TaxDetail>
+
+                    </Tax>
+
+                <SpecialHandlingAmount>
+
+                    <Money currency="currency_code">10</Money>
+
+                   
+
+                </SpecialHandlingAmount>
+
+                <ShippingAmount>
+
+                    <Money currency="currency_code">10</Money>
+
+                </ShippingAmount>
+
+                <InvoiceDetailDiscount>
+
+                    <Money currency="currency_code"></Money>
+
+                </InvoiceDetailDiscount>
+
+                <NetAmount>
+
+                    <Money currency="currency_code" />
+
+                </NetAmount>
+
+            </InvoiceDetailSummary>
+
+        </InvoiceDetailRequest>
+
+    </Request>
+
+</cXML>
