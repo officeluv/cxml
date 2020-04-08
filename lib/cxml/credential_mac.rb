@@ -13,10 +13,12 @@
 # Page 45 cXML reference
 
 module CXML
-  class CredentialMac
-    attr_accessor :type
-    attr_accessor :algorithm
-    attr_accessor :creation_date
-    attr_accessor :expiration_date
+  class CredentialMac < DocumentNode
+    accessible_attributes %i[
+      type
+      algorithm
+      creation_date
+      expiration_date
+    ]
   end
 end

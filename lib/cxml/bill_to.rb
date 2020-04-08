@@ -2,7 +2,7 @@
 
 module CXML
   # shipping details object within punchout setup request
-  class ShipTo < DocumentNode
+  class BillTo < DocumentNode
     accessible_nodes %i[
       address
     ]

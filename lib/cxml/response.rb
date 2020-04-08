@@ -7,24 +7,14 @@
 # contained in a PunchOutSetupResponse element.
 
 module CXML
-  class Response
-    attr_accessor :id
-    attr_accessor :status
-    attr_accessor :punch_out_setup_response
-    def initialize(data = {})
-      return unless data.is_a?(Hash) && !data.empty?
-
-      @status = CXML::Status.new(data['Status'] || data['status'])
-      @punch_out_setup_response = CXML::PunchOutSetupResponse.new(data['PunchOutSetupResponse'] || data['punch_out_setup_response'])
-    end
-
-    def render(node)
-      options = { id: @id }
-      options.delete_if { |_k, v| v.nil? }
-      node.Response(options) do |n|
-        @status.render(n)
-        node.PunchOutSetupResponse { |nn| punch_out_setup_response.render(nn) } if status.success?
-      end
-    end
+  class Response < DocumentNode
+    accessible_attributes %i[
+      deployment_mode
+      id
+    ]
+    accessible_nodes %i[
+      status
+      punch_out_setup_response
+    ]
   end
 end

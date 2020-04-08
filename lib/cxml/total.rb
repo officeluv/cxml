@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module CXML
-  class Sender < DocumentNode
+  class Total < DocumentNode
     accessible_nodes %i[
-      credential
-      user_agent
+      money
     ]
   end
 end

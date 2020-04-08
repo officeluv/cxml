@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 module CXML
-  # contact object within punchout setup request
-  class Contact < DocumentNode
+  class Message < DocumentNode
     accessible_attributes %i[
-      role
+      deployment_mode
+      id
     ]
     accessible_nodes %i[
-      email
-      name
+      punch_out_order_message
     ]
   end
 end
