@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <cXML payloadID="demoSCAWIG@IESAonline" xml:lang="en-UK" timestamp="2007-04-30T15:52:54+00:00">
+ <Header>
+  <From>
+ <Credential domain="DUNS">
+ <Identity>punchout@test.com</Identity>
+ </Credential>
+</From>
+ <To>
+ <Credential domain="DUNS">
+<Identity>punchout@test.com</Identity>
+</Credential>
+</To>
+ <Sender>
+ <Credential domain="IESAnetworkUserID"> <Identity>88888888</Identity> <SharedSecret>{shared secret in here}</SharedSecret>  </Credential> <UserAgent>IESAonlinevers1</UserAgent>
+</Sender>
+</Header>
+ <Request deploymentMode="production">
+ <PunchOutSetupRequest operation="create"> <BuyerCookie>demoSCAWIGP</BuyerCookie>
+ <BrowserFormPost>
+  <URL>
+    http://return_to_supplier_url.com
+  </URL>
+ </BrowserFormPost>
+ <SupplierSetup>
+   <URL>
+    http://localhost:3000
+  </URL>
+</SupplierSetup>
+<ShipTo>
+<Address isoCountryCode="US" addressID="3119">
+<Name xml:lang="en">jmadden</Name>
+<PostalAddress name="default">
+<DeliverTo>j maddedn</DeliverTo>
+<Street>333 East Hill Dr</Street>
+<City>san leandro</City>
+<State>ca</State>
+<PostalCode>22222</PostalCode>
+<Country isoCountryCode="US">United States</Country>
+</PostalAddress>
+<Email name="default">jmadden@coupa1.com</Email>
+</Address>
+</ShipTo>
+</PunchOutSetupRequest>
+</Request>
+</cXML>
