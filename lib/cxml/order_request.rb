@@ -19,5 +19,13 @@ module CXML
         CXML::ItemOut.new(item)
       end
     end
+
+    def add_item(item_in_data)
+      items_out << CXML::ItemOut.new(item_in_data)
+    end
+
+    def items_out
+      @items_out ||= []
+    end
   end
 end

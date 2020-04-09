@@ -26,12 +26,12 @@ describe CXML::Credential do
   describe '#render' do
     let(:output_xml) { builder.to_xml }
     let(:output_data) { parser.parse(output_xml) }
-    let(:sender_output_data) { output_data['Header']['Sender'] }
-    let(:credential_output_data) { sender_output_data['Credential'] }
+    let(:sender_output_data) { output_data[:header][:sender] }
+    let(:credential_output_data) { sender_output_data[:credential] }
 
     it 'contains the required nodes' do
-      credential_output_data['SharedSecret'].should_not be_empty
-      credential_output_data['Identity'].should_not be_empty
+      credential_output_data[:shared_secret].should_not be_empty
+      credential_output_data[:identity].should_not be_empty
     end
   end
 end

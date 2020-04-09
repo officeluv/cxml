@@ -43,7 +43,7 @@ module CXML
     accessible_nodes %i[
       shared_secret
       identity
-      shared_secret
+      credential_mac
     ]
   end
 end

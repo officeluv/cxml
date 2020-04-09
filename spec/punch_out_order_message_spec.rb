@@ -11,12 +11,13 @@ describe CXML::PunchOutOrderMessage do
   let(:parser) { CXML::Parser.new }
   let(:data) { parser.parse(fixture('punch_out_order_message_doc.xml')) }
   let(:doc) { CXML::Document.new(data) }
-  let(:punch_out_order_message) { doc.punch_out_order_message }
+  let(:punch_out_order_message) { doc.message.punch_out_order_message }
   let(:builder) { doc.render }
 
   describe '#initialize' do
     it 'sets the mandatory attributes' do
-      punch_out_order_message.punch_out_order_message_header.should be_an_instance_of CXML::PunchOutOrderMessageHeader
+      punch_out_order_message.punch_out_order_message_header
+                             .should be_an_instance_of CXML::PunchOutOrderMessageHeader
     end
   end
 
@@ -30,13 +31,13 @@ describe CXML::PunchOutOrderMessage do
   describe '#render' do
     let(:output_xml) { builder.to_xml }
     let(:output_data) { parser.parse(output_xml) }
-    let(:punch_out_order_message_output_data) { output_data['Message']['PunchOutOrderMessage'] }
+    let(:punch_out_order_message_output_data) { output_data[:message][:punch_out_order_message] }
 
     it 'contains the required nodes' do
       punch_out_order_message.add_item(build_item_in(parser))
-      punch_out_order_message_output_data['PunchOutOrderMessageHeader'].should_not be_empty
-      punch_out_order_message_output_data['BuyerCookie'].should_not be_empty
-      punch_out_order_message_output_data.should include('ItemIn')
+      punch_out_order_message_output_data[:punch_out_order_message_header].should_not be_empty
+      punch_out_order_message_output_data[:buyer_cookie].should_not be_empty
+      punch_out_order_message_output_data.should include(:item_in)
     end
   end
 end

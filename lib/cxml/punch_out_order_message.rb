@@ -23,5 +23,9 @@ module CXML
     def add_item(item_in_data)
       items_in << CXML::ItemIn.new(item_in_data)
     end
+
+    def items_in
+      @items_in ||= []
+    end
   end
 end

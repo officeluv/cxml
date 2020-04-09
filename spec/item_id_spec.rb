@@ -9,7 +9,7 @@ describe CXML::ItemId do
   let(:parser) { CXML::Parser.new }
   let(:data) { parser.parse(fixture('punch_out_order_message_doc.xml')) }
   let(:doc) { CXML::Document.new(data) }
-  let(:punch_out_order_message) { doc.punch_out_order_message }
+  let(:punch_out_order_message) { doc.message.punch_out_order_message }
   let(:builder) { doc.render }
 
   describe '#initialize' do
@@ -28,13 +28,13 @@ describe CXML::ItemId do
 
     let(:output_xml) { builder.to_xml }
     let(:output_data) { parser.parse(output_xml) }
-    let(:punch_out_order_message_output_data) { output_data['Message']['PunchOutOrderMessage'] }
-    let(:item_in_output_data) { punch_out_order_message_output_data['ItemIn'] }
-    let(:item_id_output_data) { item_in_output_data['ItemID'] }
+    let(:punch_out_order_message_output_data) { output_data[:message][:punch_out_order_message] }
+    let(:item_in_output_data) { punch_out_order_message_output_data[:item_in] }
+    let(:item_id_output_data) { item_in_output_data[:item_id] }
 
     it 'contains the required nodes' do
-      item_id_output_data['SupplierPartID'].should_not be_empty
-      item_id_output_data.should include('SupplierPartAuxiliaryID')
+      item_id_output_data[:supplier_part_id].should_not be_empty
+      item_id_output_data.should include(:supplier_part_auxiliary_id)
     end
   end
 end

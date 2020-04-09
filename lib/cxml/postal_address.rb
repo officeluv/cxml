@@ -3,6 +3,9 @@
 module CXML
   # postal address, typically in a purchase order message
   class PostalAddress < DocumentNode
+    accessible_attributes %i[
+      name
+    ]
     accessible_nodes %i[
       deliver_to
       state

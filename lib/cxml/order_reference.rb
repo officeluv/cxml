@@ -1,14 +1,12 @@
 # frozen_string_literal: true
 
 module CXML
-  class ItemIn < DocumentNode
+  class OrderReference < DocumentNode
     accessible_attributes %i[
-      quantity
-      line_number
+      order_id
     ]
     accessible_nodes %i[
-      item_id
-      item_detail
+      document_reference
     ]
   end
 end

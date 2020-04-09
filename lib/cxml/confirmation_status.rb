@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
 module CXML
-  class PunchOutSetupRequest < DocumentNode
+  class ConfirmationStatus < DocumentNode
     accessible_attributes %i[
-      operation
+      quantity
+      type
+      shipment_date
+      delivery_date
     ]
     accessible_nodes %i[
-      browser_form_post
-      supplier_setup
-      buyer_cookie
-      ship_to
+      comments
+      unit_of_measure
+      unit_price
       extrinsics
-      contact
     ]
 
     def initialize_extrinsic(value)

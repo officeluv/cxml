@@ -3,8 +3,12 @@
 require 'spec_helper'
 
 describe CXML::PunchOutSetupRequest do
-  it { should respond_to :browser_form_post_url }
-  it { should respond_to :supplier_setup_url }
+  it { should respond_to :browser_form_post }
+  it { should respond_to :supplier_setup }
+  it { should respond_to :buyer_cookie }
+  it { should respond_to :ship_to }
+  it { should respond_to :extrinsics }
+  it { should respond_to :contact }
 
   let(:parser) { CXML::Parser.new }
   let(:data) { parser.parse(fixture('punch_out_setup_request_doc.xml')) }
@@ -18,11 +22,11 @@ describe CXML::PunchOutSetupRequest do
 
   describe '#initialize' do
     it 'sets the mandatory attributes' do
-      punch_out_setup_request.browser_form_post_url.should_not be_nil
-      punch_out_setup_request.supplier_setup_url.should_not be_nil
+      punch_out_setup_request.browser_form_post.url.should_not be_nil
+      punch_out_setup_request.supplier_setup.url.should_not be_nil
     end
     it 'sets the mandatory coupa attributes' do
-      punch_out_setup_request_coupa.browser_form_post_url.should_not be_nil
+      punch_out_setup_request_coupa.browser_form_post.url.should_not be_nil
       punch_out_setup_request_coupa.buyer_cookie.should_not be_nil
       punch_out_setup_request_coupa.contact.email.should_not be_nil
       punch_out_setup_request_coupa.extrinsics.should be_a Array
@@ -45,12 +49,12 @@ describe CXML::PunchOutSetupRequest do
       builder = doc.render
       output_xml = builder.to_xml
       output_data = parser.parse(output_xml)
-      output_data['Request']['PunchOutSetupRequest']['BuyerCookie']
-        .should eq data['Request']['PunchOutSetupRequest']['BuyerCookie']
-      output_data['Request']['PunchOutSetupRequest']['BrowserFormPost']
-        .should eq data['Request']['PunchOutSetupRequest']['BrowserFormPost']
-      output_data['Request']['PunchOutSetupRequest']['ShipTo']['Address']
-        .keys.sort.should eq data['Request']['PunchOutSetupRequest']['ShipTo']['Address'].keys.sort
+      output_data[:request][:punch_out_setup_request][:buyer_cookie]
+        .should eq data[:request][:punch_out_setup_request][:buyer_cookie]
+      output_data[:request][:punch_out_setup_request][:browser_form_post]
+        .should eq data[:request][:punch_out_setup_request][:browser_form_post]
+      output_data[:request][:punch_out_setup_request][:ship_to][:address]
+        .keys.sort.should eq data[:request][:punch_out_setup_request][:ship_to][:address].keys.sort
     end
   end
 end

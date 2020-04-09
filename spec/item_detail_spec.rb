@@ -10,7 +10,7 @@ describe CXML::ItemDetail do
   let(:parser) { CXML::Parser.new }
   let(:data) { parser.parse(fixture('punch_out_order_message_doc.xml')) }
   let(:doc) { CXML::Document.new(data) }
-  let(:punch_out_order_message) { doc.punch_out_order_message }
+  let(:punch_out_order_message) { doc.message.punch_out_order_message }
   let(:builder) { doc.render }
 
   describe '#initialize' do
@@ -31,14 +31,14 @@ describe CXML::ItemDetail do
 
     let(:output_xml) { builder.to_xml }
     let(:output_data) { parser.parse(output_xml) }
-    let(:punch_out_order_message_output_data) { output_data['Message']['PunchOutOrderMessage'] }
-    let(:item_in_output_data) { punch_out_order_message_output_data['ItemIn'] }
-    let(:item_detail_output_data) { item_in_output_data['ItemDetail'] }
+    let(:punch_out_order_message_output_data) { output_data[:message][:punch_out_order_message] }
+    let(:item_in_output_data) { punch_out_order_message_output_data[:item_in] }
+    let(:item_detail_output_data) { item_in_output_data[:item_detail] }
 
     it 'contains the required nodes' do
-      item_detail_output_data['UnitOfMeasure'].should_not be_empty
-      item_detail_output_data['UnitPrice'].should_not be_empty
-      item_detail_output_data['Description'].should_not be_empty
+      item_detail_output_data[:unit_of_measure].should_not be_empty
+      item_detail_output_data[:unit_price].should_not be_empty
+      item_detail_output_data[:description].should_not be_empty
     end
   end
 end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'nokogiri'
-require 'xmlsimple'
+require('nokogiri')
+require('xmlsimple')
 
 module CXML
   class Parser
@@ -15,6 +15,7 @@ module CXML
     private
 
     def underscore_hash_values(value)
+      return value.map(&method(:underscore_hash_values)) if value.is_a?(Array)
       return value unless value.is_a?(Hash)
 
       value.transform_keys!(&method(:underscore_key))

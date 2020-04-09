@@ -24,14 +24,20 @@ module CXML
     end
 
     def initialize(data = {})
+      if data.is_a?(String)
+        @content = data
+        return
+      end
+
       data.each(&method(:initialize_attribute))
     end
 
-    def render(node)
-      node.send(self.class.name.split('::').last) do |n|
+    def render(node = CXML.builder)
+      node.send(self.class.name.split('::').last, node_attributes) do |n|
         n.content(content) if content
         render_nodes(n)
       end
+      node
     end
 
     def render_nodes(node)
@@ -50,6 +56,8 @@ module CXML
     private
 
     def render_child_node(node, name, value)
+      return if value.respond_to?(:empty?) ? value.empty? : !value
+
       if value.is_a?(DocumentNode)
         value.render(node)
       else
@@ -59,15 +67,29 @@ module CXML
 
     def node_attributes
       self.class.attributes.each_with_object({}) do |attr, obj|
-        obj[camelize(attr, false)] = send(attr)
+        value = send(attr)
+        next if value.respond_to?(:empty?) ? value.empty? : !value
+
+        string_attr = if attr.to_sym == :xml_lang
+                        'xml:lang'
+                      else
+                        camelize(attr, false)
+                      end
+        obj[string_attr] = value
       end
     end
 
     def initialize_attribute(key, val)
       return send("initialize_#{key}", val) if respond_to?("initialize_#{key}")
+      return send("#{key}=", val) if self.class.attributes.include?(key)
 
-      send("#{key}=", Object.const_get("CXML::#{camelize(key)}").new(val))
-    rescue NameError
+      klass = "CXML::#{camelize(key)}"
+      send("#{key}=", Object.const_get(klass).new(val))
+    rescue NoMethodError => e
+      CXML.logger.warn(e)
+    rescue NameError => e
+      raise(e) unless e.to_s.match?(klass)
+
       send("#{key}=", val)
     end
 

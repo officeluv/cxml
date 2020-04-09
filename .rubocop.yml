@@ -1,0 +1,182 @@
+AllCops:
+  Exclude:
+    - Gemfile
+    - db/*
+    - db/migrate/*
+    - config/**/*
+    - vendor/**/*
+    - app/serializers/oagis/*
+    - app/scrapers/*
+    - app/predictors/*
+    - node_modules/**/*
+
+# # Disable checking for block length
+Metrics/BlockLength:
+  Enabled: false
+
+# # The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
+Metrics/ClassLength:
+  Max: 1500
+
+Metrics/ModuleLength:
+  Max: 1500
+
+# # Commonly used screens these days easily fit more than 80 characters.
+Layout/LineLength:
+  Max: 120
+  IgnoredPatterns: ['\A#', 'def .*# rubocop:disable']
+
+  # Raise the upper branch condition size, default max: 15
+Metrics/AbcSize:
+  Max: 20
+
+# # Too short methods lead to extraction of single-use methods, which can make
+# # the code easier to read (by naming things), but can also clutter the class
+Metrics/MethodLength:
+  Max: 30
+
+# # Single quotes being faster is hardly measurable and only affects parse time.
+# # Enforcing double quotes reduces the times where you need to change them
+# # when introducing an interpolation. Use single quotes only if their semantics
+# # are needed.
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+# # We do not need to support Ruby 1.9, so this is good to use.
+Style/SymbolArray:
+  Enabled: true
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+# # Mixing the styles looks just silly.
+# Style/HashSyntax:
+#   EnforcedStyle: ruby19_no_mixed_keys
+
+# # has_key? and has_value? are far more readable than key? and value?
+# Style/PreferredHashMethods:
+#   Enabled: false
+
+# Style/CollectionMethods:
+#   Enabled: true
+
+# # Either allow this style or don't. Marking it as safe with parenthesis
+# # is silly. Let's try to live without them for now.
+# Style/ParenthesesAroundCondition:
+#   AllowSafeAssignment: false
+# Lint/AssignmentInCondition:
+#   AllowSafeAssignment: false
+
+# # A specialized exception class will take one or more arguments and construct the message from it.
+# # So both variants make sense.
+# Style/RaiseArgs:
+#   Enabled: false
+
+# # Fail is an alias of raise. Avoid aliases, it's more cognitive load for no gain.
+# # The argument that fail should be used to abort the program is wrong too,
+# # there's Kernel#abort for that.
+# Style/SignalException:
+#   EnforcedStyle: only_raise
+
+# # do / end blocks should be used for side effects,
+# # methods that run a block for side effects and have
+# # a useful return value are rare, assign the return
+# # value to a local variable for those cases.
+# Style/MethodCalledOnDoEndBlock:
+#   Enabled: true
+
+# # Enforcing the names of variables? To single letter ones? Just no.
+# Style/SingleLineBlockParams:
+#   Enabled: false
+
+# # This is just silly. Calling the argument `other` in all cases makes no sense.
+# Style/OpMethod:
+#   Enabled: false
+
+# # Style preference
+Style/MethodDefParentheses:
+  Enabled: true
+  Exclude: 
+    - spec/**/*
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  Exclude: 
+    - spec/**/*
+
+# Style/WhileUntilModifier:
+#   Enabled: false
+
+# Style/IfUnlessModifier:
+#   Enabled: false
+
+# # Suppressing exceptions can be perfectly fine, and be it to avoid to
+# # explicitly type nil into the rescue since that's what you want to return,
+# # or suppressing LoadError for optional dependencies
+# Lint/HandleExceptions:
+#   Enabled: false
+
+# # Shadowing outer local variables with block parameters is often useful
+# # to not reinvent a new name for the same thing, it highlights the relation
+# # between the outer variable and the parameter. The cases where it's actually
+# # confusing are rare, and usually bad for other reasons already, for example
+# # because the method is too long.
+# Lint/ShadowingOuterLocalVariable:
+#   Enabled: false
+
+# # There are valid cases, for example debugging Cucumber steps,
+# # also they'll fail CI anyway
+# Lint/Debugger:
+#   Enabled: false
+
+# # No space makes the method definition shorter and differentiates
+# # from a regular assignment.
+# Layout/SpaceAroundEqualsInParameterDefault:
+#   EnforcedStyle: no_space
+
+# # Most readable form.
+# Layout/AlignHash:
+#   EnforcedHashRocketStyle: table
+#   EnforcedColonStyle: table
+
+# # Indenting the chained dots beneath each other is not supported by this cop,
+# # see https://github.com/bbatsov/rubocop/issues/1633
+# Layout/MultilineOperationIndentation:
+#   Enabled: false
+
+# Layout/SpaceInsideBlockBraces:
+#   # The space here provides no real gain in readability while consuming
+#   # horizontal space that could be used for a better parameter name.
+#   # Also {| differentiates better from a hash than { | does.
+#   SpaceBeforeBlockParameters: true
+
+# # No trailing space differentiates better from the block:
+# # foo} means hash, foo } means block.
+# Layout/SpaceInsideHashLiteralBraces:
+#   EnforcedStyle: no_space

@@ -5,6 +5,7 @@ module CXML
   class Contact < DocumentNode
     accessible_attributes %i[
       role
+      address_id
     ]
     accessible_nodes %i[
       email
