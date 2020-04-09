@@ -1,6 +1,8 @@
-require 'bundler'
-require 'bundler/gem_tasks'
-require "rspec/core/rake_task"
+# frozen_string_literal: true
+
+require('bundler')
+require('bundler/gem_tasks')
+require('rspec/core/rake_task')
 
 RSpec::Core::RakeTask.new(:test) do |t|
   t.pattern = 'spec/*_spec.rb'
@@ -8,4 +10,4 @@ RSpec::Core::RakeTask.new(:test) do |t|
   t.verbose = false
 end
 
-task :default => :test
+task(default: :test)

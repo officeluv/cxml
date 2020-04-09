@@ -83,7 +83,6 @@ module CXML
       return send("#{key}=", val) if self.class.attributes.include?(key)
 
       klass = "CXML::#{camelize(key)}"
-      binding.pry if val.is_a?(Array)
       send("#{key}=", Object.const_get(klass).new(val))
     rescue NoMethodError => e
       CXML.logger.warn(e)
