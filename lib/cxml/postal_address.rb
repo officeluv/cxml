@@ -10,9 +10,26 @@ module CXML
       deliver_to
       state
       street
+      municipality
       city
       postal_code
       country
     ]
+
+    def initialize_deliver_to(value)
+      @deliver_to = if value.is_a?(Array)
+                      value
+                    else
+                      [value]
+                    end
+    end
+
+    def initialize_street(value)
+      @street = if value.is_a?(Array)
+                  value
+                else
+                  [value]
+                end
+    end
   end
 end

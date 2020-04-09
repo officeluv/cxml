@@ -20,8 +20,6 @@
          <Credential domain="duns">
             <Identity>dell</Identity>
             <!-- same as From -->
-            <Identity>dell</Identity>
-            <!-- same as From -->
          </Credential>
          <UserAgent>Coupa Procurement 1.0</UserAgent>
          <!-- does not change -->

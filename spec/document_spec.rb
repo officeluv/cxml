@@ -46,7 +46,6 @@ describe CXML::Document do
   it { should respond_to :request? }
   it { should respond_to :response? }
   it { should respond_to :message? }
-  it { should respond_to :build_attributes }
 
   describe '#initialize' do
     let(:doc) { CXML::Document.new(data) }
@@ -146,15 +145,6 @@ describe CXML::Document do
         output_data[:message].should_not be_empty
         output_data[:message][:punch_out_order_message].should_not be_empty
       end
-    end
-  end
-
-  describe '#build_attributes' do
-    let(:data) { parser.parse(fixture('punch_out_order_message_doc.xml')) }
-    let(:doc) { CXML::Document.new(data) }
-
-    it 'returns a hash' do
-      doc.build_attributes.should include('version')
     end
   end
 end

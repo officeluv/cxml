@@ -8,10 +8,14 @@ module CXML
       xml_lang
     ]
 
+    def code
+      @code&.to_i
+    end
+
     # Check if status is success
     # @return [Boolean]
     def success?
-      [200, 201, 204, 280, 281].include?(code&.to_i)
+      [200, 201, 204, 280, 281].include?(code)
     end
 
     # Check if status is failure

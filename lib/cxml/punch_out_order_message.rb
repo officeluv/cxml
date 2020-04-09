@@ -9,12 +9,14 @@ module CXML
     ]
 
     def initialize_item_in(value)
+      value = [value] unless value.is_a?(Array)
       @items_in = value.map do |item|
         CXML::ItemIn.new(item)
       end
     end
 
     def initialize_items_in(value)
+      value = [value] unless value.is_a?(Array)
       @items_in = value.map do |item|
         CXML::ItemIn.new(item)
       end

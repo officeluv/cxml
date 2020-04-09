@@ -10,6 +10,7 @@ module CXML
     accessible_nodes %i[
       email
       name
+      postal_address
     ]
   end
 end
