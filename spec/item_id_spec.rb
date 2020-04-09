@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe CXML::ItemId do
+describe CXML::ItemID do
   it { should respond_to :supplier_part_id }
   it { should respond_to :supplier_part_auxiliary_id }
 
