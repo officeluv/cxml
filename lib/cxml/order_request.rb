@@ -2,24 +2,32 @@
 
 module CXML
   # body of purchase order request
-  class OrderRequest
-    attr_accessor :order_request_header
-    attr_accessor :items_out
+  class OrderRequest < DocumentNode
+    accessible_nodes %i[
+      order_request_header
+      items_out
+    ]
 
-    def initialize(data = {})
-      return unless data.is_a?(Hash) && !data.empty?
-
-      @order_request_header = CXML::OrderRequestHeader.new(data['OrderRequestHeader'] || data['order_request_header'])
-      @items_out = (data['ItemOut'] || data['items_out'] || []).map do |item|
+    def initialize_item_out(value)
+      value = [value] unless value.is_a?(Array)
+      @items_out = value.map do |item|
         CXML::ItemOut.new(item)
       end
     end
 
-    def render(node)
-      node.OrderRequest do |n|
-        order_request_header&.render(n)
-        items_out&.each { |item_out| item_out.render(n) }
+    def initialize_items_out(value)
+      value = [value] unless value.is_a?(Array)
+      @items_out = value.map do |item|
+        CXML::ItemOut.new(item)
       end
+    end
+
+    def add_item(item_in_data)
+      items_out << CXML::ItemOut.new(item_in_data)
+    end
+
+    def items_out
+      @items_out ||= []
     end
   end
 end

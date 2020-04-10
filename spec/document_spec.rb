@@ -29,7 +29,7 @@ describe CXML::Document do
     end
 
     it 'returns xml content with a header xml node' do
-      output_data['Header'].should_not be_empty
+      output_data[:header].should_not be_empty
     end
   end
 
@@ -41,15 +41,19 @@ describe CXML::Document do
   it { should respond_to :header }
   it { should respond_to :request }
   it { should respond_to :response }
-  it { should respond_to :punch_out_order_message }
+  it { should respond_to :message }
   it { should respond_to :xml_lang }
   it { should respond_to :request? }
   it { should respond_to :response? }
-  it { should respond_to :punch_out_order_message? }
-  it { should respond_to :build_attributes }
+  it { should respond_to :message? }
 
   describe '#initialize' do
     let(:doc) { CXML::Document.new(data) }
+
+    it 'can ingest from_xml' do
+      doc = described_class.new.from_xml(fixture('response_status_200.xml'))
+      doc.response.status.code.should == 200
+    end
 
     context 'when a request document is passed' do
       let(:data) { parser.parse(fixture('request_doc.xml')) }
@@ -62,7 +66,7 @@ describe CXML::Document do
         doc.request.should be_a CXML::Request
 
         doc.response.should be_nil
-        doc.punch_out_order_message.should be_nil
+        doc.message.should be_nil
       end
     end
 
@@ -76,7 +80,7 @@ describe CXML::Document do
 
         doc.header.should be_nil
         doc.request.should be_nil
-        doc.punch_out_order_message.should be_nil
+        doc.message.should be_nil
       end
     end
 
@@ -88,7 +92,7 @@ describe CXML::Document do
 
       it 'sets the correct document node attributes' do
         doc.header.should be_a CXML::Header
-        doc.punch_out_order_message.should be_a CXML::PunchOutOrderMessage
+        doc.message.punch_out_order_message.should be_a CXML::PunchOutOrderMessage
 
         doc.request.should be_nil
         doc.response.should be_nil
@@ -116,12 +120,13 @@ describe CXML::Document do
       end
 
       it 'outputs the response with a valid status code' do
-        output_data['Response'].should_not be_empty
-        output_data['Response']['Status']['code'].should == '200'
+        output_data[:response].should_not be_empty
+        output_data[:response][:status][:code].should == '200'
+        output_data[:response][:status].should == data[:response][:status]
       end
 
       it 'outputs the punch out setup response' do
-        output_data['Response']['PunchOutSetupResponse'].should_not be_empty
+        output_data[:response][:punch_out_setup_response].should_not be_empty
       end
     end
 
@@ -132,8 +137,8 @@ describe CXML::Document do
       end
 
       it 'outputs the response with a valid status code' do
-        output_data['Response'].should_not be_empty
-        output_data['Response']['Status']['code'].should == '400'
+        output_data[:response].should_not be_empty
+        output_data[:response][:status][:code].should == '400'
       end
     end
 
@@ -142,18 +147,9 @@ describe CXML::Document do
       include_examples :document_render_defaults
 
       it 'outputs the punch out order message xml' do
-        output_data['Message'].should_not be_empty
-        output_data['Message']['PunchOutOrderMessage'].should_not be_empty
+        output_data[:message].should_not be_empty
+        output_data[:message][:punch_out_order_message].should_not be_empty
       end
-    end
-  end
-
-  describe '#build_attributes' do
-    let(:data) { parser.parse(fixture('punch_out_order_message_doc.xml')) }
-    let(:doc) { CXML::Document.new(data) }
-
-    it 'returns a hash' do
-      doc.build_attributes.should include('version')
     end
   end
 end

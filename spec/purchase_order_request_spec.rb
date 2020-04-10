@@ -14,13 +14,13 @@ describe CXML::OrderRequest do
   let(:builder) { doc.render }
   let(:output_xml) { builder.to_xml }
   let(:output_data) { parser.parse(output_xml) }
-  let(:order_request_output_data) { output_data['Request']['OrderRequest'] }
+  let(:order_request_output_data) { output_data[:request][:order_request] }
 
   describe '#render' do
     it 'contains the required nodes' do
-      order_request_output_data['OrderRequestHeader'].should_not be_empty
-      order_request_output_data['ItemOut'].should be_a Array
-      order_request_output_data['ItemOut'].length.should eq 2
+      order_request_output_data[:order_request_header].should_not be_empty
+      order_request_output_data[:item_out].should be_a Array
+      order_request_output_data[:item_out].length.should eq 2
     end
   end
   describe '#initialize' do

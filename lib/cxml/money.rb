@@ -17,31 +17,19 @@
 # <Money currency="GBP">5.35</Money>
 
 module CXML
-  class Money
-    attr_accessor :currency
-    attr_accessor :amount
-    attr_accessor :alternate_currency
-    attr_accessor :alternate_amount
+  class Money < DocumentNode
+    accessible_attributes %i[
+      alternate_amount
+      alternate_currency
+      currency
+    ]
 
-    def initialize(data = {})
-      return unless data.is_a?(Hash) && !data.empty?
-
-      @currency = data['currency']
-      @amount = data['content']
-      @alternate_currency = data['alternateCurrency'] || data['alternate_currency']
-      @alternate_amount = data['alternateAmount'] || data['alternate_amount']
+    def amount
+      content
     end
 
-    def build_attributes
-      attributes = {}
-      attributes.merge!('currency' => currency.nil? ? 'GBP' : currency)
-      attributes.merge!('alternateCurrency' => alternate_currency) if alternate_currency
-      attributes.merge!('alternateAmount' => alternate_amount) if alternate_amount
-      attributes
-    end
-
-    def render(node)
-      node.Money(amount, build_attributes)
+    def amount=(value)
+      self.content = value
     end
   end
 end

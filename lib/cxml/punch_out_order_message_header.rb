@@ -2,24 +2,16 @@
 
 module CXML
   # punchout order message header
-  class PunchOutOrderMessageHeader
-    attr_accessor :money
+  class PunchOutOrderMessageHeader < DocumentNode
+    accessible_attributes %i[
+      operation_allowed
+    ]
+    accessible_nodes %i[
+      total
+    ]
 
-    def initialize(data = {})
-      return unless data.is_a?(Hash) && !data.empty?
-
-      @money = CXML::Money.new(data['total']) if data['total']
-      @money = CXML::Money.new(data['Total']['Money']) if data['Total']
-    end
-
-    def money?
-      !money.nil?
-    end
-
-    def render(node)
-      node.PunchOutOrderMessageHeader('operationAllowed' => :create) do |n|
-        n.Total { money.render(node) if money? }
-      end
+    def operation_allowed
+      @operation_allowed || 'create'
     end
   end
 end

@@ -1,46 +1,39 @@
 # frozen_string_literal: true
 
-# require 'cxml/version'
-require 'cxml/errors'
-require 'time'
-require 'nokogiri'
+require('time')
+require('nokogiri')
+require('logger')
+require('cxml/document_node')
+Dir[File.join(__dir__, 'cxml', '*.rb')].sort.each { |file| require file }
 
 module CXML
-  autoload :Accounting,                   'cxml/accounting'
-  autoload :Address,                      'cxml/address'
-  autoload :Contact,                      'cxml/contact'
-  autoload :Credential,                   'cxml/credential'
-  autoload :CredentialMac,                'cxml/credential_mac'
-  autoload :Distribution,                 'cxml/distribution'
-  autoload :Document,                     'cxml/document'
-  autoload :Extrinsic,                    'cxml/extrinsic'
-  autoload :Header,                       'cxml/header'
-  autoload :Invoice,                      'cxml/invoice'
-  autoload :ItemDetail,                   'cxml/item_detail'
-  autoload :ItemId,                       'cxml/item_id'
-  autoload :ItemIn,                       'cxml/item_in'
-  autoload :ItemOut,                      'cxml/item_out'
-  autoload :Money,                        'cxml/money'
-  autoload :OrderRequest,                 'cxml/order_request'
-  autoload :OrderRequestHeader,           'cxml/order_request_header'
-  autoload :Parser,                       'cxml/parser'
-  autoload :Protocol,                     'cxml/protocol'
-  autoload :PunchOutOrderMessage,         'cxml/punch_out_order_message'
-  autoload :PunchOutOrderMessageHeader,   'cxml/punch_out_order_message_header'
-  autoload :PunchOutSetupRequest,         'cxml/punch_out_setup_request'
-  autoload :PunchOutSetupResponse,        'cxml/punch_out_setup_response'
-  autoload :Request,                      'cxml/request'
-  autoload :Response,                     'cxml/response'
-  autoload :Segment,                      'cxml/segment'
-  autoload :Sender,                       'cxml/sender'
-  autoload :ShipTo,                       'cxml/ship_to'
-  autoload :Status,                       'cxml/status'
-
   def self.parse(str)
     CXML::Parser.new.parse(str)
   end
 
   def self.builder
     Nokogiri::XML::Builder.new(encoding: 'UTF-8')
+  end
+
+  def self.configure
+    yield(self)
+  end
+
+  def self.raise_unknown_elements
+    @raise_unknown_elements.nil? ? @raise_unknown_elements ||= true : @raise_unknown_elements
+  end
+
+  def self.raise_unknown_elements=(setting)
+    @raise_unknown_elements = setting
+  end
+
+  def self.logger
+    return @logger if @logger
+
+    @logger ||= Logger.new(STDOUT, level: :warn)
+  end
+
+  def self.logger=(new_logger)
+    @logger = new_logger
   end
 end

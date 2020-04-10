@@ -35,30 +35,15 @@
 # authenticate it.
 
 module CXML
-  class Credential
-    attr_accessor :domain
-    attr_accessor :type
-    attr_accessor :shared_secret
-    attr_accessor :credential_mac
-    attr_accessor :identity
-
-    # Initialize a new Credential instance
-    # @param data [Hash] optional initial data
-    def initialize(data = {})
-      return unless data.is_a?(Hash) && !data.empty?
-
-      @domain        = data['domain']
-      @type          = data['type']
-      @identity      = data['Identity'] || data['identity']
-      @shared_secret = data['SharedSecret'] || data['shared_secret']
-    end
-
-    def render(node)
-      node.Credential('domain' => domain) do |c|
-        c.Identity(@identity)
-        c.SharedSecret(@shared_secret) if @shared_secret
-      end
-      node
-    end
+  class Credential < DocumentNode
+    accessible_attributes %i[
+      domain
+      type
+    ]
+    accessible_nodes %i[
+      shared_secret
+      identity
+      credential_mac
+    ]
   end
 end

@@ -9,14 +9,15 @@ describe CXML::Header do
     end
 
     it 'returns xml content with with required xml nodes' do
-      header_output_data['To'].should_not be_empty
-      header_output_data['From'].should_not be_empty
-      header_output_data['Sender'].should_not be_empty
+      header_output_data[:to].should_not be_empty
+      header_output_data[:from].should_not be_empty
+      header_output_data[:sender].should_not be_empty
     end
   end
 
-  it { should respond_to :from? }
-  it { should respond_to :to? }
+  it { should respond_to :from }
+  it { should respond_to :to }
+  it { should respond_to :sender }
   it { should respond_to :render }
 
   let(:parser) { CXML::Parser.new }
@@ -27,8 +28,8 @@ describe CXML::Header do
 
   describe '#initialize' do
     it 'sets the mandatory attributes' do
-      header.to.should be_instance_of(CXML::Credential)
-      header.from.should be_instance_of(CXML::Credential)
+      header.to.should be_instance_of(CXML::To)
+      header.from.should be_instance_of(CXML::From)
       header.sender.should be_instance_of(CXML::Sender)
     end
   end
@@ -36,17 +37,17 @@ describe CXML::Header do
   describe '#render' do
     let(:output_xml) { builder.to_xml }
     let(:output_data) { parser.parse(output_xml) }
-    let(:header_output_data) { output_data['Header'] }
-    let(:from_identity) { header_output_data['From']['Credential']['Identity'] }
-    let(:to_identity) { header_output_data['To']['Credential']['Identity'] }
+    let(:header_output_data) { output_data[:header] }
+    let(:from_identity) { header_output_data[:from][:credential][:identity] }
+    let(:to_identity) { header_output_data[:to][:credential][:identity] }
 
     include_examples :render_defaults
 
     context 'when the header is rendered as not a response' do
       let(:data) { parser.parse(fixture('request_doc.xml')) }
       it 'will NOT swap the to and from attributes' do
-        from_identity.should eq(header.from.identity)
-        to_identity.should eq(header.to.identity)
+        from_identity.should eq(header.from.credential.identity)
+        to_identity.should eq(header.to.credential.identity)
       end
     end
   end

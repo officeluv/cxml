@@ -12,17 +12,8 @@ describe CXML::Status do
   end
 
   describe '#initialize' do
-    it 'assigns attributes from string' do
-      str = '<Status xml:lang="en-US" code="200" text="OK"></Status>'
-      status = CXML::Status.new(str)
-
-      status.code.should eq(200)
-      status.xml_lang.should eq('en-US')
-      status.text.should eq('OK')
-    end
-
     it 'assigns attributes from hash' do
-      hash = { 'xml:lang' => 'en-US', 'code' => '200', 'text' => 'OK' }
+      hash = { 'xml_lang' => 'en-US', 'code' => '200', 'text' => 'OK' }
       status = CXML::Status.new(hash)
 
       status.code.should eq(200)

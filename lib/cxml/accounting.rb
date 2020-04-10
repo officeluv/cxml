@@ -2,20 +2,25 @@
 
 module CXML
   # accounting details in item outs
-  class Accounting
-    attr_accessor :segments
+  class Accounting < DocumentNode
+    accessible_attributes %i[
+      name
+    ]
+    accessible_nodes %i[
+      segments
+    ]
 
-    def initialize(data = {})
-      return unless data.is_a?(Hash) && !data.empty?
-
-      @segments = (data['Segment'] || data['segments'] || []).map do |segment|
-        CXML::Segment.new(segment)
+    def initialize_segments(value)
+      value = [value] unless value.is_a?(Array)
+      @segments = value.map do |item|
+        CXML::Segment.new(item)
       end
     end
 
-    def render(node)
-      node.Accounting do |n|
-        segments.each { |segment| segment.render(n) }
+    def initialize_segment(value)
+      value = [value] unless value.is_a?(Array)
+      @segments = value.map do |item|
+        CXML::Segment.new(item)
       end
     end
   end

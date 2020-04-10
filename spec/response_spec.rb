@@ -23,7 +23,6 @@ describe CXML::Response do
   describe '#render' do
     let(:output_xml) { builder.to_xml }
     let(:output_data) { parser.parse(output_xml) }
-    let(:punch_out_order_message_output_data) { output_data['Message']['PunchOutOrderMessage'] }
 
     context 'when a valid response is rendered' do
       let(:data) { parser.parse(fixture('response_status_200.xml')) }
@@ -33,13 +32,13 @@ describe CXML::Response do
       end
 
       it 'outputs the response with a valid status code' do
-        output_data['Response'].should_not be_empty
-        output_data['Response']['PunchOutSetupResponse'].should_not be_empty
-        output_data['Response']['Status']['code'].should == '200'
+        output_data[:response].should_not be_empty
+        output_data[:response][:punch_out_setup_response].should_not be_empty
+        output_data[:response][:status][:code].should == '200'
       end
 
       it 'outputs the punch out setup response' do
-        output_data['Response']['PunchOutSetupResponse'].should_not be_empty
+        output_data[:response][:punch_out_setup_response].should_not be_empty
       end
     end
 
@@ -51,8 +50,8 @@ describe CXML::Response do
       end
 
       it 'outputs the response with a valid status code' do
-        output_data['Response'].should_not be_empty
-        output_data['Response']['Status']['code'].should == '400'
+        output_data[:response].should_not be_empty
+        output_data[:response][:status][:code].should == '400'
       end
     end
   end

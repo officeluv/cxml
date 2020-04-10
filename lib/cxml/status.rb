@@ -1,21 +1,15 @@
 # frozen_string_literal: true
 
 module CXML
-  class Status
-    attr_accessor :code
-    attr_accessor :text
-    attr_accessor :xml_lang
+  class Status < DocumentNode
+    accessible_attributes %i[
+      code
+      text
+      xml_lang
+    ]
 
-    # Initialize a new Status instance
-    # @params data [Hash] optional hash with attributes
-    def initialize(data = {})
-      data = CXML.parse(data) if data.is_a?(String)
-
-      return unless data.is_a?(Hash) && !data.empty?
-
-      @code     = data['code'].to_i
-      @text     = data['text']
-      @xml_lang = data['xml:lang']
+    def code
+      @code&.to_i
     end
 
     # Check if status is success
@@ -28,10 +22,6 @@ module CXML
     # @return [Boolean]
     def failure?
       !success?
-    end
-
-    def render(node)
-      node.Status(code: @code, text: @text)
     end
   end
 end

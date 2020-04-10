@@ -7,15 +7,30 @@ describe CXML::Request do
   it { should respond_to :id }
   it { should respond_to :deployment_mode }
 
-  let(:parser) { CXML::Parser.new }
-  let(:data) { parser.parse(fixture('punch_out_setup_request_doc.xml')) }
-  let(:doc) { CXML::Document.new(data) }
-  let(:request) { doc.request }
-
   describe '#initialize' do
-    it 'sets the mandatory attributes' do
-      request.deployment_mode.should_not be_nil
-      request.punch_out_setup_request.should be_an_instance_of CXML::PunchOutSetupRequest
+    it 'sets punch_out_setup_request attributes' do
+      parser = CXML::Parser.new
+      data = parser.parse(fixture('punch_out_setup_request_doc.xml'))
+      doc = CXML::Document.new(data)
+      doc.request.deployment_mode.should_not be_nil
+      doc.request.punch_out_setup_request
+         .should be_an_instance_of CXML::PunchOutSetupRequest
+    end
+    it 'sets purchase_order_request attributes' do
+      parser = CXML::Parser.new
+      data = parser.parse(fixture('purchase_order_request_200.xml'))
+      doc = CXML::Document.new(data)
+      doc.request.deployment_mode.should_not be_nil
+      doc.request.order_request
+         .should be_an_instance_of CXML::OrderRequest
+    end
+    it 'sets invoice_detail_request attributes' do
+      parser = CXML::Parser.new
+      data = parser.parse(fixture('invoice_taxes_at_line.xml'))
+      doc = CXML::Document.new(data)
+      doc.request.deployment_mode.should_not be_nil
+      doc.request.invoice_detail_request
+         .should be_an_instance_of CXML::InvoiceDetailRequest
     end
   end
 end

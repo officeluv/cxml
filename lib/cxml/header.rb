@@ -19,38 +19,11 @@
 # changes to indicate current sending party.
 
 module CXML
-  class Header
-    attr_accessor :from
-    attr_accessor :to
-    attr_accessor :sender
-
-    def initialize(data = {})
-      return unless data.is_a?(Hash) && !data.empty?
-
-      @from   = CXML::Credential.new(data['From']['Credential']) if data['From']
-      @from   = CXML::Credential.new(data['From']) if data['from']
-      @to     = CXML::Credential.new(data['To']['Credential']) if data['To']
-      @to     = CXML::Credential.new(data['to']) if data['to']
-      @sender = CXML::Sender.new(data['Sender'] || data['sender'])
-    end
-
-    def from?
-      !to.nil?
-    end
-
-    def to?
-      !from.nil?
-    end
-
-    # Note: If an original request header is been used for a response, i.e. as part of a PunchOutOrderMessage response
-    #       then swap the to and from nodes
-    def render(node)
-      if to? && from?
-        node.From   { |n| @from.render(n) }
-        node.To     { |n| @to.render(n) }
-      end
-      @sender&.render(node)
-      node
-    end
+  class Header < DocumentNode
+    accessible_nodes %i[
+      from
+      to
+      sender
+    ]
   end
 end

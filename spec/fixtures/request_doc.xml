@@ -48,6 +48,7 @@
           </UnitPrice>
           <Comments></Comments>
           <Extrinsic name="SupplierPartID">751441</Extrinsic>
+          <Extrinsic name="SupplierPartAuxilliaryID">751441</Extrinsic>
         </ConfirmationStatus>
       </ConfirmationItem>
       <ConfirmationItem quantity="12" lineNumber="2">
@@ -59,6 +60,7 @@
           </UnitPrice>
           <Comments></Comments>
           <Extrinsic name="SupplierPartID">429175</Extrinsic>
+          <Extrinsic name="SupplierPartAuxilliaryID">429175</Extrinsic>
         </ConfirmationStatus>
       </ConfirmationItem>
       <ConfirmationItem quantity="2" lineNumber="3">

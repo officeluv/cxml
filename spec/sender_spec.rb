@@ -22,11 +22,11 @@ describe CXML::Sender do
   describe '#render' do
     let(:output_xml) { builder.to_xml }
     let(:output_data) { parser.parse(output_xml) }
-    let(:sender_output_data) { output_data['Header']['Sender'] }
+    let(:sender_output_data) { output_data[:header][:sender] }
 
     it 'contains the required nodes' do
-      sender_output_data['UserAgent'].should_not be_empty
-      sender_output_data['Credential'].should_not be_empty
+      sender_output_data[:user_agent].should_not be_empty
+      sender_output_data[:credential].should_not be_empty
     end
   end
 end
