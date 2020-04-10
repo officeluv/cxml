@@ -50,6 +50,11 @@ describe CXML::Document do
   describe '#initialize' do
     let(:doc) { CXML::Document.new(data) }
 
+    it 'can ingest from_xml' do
+      doc = described_class.new.from_xml(fixture('response_status_200.xml'))
+      doc.response.status.code.should == 200
+    end
+
     context 'when a request document is passed' do
       let(:data) { parser.parse(fixture('request_doc.xml')) }
       include_examples :document_has_mandatory_values

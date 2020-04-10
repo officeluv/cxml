@@ -25,6 +25,11 @@ module CXML
       @timestamp ||= Time.now.utc
     end
 
+    def from_xml(xml_string)
+      initialize(Parser.new.parse(xml_string))
+      self
+    end
+
     # Check if document is request
     # @return [Boolean]
     def request?
