@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE cXML SYSTEM "http://xml.cXML.org/schemas/cXML/1.2.020/InvoiceDetail.dtd">
-<cXML payloadID="20101222 190337.2999" timestamp="2010-12-22T19:03:37" version="1.0">
+<cXML payloadID="20101222 190337.2999" timestamp="2010-12-22T19:03:37Z" version="1.0">
    <Header>
       <From>
          <Credential domain="DUNS">
@@ -27,7 +27,7 @@
    </Header>
    <Request deploymentMode="production">
       <InvoiceDetailRequest>
-         <InvoiceDetailRequestHeader invoiceDate="2010-12-16T00:00:00" invoiceID="INVOICENUMBER" operation="new" purpose="standard">
+         <InvoiceDetailRequestHeader invoiceDate="2010-12-16T00:00:00Z" invoiceID="INVOICENUMBER" operation="new" purpose="standard">
              <!-- InvoiceID=Invoice Number -->
             <InvoiceDetailHeaderIndicator />
             <InvoiceDetailLineIndicator isAccountingInLine="yes" />
@@ -57,7 +57,7 @@
          <InvoiceDetailOrder>
             <InvoiceDetailOrderInfo>
                <MasterAgreementReference>
-                  <DocumentReference payloadID="" />
+                  <DocumentReference payloadID="l" />
           <!-- PayloadID= Contract Number or leave blank if invoicing with no backing document -->
                </MasterAgreementReference>
             </InvoiceDetailOrderInfo>
@@ -81,7 +81,7 @@
             <Tax>
                <Money currency="USD">0</Money>
                <Description xml:lang="en">TaxStuff</Description>
-               <TaxDetail category="tax" purpose="tax" taxPointDate="2010-12-16T00:00:00">
+               <TaxDetail category="tax" purpose="tax" taxPointDate="2010-12-16T00:00:00Z">
                   <TaxableAmount>
                      <Money currency="USD" />
                   </TaxableAmount>

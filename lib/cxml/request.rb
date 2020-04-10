@@ -13,9 +13,9 @@ module CXML
     ]
     accessible_nodes %i[
       confirmation_request
-      punch_out_setup_request
+      invoice_detail_request
       order_request
-      invoice_detail_requst
+      punch_out_setup_request
     ]
   end
 end

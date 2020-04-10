@@ -4,7 +4,11 @@ module CXML
   class PaymentTerm < DocumentNode
     accessible_attributes %i[
       pay_in_number_of_days
+    ]
+    accessible_nodes %i[
+      discount
       extrinsics
+      net_due_days
     ]
 
     def initialize_extrinsic(value)

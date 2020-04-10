@@ -22,7 +22,7 @@ module CXML
     end
 
     def timestamp
-      @timestamp ||= Time.now.utc.iso8601
+      @timestamp ||= Time.now.utc
     end
 
     # Check if document is request

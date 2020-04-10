@@ -33,7 +33,7 @@ module CXML
 
     def render(node = CXML.builder)
       node.send(self.class.name.split('::').last, node_attributes) do |n|
-        n.content(content) if content
+        n.text(content) if content
         render_nodes(n)
       end
       node
@@ -67,6 +67,7 @@ module CXML
     def node_attributes
       self.class.attributes.each_with_object({}) do |attr, obj|
         value = send(attr)
+        value = value.iso8601 if value.is_a?(Time)
         next if value.respond_to?(:empty?) ? value.empty? : !value
 
         string_attr = if attr.to_sym == :xml_lang

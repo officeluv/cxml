@@ -4,6 +4,7 @@ module CXML
   class InvoicePartner < DocumentNode
     accessible_nodes %i[
       contact
+      id_reference
     ]
   end
 end

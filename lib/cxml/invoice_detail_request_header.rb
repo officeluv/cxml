@@ -3,24 +3,39 @@
 module CXML
   class InvoiceDetailRequestHeader < DocumentNode
     accessible_attributes %i[
-      invoice_id
-      is_information_only
-      purpose
-      operation
       invoice_date
+      invoice_id
       invoice_origin
+      is_information_only
+      operation
+      purpose
     ]
     accessible_nodes %i[
+      comments
+      document_reference
+      extrinsics
       invoice_detail_header_indicator
       invoice_detail_line_indicator
-      invoice_partner
-      document_reference
+      invoice_detail_shipping
       invoice_id_info
+      invoice_partners
       payment_term
       period
-      extrinsics
-      comments
     ]
+
+    def initialize_invoice_partner(value)
+      value = [value] unless value.is_a?(Array)
+      @invoice_partners = value.map do |item|
+        InvoicePartner.new(item)
+      end
+    end
+
+    def initialize_invoice_partners(value)
+      value = [value] unless value.is_a?(Array)
+      @invoice_partners = value.map do |item|
+        InvoicePartner.new(item)
+      end
+    end
 
     def initialize_extrinsic(value)
       value = [value] unless value.is_a?(Array)

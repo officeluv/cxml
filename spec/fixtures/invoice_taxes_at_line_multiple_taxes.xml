@@ -56,21 +56,21 @@
 
                     <Contact role="invoiceFrom" addressID="supplier_address_code">
 
-                        <Name xml:lang="en"></Name>
+                        <Name xml:lang="en">name</Name>
 
                         <PostalAddress name="default">
 
-                            <Street></Street>
+                            <Street>alksdjfj</Street>
 
-                            <Street></Street>
+                            <Street>alksdjfj</Street>
 
-                            <City></City>
+                            <City>alksdjfj</City>
 
-                            <State></State>
+                            <State isoStateCode="la">alksdjfj</State>
 
-                            <PostalCode></PostalCode>
+                            <PostalCode>alksdjfj</PostalCode>
 
-                            <Country isoCountryCode="CA"></Country>
+                            <Country isoCountryCode="CA">Caledonia</Country>
 
                         </PostalAddress>
 
@@ -84,7 +84,7 @@
 
                     <Contact role="remitTo" addressID="supplier_address_code">
 
-                        <Name xml:lang="en"></Name>
+                        <Name xml:lang="en">name</Name>
 
                     </Contact>
 
@@ -96,21 +96,21 @@
 
                         <Name xml:lang="en">"bill_to_address"</Name>
 
-                        <PostalAddress name="">
+                        <PostalAddress name="name">
 
-                            <DeliverTo></DeliverTo>
+                            <DeliverTo>name</DeliverTo>
 
-                            <Street></Street>
+                            <Street>name</Street>
 
-                            <Street></Street>
+                            <Street>name</Street>
 
-                            <City></City>
+                            <City>name</City>
 
-                            <State></State>
+                            <State isoStateCode="la">name</State>
 
-                            <PostalCode></PostalCode>
+                            <PostalCode>name</PostalCode>
 
-                            <Country isoCountryCode="CA"></Country>
+                            <Country isoCountryCode="CA">Caledonia</Country>
 
                         </PostalAddress>
 
@@ -124,21 +124,21 @@
 
                     <Contact role="shipFrom" addressID="supplier_address_code">
 
-                        <Name xml:lang="en"></Name>
+                        <Name xml:lang="en">oiwur</Name>
 
                         <PostalAddress name="default">
 
-                            <Street></Street>
+                            <Street>oiwuer</Street>
 
-                            <Street></Street>
+                            <Street>ldfklj</Street>
 
-                            <City></City>
+                            <City>lkajsdfk</City>
 
-                            <State></State>
+                            <State isoStateCode="la">asdlf</State>
 
-                            <PostalCode></PostalCode>
+                            <PostalCode>9238409</PostalCode>
 
-                            <Country isoCountryCode="CA"></Country>
+                            <Country isoCountryCode="CA">Caledonia</Country>
 
                         </PostalAddress>
 
@@ -148,21 +148,21 @@
 
                         <Name xml:lang="en">Test</Name>
 
-                        <PostalAddress name="">
+                        <PostalAddress name="name">
 
-                            <DeliverTo></DeliverTo>
+                            <DeliverTo>wo139480</DeliverTo>
 
                             <Street>Street</Street>
 
-                            <Street></Street>
+                            <Street>3948</Street>
 
                             <City>City</City>
 
-                            <State>State</State>
+                            <State isoStateCode="la">State</State>
 
                             <PostalCode>00001</PostalCode>
 
-                            <Country isoCountryCode="US"></Country>
+                            <Country isoCountryCode="US">US</Country>
 
                         </PostalAddress>
 
@@ -170,17 +170,17 @@
 
                 </InvoiceDetailShipping>
 
-                <PaymentTerm payInNumberOfDays="">
+                <PaymentTerm payInNumberOfDays="1">
 
                     <Discount>
 
-                        <DiscountPercent percent="" />
+                        <DiscountPercent percent="1" />
 
-                        <DiscountDueDays></DiscountDueDays>
+                        <DiscountDueDays>1</DiscountDueDays>
 
                     </Discount>
 
-                    <NetDueDays></NetDueDays>
+                    <NetDueDays>1</NetDueDays>
 
                 </PaymentTerm>
 
@@ -194,7 +194,7 @@
 
                   <MasterAgreementReference>
 
-                    <DocumentReference payloadID=""/>
+                    <DocumentReference payloadID="id"/>
 
                   </MasterAgreementReference>
 
@@ -214,7 +214,7 @@
 
                         <ItemID>
 
-                            <SupplierPartID></SupplierPartID>
+                            <SupplierPartID>part-id</SupplierPartID>
 
                         </ItemID>
 
@@ -248,9 +248,9 @@
 
                             </TaxAmount>
 
-                            <TaxLocation xml:lang="en"></TaxLocation>
+                            <TaxLocation xml:lang="en">location</TaxLocation>
 
-                            <Description xml:lang="en"></Description>
+                            <Description xml:lang="en">laksdjfl</Description>
 
                         </TaxDetail>
 
@@ -276,7 +276,7 @@
 
                     <Description xml:lang="en">This is the header tax description that defaults</Description>
 
-                    <TaxDetail purpose="tax" category="" percentageRate="" taxPointDate="2018-08-07T11:45:51-07:00">
+                    <TaxDetail purpose="tax" category="foo" percentageRate="1" taxPointDate="2018-08-07T11:45:51-07:00">
 
                         <TaxableAmount>
 
@@ -384,7 +384,7 @@
 
                 <InvoiceDetailDiscount>
 
-                    <Money currency="currency_code"></Money>
+                    <Money currency="currency_code">123</Money>
 
                 </InvoiceDetailDiscount>
 

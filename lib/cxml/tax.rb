@@ -6,10 +6,24 @@ module CXML
       money
       tax_adjustment_amount
       description
-      tax_detail
+      tax_details
       distribution
       extrinsics
     ]
+
+    def initialize_tax_detail(value)
+      value = [value] unless value.is_a?(Array)
+      @tax_details = value.map do |item|
+        TaxDetail.new(item)
+      end
+    end
+
+    def initialize_tax_details(value)
+      value = [value] unless value.is_a?(Array)
+      @tax_details = value.map do |item|
+        TaxDetail.new(item)
+      end
+    end
 
     def initialize_extrinsic(value)
       value = [value] unless value.is_a?(Array)

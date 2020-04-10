@@ -24,5 +24,13 @@ describe CXML::Request do
       doc.request.order_request
          .should be_an_instance_of CXML::OrderRequest
     end
+    it 'sets invoice_detail_request attributes' do
+      parser = CXML::Parser.new
+      data = parser.parse(fixture('invoice_taxes_at_line.xml'))
+      doc = CXML::Document.new(data)
+      doc.request.deployment_mode.should_not be_nil
+      doc.request.invoice_detail_request
+         .should be_an_instance_of CXML::InvoiceDetailRequest
+    end
   end
 end
