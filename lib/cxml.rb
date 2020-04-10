@@ -19,6 +19,14 @@ module CXML
     yield(self)
   end
 
+  def self.raise_unknown_elements
+    @raise_unknown_elements.nil? ? @raise_unknown_elements ||= true : @raise_unknown_elements
+  end
+
+  def self.raise_unknown_elements=(setting)
+    @raise_unknown_elements = setting
+  end
+
   def self.logger
     return @logger if @logger
 

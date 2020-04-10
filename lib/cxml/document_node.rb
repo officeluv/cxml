@@ -6,6 +6,8 @@ module CXML
     attr_accessor :content
 
     def self.accessible_attributes(attrs)
+      raise(ArgumentError) unless attrs.is_a?(Array)
+
       @attributes = attrs
       attr_accessor(*attrs)
     end
@@ -14,9 +16,11 @@ module CXML
       @attributes || []
     end
 
-    def self.accessible_nodes(nodes)
-      @nodes = nodes
-      attr_accessor(*nodes)
+    def self.accessible_nodes(new_nodes)
+      raise(ArgumentError) unless new_nodes.is_a?(Array)
+
+      @nodes = new_nodes
+      attr_accessor(*new_nodes)
     end
 
     def self.nodes
@@ -86,6 +90,8 @@ module CXML
       klass = "CXML::#{camelize(key)}"
       send("#{key}=", Object.const_get(klass).new(val))
     rescue NoMethodError => e
+      raise(UnknownAttributeError, e) if CXML.raise_unknown_elements
+
       CXML.logger.warn(e)
     rescue NameError => e
       raise(e) unless e.to_s.match?(klass)
