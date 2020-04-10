@@ -72,5 +72,17 @@ describe CXML::InvoiceDetailRequest do
       doc = CXML::Document.new(data)
       CXML::Parser.new.parse(doc.render.to_xml).should == data
     end
+    it 'serializes from an instance' do
+      money = CXML::Money.new(amount: '5', currency: 'USD')
+      summary = CXML::InvoiceDetailSummary.new(gross_amount: CXML::GrossAmount.new(money: money))
+      instance = described_class.new(invoice_detail_summary: summary)
+      data = CXML::Request.new(invoice_detail_request: instance)
+      doc = CXML::Document.new(request: data)
+      parsed = CXML::Parser.new.parse(doc.render.to_xml)
+      parsed[:request][:invoice_detail_request]
+        .should == instance.serializable_hash
+      parsed[:request][:invoice_detail_request][:invoice_detail_summary][:gross_amount][:money]
+        .should == { content: '5', currency: 'USD' }
+    end
   end
 end

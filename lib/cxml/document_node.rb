@@ -32,7 +32,20 @@ module CXML
         @content = data
         return
       end
+      data = data.serializable_hash if data.is_a?(self.class)
+      return unless data.is_a?(Hash)
+
       data.each(&method(:initialize_attribute))
+    end
+
+    def serializable_hash
+      (self.class.attributes + self.class.nodes + [:content]).each_with_object({}) do |attr, obj|
+        value = send(attr)
+        value = value.iso8601 if value.is_a?(Time)
+        next if value.respond_to?(:empty?) ? value.empty? : !value
+
+        obj[attr] = value.is_a?(DocumentNode) ? value.serializable_hash : value
+      end
     end
 
     def render(node = CXML.builder)
