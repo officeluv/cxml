@@ -1,5 +1,7 @@
 # cXML
 
+![Ruby Specs](https://github.com/officeluv/cxml/workflows/Ruby%20Specs/badge.svg)
+
 Ruby implementation of the cXML protocol. 
 
 Currently supports:
