@@ -8,6 +8,8 @@ module CXML
     ]
     accessible_nodes %i[
       total
+      shipping
+      tax
     ]
 
     def operation_allowed
