@@ -10,6 +10,7 @@ module CXML
       total
       shipping
       tax
+      ship_to
     ]
 
     def operation_allowed
