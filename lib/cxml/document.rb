@@ -25,6 +25,10 @@ module CXML
       @timestamp ||= Time.now.utc
     end
 
+    def version
+      @version ||= '1.2.037'
+    end
+
     def from_xml(xml_string)
       initialize(Parser.new.parse(xml_string))
       self
@@ -53,7 +57,7 @@ module CXML
       node.doc.create_internal_subset(
         'cXML',
         nil,
-        'http://xml.cxml.org/schemas/cXML/1.2.037/cXML.dtd'
+        "http://xml.cxml.org/schemas/cXML/#{version}/cXML.dtd"
       )
       node.cXML(node_attributes) do |doc|
         header&.render(doc)
