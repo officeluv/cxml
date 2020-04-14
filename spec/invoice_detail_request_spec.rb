@@ -49,7 +49,7 @@ describe CXML::InvoiceDetailRequest do
     it 'serializes the same output' do
       data = CXML::Parser.new.parse(fixture('invoice_taxes_at_line.xml'))
       doc = CXML::Document.new(data)
-      CXML::Parser.new.parse(doc.render.to_xml).should == data
+      CXML::Parser.new.parse(doc.render.to_xml).should eq(data)
     end
     it 'serializes the same output' do
       data = CXML::Parser.new.parse(fixture('invoice_backed_and_unbacked_by_pos.xml'))

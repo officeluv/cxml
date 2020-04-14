@@ -52,7 +52,7 @@ describe CXML::Document do
 
     it 'can ingest from_xml' do
       doc = described_class.new.from_xml(fixture('response_status_200.xml'))
-      doc.response.status.code.should == 200
+      doc.response.status.code.should eq(200)
     end
 
     context 'when a request document is passed' do

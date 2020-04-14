@@ -1,14 +1,7 @@
 AllCops:
   Exclude:
     - Gemfile
-    - db/*
-    - db/migrate/*
-    - config/**/*
     - vendor/**/*
-    - app/serializers/oagis/*
-    - app/scrapers/*
-    - app/predictors/*
-    - node_modules/**/*
 
 # # Disable checking for block length
 Metrics/BlockLength:
