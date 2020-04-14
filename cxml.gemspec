@@ -7,9 +7,9 @@ Gem::Specification.new do |s|
   s.version     = CXML::VERSION
   s.summary     = 'Ruby library to work with cXML protocol'
   s.description = 'Ruby library to work with cXML protocol'
-  s.homepage    = 'http://github.com/officeluv/cxml'
-  s.authors     = ['Josh Beckman', 'Eleni Chappen', 'Michale Ginalick', 'Dan Sosedoff']
-  s.email       = ['josh@officeluv.com', 'eleni@officeluv.com', 'michael@officeluv.com', 'dan.sosedoff@gmail.com']
+  s.homepage    = 'https://github.com/officeluv/cxml'
+  s.authors     = ['Josh Beckman', 'Eleni Chappen']
+  s.email       = ['josh@officeluv.com', 'eleni@officeluv.com']
 
   s.add_development_dependency('pry', '~> 0.12.2')
   s.add_development_dependency('rake')
