@@ -121,8 +121,8 @@ describe CXML::Document do
 
       it 'outputs the response with a valid status code' do
         output_data[:response].should_not be_empty
-        output_data[:response][:status][:code].should == '200'
-        output_data[:response][:status].should == data[:response][:status]
+        output_data[:response][:status][:code].should eq('200')
+        output_data[:response][:status].should eq(data[:response][:status])
       end
 
       it 'outputs the punch out setup response' do
@@ -138,7 +138,7 @@ describe CXML::Document do
 
       it 'outputs the response with a valid status code' do
         output_data[:response].should_not be_empty
-        output_data[:response][:status][:code].should == '400'
+        output_data[:response][:status][:code].should eq('400')
       end
     end
 
