@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
 module CXML
-  class Total < DocumentNode
+  class DeductedPrice < DocumentNode
     accessible_nodes %i[
       money
-      modifications
     ]
   end
 end
