@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cxml.org/schemas/cXML/1.2.014/cXML.dtd">
+<cXML xml:lang="en-US" payloadID="1585687161.003309@stg1565utl2.int.coupahost.com" timestamp="2020-03-31T21:39:21+01:00">
+  <Header>
+    <From>
+      <Credential domain="NetworkID">
+        <Identity>kasdflkjasdf</Identity>
+      </Credential>
+    </From>
+    <To>
+      <Credential domain="alksjflkasjdfasdf">
+        <Identity>development@officeluv.com</Identity>
+      </Credential>
+    </To>
+    <Sender>
+      <Credential domain="NetworkID">
+        <Identity>DAN_Coupa</Identity>
+        <SharedSecret>alsdkfjalksdjflaksjdfklj</SharedSecret>
+      </Credential>
+      <UserAgent>Coupa Procurement 1.0</UserAgent>
+    </Sender>
+  </Header>
+  <Request>
+    <OrderRequest>
+      <OrderRequestHeader orderID="3309" orderDate="2020-03-31T21:39:22+01:00" type="new">
+        <Total>
+          <Money currency="USD">91.71</Money>
+        </Total>
+        <ShipTo>
+          <Address isoCountryCode="US" addressID="21444">
+            <Name xml:lang="en">Network</Name>
+            <PostalAddress name="default">
+              <DeliverTo>Venkat</DeliverTo>
+              <Street>Main Street</Street>
+              <City>New York</City>
+              <State>NY</State>
+              <PostalCode>10018</PostalCode>
+              <Country isoCountryCode="US">United States</Country>
+            </PostalAddress>
+            <Email name="default">asdfklajsdfkjl@optisconsulting.com</Email>
+          </Address>
+        </ShipTo>
+        <BillTo>
+          <Address isoCountryCode="US" addressID="21444">
+            <Name xml:lang="en">Network</Name>
+            <PostalAddress name="default">
+              <DeliverTo>Venkat Gunneri</DeliverTo>
+              <Street>Main Street</Street>
+              <City>New York</City>
+              <State>NY</State>
+              <PostalCode>10018</PostalCode>
+              <Country isoCountryCode="US">United States</Country>
+            </PostalAddress>
+            <Email name="default">kasdjfasf@optisconsulting.com</Email>
+          </Address>
+        </BillTo>
+        <Shipping>
+          <Money currency="USD">0.0</Money>
+          <Description xml:lang="en-US"/>
+        </Shipping>
+        <Contact role="endUser">
+          <Name xml:lang="en">alksdjfalskjf alk sdjflkj</Name>
+          <Email name="default">asdlfkjasdflkj@optisconsulting.com</Email>
+        </Contact>
+        <Extrinsic name="legacy_po"></Extrinsic>
+      </OrderRequestHeader>
+      <ItemOut quantity="1" lineNumber="1">
+        <ItemID>
+          <SupplierPartID>product:1861</SupplierPartID>
+          <SupplierPartAuxiliaryID>product-requisition:6236</SupplierPartAuxiliaryID>
+        </ItemID>
+        <ItemDetail>
+          <UnitPrice>
+            <Money currency="USD">8.1</Money>
+          </UnitPrice>
+          <Description xml:lang="en">Yogurt Whips, Key Lime Pie, 4oz Cup</Description>
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <Classification domain="UNSPSC">unknown</Classification>
+          <Extrinsic name="LineType">Quantity</Extrinsic>
+        </ItemDetail>
+        <Distribution>
+          <Accounting name="Amounts Invoice to Clients - International Media Bookings-TEST Center-DAN HQ-HR Talent Development">
+            <Segment type="Main Account (PL/BS)" id="10012" description="MAccount"/>
+            <Segment type="Cost Center" id="c50" description="CCentre"/>
+            <Segment type="Profit Center" id="B94641" description="PCenter"/>
+            <Segment type="Project Code" id="000384" description="PCode"/>
+          </Accounting>
+          <Charge>
+            <Money currency="USD">8.1</Money>
+          </Charge>
+        </Distribution>
+      </ItemOut>
+      <ItemOut quantity="9" lineNumber="2">
+        <ItemID>
+          <SupplierPartID>product:4884</SupplierPartID>
+          <SupplierPartAuxiliaryID>product-requisition:6235</SupplierPartAuxiliaryID>
+        </ItemID>
+        <ItemDetail>
+          <UnitPrice>
+            <Money currency="USD">9.29</Money>
+          </UnitPrice>
+          <Description xml:lang="en">Zingerman's Cheese Spreads Pimento Cheese</Description>
+          <UnitOfMeasure>EA</UnitOfMeasure>
+          <Classification domain="UNSPSC">unknown</Classification>
+          <Extrinsic name="LineType">Quantity</Extrinsic>
+        </ItemDetail>
+        <Distribution>
+          <Accounting name="Amounts Invoice to Clients - International Media Bookings-TEST Center-DAN HQ-HR Talent Development">
+            <Segment type="Main Account (PL/BS)" id="10012" description="MAccount"/>
+            <Segment type="Cost Center" id="c50" description="CCentre"/>
+            <Segment type="Profit Center" id="B94641" description="PCenter"/>
+            <Segment type="Project Code" id="000384" description="PCode"/>
+          </Accounting>
+          <Charge>
+            <Money currency="USD">83.61</Money>
+          </Charge>
+        </Distribution>
+      </ItemOut>
+    </OrderRequest>
+  </Request>
+</cXML>

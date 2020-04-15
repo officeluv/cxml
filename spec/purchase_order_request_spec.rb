@@ -29,5 +29,12 @@ describe CXML::OrderRequest do
       order_request.order_request_header.order_id.should_not be_nil
       order_request.items_out.first.should_not be_nil
     end
+    it 'sets the required nodes via another  order request' do
+      request = CXML::Document.new.from_xml(fixture('order_request.cxml')).request
+      request.order_request.order_request_header.should_not be_nil
+      request.order_request.order_request_header.order_id.should_not be_nil
+      request.order_request.items_out.first.should_not be_nil
+      request.order_request.items_out.first.item_detail.extrinsics.first.should_not be_nil
+    end
   end
 end
