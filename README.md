@@ -1,10 +1,10 @@
-# cXML
+# cXML-Ruby
 
 ![Ruby Specs](https://github.com/officeluv/cxml/workflows/Ruby%20Specs/badge.svg)
 
 Ruby implementation of the cXML protocol. 
 
-Currently supports:
+Currently supports these top-level documents in v1.2.037:
 
 - Request
   - InvoiceDetailRequest
@@ -30,9 +30,36 @@ doc.response.status.code
 doc.response.status.success?
 # => true
 
+# initialize docs with a hash
 CXML::Document.new(response: { status: { code: '200' } }).render.to_xml
 # => '<?xml.....'
+
+# initialize docs with instances
+status = CXML::Status.new(code: '200')
+response = CXML::Response.new(status: status)
+CXML::Document.new(response: response).render.to_xml
+# => '<?xml.....'
+
+# Set a different version
+CXML::Document.new(version: '1.1.0', response: { status: { code: '200' } }).render.to_xml
+# => '<?xml.....'
 ```
+
+## Installation
+
+Add this line to the application's Gemfile:
+
+```ruby
+gem 'cxml-ruby'
+```
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
+
+    $ gem install cxml-ruby
 
 ## Configuration
 
@@ -52,13 +79,13 @@ end
 
 Install dependencies:
 
-```
+```sh
 bundle install
 ```
 
 Run suite:
 
-```
+```sh
 rspec
 ```
 

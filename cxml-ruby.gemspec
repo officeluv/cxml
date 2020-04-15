@@ -3,15 +3,15 @@
 require(File.expand_path('lib/cxml/version', __dir__))
 
 Gem::Specification.new do |s|
-  s.name        = 'cxml'
+  s.name        = 'cxml-ruby'
   s.version     = CXML::VERSION
-  s.summary     = 'Ruby library to work with cXML protocol'
-  s.description = 'Ruby library to work with cXML protocol'
+  s.summary     = 'Ruby library to parse/generate documents with the cXML protocol'
+  s.description = 'Ruby library to parse/generate documents with the cXML protocol'
   s.homepage    = 'https://github.com/officeluv/cxml'
   s.authors     = ['Josh Beckman', 'Eleni Chappen']
   s.email       = ['josh@officeluv.com', 'eleni@officeluv.com']
 
-  s.add_development_dependency('pry', '~> 0.12.2')
+  s.add_development_dependency('pry')
   s.add_development_dependency('rake')
   s.add_development_dependency('rspec')
   s.add_development_dependency('rubocop')
