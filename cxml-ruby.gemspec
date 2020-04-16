@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.summary     = 'Parse/generate documents with the cXML protocol'
   s.description = 'Ruby library to parse/generate documents with the cXML protocol'
-  s.homepage    = 'https://github.com/officeluv/cxml'
+  s.homepage    = 'https://github.com/officeluv/cxml-ruby'
   s.authors     = ['Josh Beckman', 'Eleni Chappen']
   s.email       = ['josh@officeluv.com', 'eleni@officeluv.com']
 
