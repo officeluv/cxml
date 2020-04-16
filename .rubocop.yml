@@ -114,15 +114,6 @@ Lint/StructNewOverride:
 #   Enabled: false
 
 # # Style preference
-Style/MethodDefParentheses:
-  Enabled: true
-  Exclude: 
-    - spec/**/*
-Style/MethodCallWithArgsParentheses:
-  Enabled: true
-  Exclude: 
-    - spec/**/*
-
 # Style/WhileUntilModifier:
 #   Enabled: false
 
