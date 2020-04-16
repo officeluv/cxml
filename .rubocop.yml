@@ -69,6 +69,10 @@ Lint/RaiseException:
 Lint/StructNewOverride:
   Enabled: true
 
+Naming/FileName:
+  Exclude:
+    - lib/cxml-ruby.rb
+
 # # Mixing the styles looks just silly.
 # Style/HashSyntax:
 #   EnforcedStyle: ruby19_no_mixed_keys
