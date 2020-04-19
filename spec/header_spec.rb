@@ -18,13 +18,11 @@ describe CXML::Header do
   it { should respond_to :from }
   it { should respond_to :to }
   it { should respond_to :sender }
-  it { should respond_to :render }
 
   let(:parser) { CXML::Parser.new }
   let(:doc) { CXML::Document.new(data) }
-  let(:builder) { doc.render }
   let(:header) { doc.header }
-  let(:data) { parser.parse(fixture('request_doc.xml')) }
+  let(:data) { CXML::Parser.new(data: fixture('request_doc.xml')).parse }
 
   describe '#initialize' do
     it 'sets the mandatory attributes' do
@@ -35,8 +33,8 @@ describe CXML::Header do
   end
 
   describe '#render' do
-    let(:output_xml) { builder.to_xml }
-    let(:output_data) { parser.parse(output_xml) }
+    let(:output_xml) { doc.to_xml }
+    let(:output_data) { CXML::Parser.new(data: output_xml).parse }
     let(:header_output_data) { output_data[:header] }
     let(:from_identity) { header_output_data[:from][:credential][:identity] }
     let(:to_identity) { header_output_data[:to][:credential][:identity] }
@@ -44,7 +42,7 @@ describe CXML::Header do
     include_examples :render_defaults
 
     context 'when the header is rendered as not a response' do
-      let(:data) { parser.parse(fixture('request_doc.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('request_doc.xml')).parse }
       it 'will NOT swap the to and from attributes' do
         from_identity.should eq(header.from.credential.identity)
         to_identity.should eq(header.to.credential.identity)

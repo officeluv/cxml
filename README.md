@@ -22,7 +22,11 @@ Currently supports these top-level documents in v1.2.037:
 
 ```rb
 some_xml = '....'
+parsed_hash = CXML::Parser.new(data: some_xml).parse
+# or
 doc = CXML::Document.new.from_xml(some_xml)
+# or
+doc = CXML::Document.new(parsed_hash)
 # raises CXML::UnknownAttributeError if unknown fields are present
 
 doc.response.status.code
@@ -31,17 +35,17 @@ doc.response.status.success?
 # => true
 
 # initialize docs with a hash
-CXML::Document.new(response: { status: { code: '200' } }).render.to_xml
+CXML::Document.new(response: { status: { code: '200' } }).to_xml
 # => '<?xml.....'
 
 # initialize docs with instances
 status = CXML::Status.new(code: '200')
 response = CXML::Response.new(status: status)
-CXML::Document.new(response: response).render.to_xml
+CXML::Document.new(response: response).to_xml
 # => '<?xml.....'
 
 # Set a different version
-CXML::Document.new(version: '1.1.0', response: { status: { code: '200' } }).render.to_xml
+CXML::Document.new(version: '1.1.0', response: { status: { code: '200' } }).to_xml
 # => '<?xml.....'
 ```
 

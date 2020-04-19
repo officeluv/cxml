@@ -3,20 +3,17 @@
 require 'spec_helper'
 
 describe CXML::OrderRequest do
-  it { should respond_to :render }
   it { should respond_to :order_request_header }
   it { should respond_to :items_out }
 
-  let(:parser) { CXML::Parser.new }
-  let(:data) { parser.parse(fixture('purchase_order_request_200.xml')) }
+  let(:data) { CXML::Parser.new(data: fixture('purchase_order_request_200.xml')).parse }
   let(:doc) { CXML::Document.new(data) }
   let(:order_request) { doc.request.order_request }
-  let(:builder) { doc.render }
-  let(:output_xml) { builder.to_xml }
-  let(:output_data) { parser.parse(output_xml) }
+  let(:output_xml) { doc.to_xml }
+  let(:output_data) { CXML::Parser.new(data: output_xml).parse }
   let(:order_request_output_data) { output_data[:request][:order_request] }
 
-  describe '#render' do
+  describe '#to_xml' do
     it 'contains the required nodes' do
       order_request_output_data[:order_request_header].should_not be_empty
       order_request_output_data[:item_out].should be_a Array

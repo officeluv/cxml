@@ -7,11 +7,9 @@ describe CXML::Response do
   it { should respond_to :status }
   it { should respond_to :punch_out_setup_response }
 
-  let(:parser) { CXML::Parser.new }
-  let(:data) { parser.parse(fixture('response_status_200.xml')) }
+  let(:data) { CXML::Parser.new(data: fixture('response_status_200.xml')).parse }
   let(:doc) { CXML::Document.new(data) }
   let(:response) { doc.response }
-  let(:builder) { doc.render }
 
   describe '#initialize' do
     it 'sets the mandatory attributes' do
@@ -21,11 +19,11 @@ describe CXML::Response do
   end
 
   describe '#render' do
-    let(:output_xml) { builder.to_xml }
-    let(:output_data) { parser.parse(output_xml) }
+    let(:output_xml) { doc.to_xml }
+    let(:output_data) { CXML::Parser.new(data: output_xml).parse }
 
     context 'when a valid response is rendered' do
-      let(:data) { parser.parse(fixture('response_status_200.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('response_status_200.xml')).parse }
 
       it 'returns xml content' do
         output_xml.should_not be_nil
@@ -43,7 +41,7 @@ describe CXML::Response do
     end
 
     context 'when a invalid response is rendered' do
-      let(:data) { parser.parse(fixture('response_status_400.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('response_status_400.xml')).parse }
 
       it 'returns xml content' do
         output_xml.should_not be_nil

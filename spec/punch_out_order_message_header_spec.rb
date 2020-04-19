@@ -5,13 +5,10 @@ require 'spec_helper'
 describe CXML::PunchOutOrderMessageHeader do
   it { should respond_to :total }
   it { should respond_to :operation_allowed }
-  it { should respond_to :render }
 
-  let(:parser) { CXML::Parser.new }
-  let(:data) { parser.parse(fixture('punch_out_order_message_doc.xml')) }
+  let(:data) { CXML::Parser.new(data: fixture('punch_out_order_message_doc.xml')).parse }
   let(:doc) { CXML::Document.new(data) }
   let(:punch_out_order_message_header) { doc.message.punch_out_order_message.punch_out_order_message_header }
-  let(:builder) { doc.render }
 
   describe '#initialize' do
     it 'sets the mandatory attributes' do
@@ -20,8 +17,8 @@ describe CXML::PunchOutOrderMessageHeader do
   end
 
   describe '#render' do
-    let(:output_xml) { builder.to_xml }
-    let(:output_data) { parser.parse(output_xml) }
+    let(:output_xml) { doc.to_xml }
+    let(:output_data) { CXML::Parser.new(data: output_xml).parse }
     let(:punch_out_order_message_output_data) { output_data[:message][:punch_out_order_message] }
     let(:punch_out_order_message_header_output_data) do
       punch_out_order_message_output_data[:punch_out_order_message_header]

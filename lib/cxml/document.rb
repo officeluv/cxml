@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require('time')
-
 module CXML
   class Document < DocumentNode
     accessible_attributes %i[
@@ -29,11 +27,6 @@ module CXML
       @version ||= '1.2.037'
     end
 
-    def from_xml(xml_string)
-      initialize(Parser.new.parse(xml_string))
-      self
-    end
-
     # Check if document is request
     # @return [Boolean]
     def request?
@@ -52,20 +45,35 @@ module CXML
       !message.nil?
     end
 
-    def render
-      node = CXML.builder
-      node.doc.create_internal_subset(
-        'cXML',
-        nil,
-        "http://xml.cxml.org/schemas/cXML/#{version}/cXML.dtd"
-      )
-      node.cXML(node_attributes) do |doc|
-        header&.render(doc)
-        request&.render(doc)
-        response&.render(doc)
-        message&.render(doc)
-      end
-      node
+    def from_xml(xml_string)
+      initialize(Parser.new(data: xml_string).parse)
+      self
+    end
+
+    def to_xml(doc = ox_doc)
+      doc << to_element
+      Ox.dump doc
+    end
+
+    def node_name
+      'cXML'
+    end
+
+    private
+
+    def dtd_url
+      "http://xml.cxml.org/schemas/cXML/#{version}/cXML.dtd"
+    end
+
+    def ox_doc
+      doc = Ox::Document.new
+      instruct = Ox::Instruct.new(:xml)
+      instruct[:version] = '1.0'
+      instruct[:encoding] = 'UTF-8'
+      instruct[:standalone] = 'yes'
+      doc << instruct
+      doc << Ox::DocType.new("cXML SYSTEM \"#{dtd_url}\"")
+      doc
     end
   end
 end

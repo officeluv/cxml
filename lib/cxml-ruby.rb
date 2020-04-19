@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
 require('time')
-require('nokogiri')
 require('logger')
+require('ox')
 require('cxml/document_node')
 Dir[File.join(__dir__, 'cxml', '*.rb')].sort.each { |file| require file }
 
 module CXML
   def self.parse(str)
-    CXML::Parser.new.parse(str)
-  end
-
-  def self.builder
-    Nokogiri::XML::Builder.new(encoding: 'UTF-8')
+    CXML::Parser.new(data: str).parse
   end
 
   def self.configure

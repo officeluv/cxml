@@ -33,8 +33,6 @@ describe CXML::Document do
     end
   end
 
-  let(:parser) { CXML::Parser.new }
-
   it { should respond_to :version }
   it { should respond_to :payload_id }
   it { should respond_to :timestamp }
@@ -56,7 +54,7 @@ describe CXML::Document do
     end
 
     context 'when a request document is passed' do
-      let(:data) { parser.parse(fixture('request_doc.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('request_doc.xml')).parse }
       include_examples :document_has_mandatory_values
       include_examples :document_has_a_header
       include_examples :document_has_a_timestamp
@@ -71,7 +69,7 @@ describe CXML::Document do
     end
 
     context 'when a response document is passed' do
-      let(:data) { parser.parse(fixture('response_status_200.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('response_status_200.xml')).parse }
       include_examples :document_has_mandatory_values
       include_examples :document_has_a_timestamp
 
@@ -85,7 +83,7 @@ describe CXML::Document do
     end
 
     context 'when a punch out order message is passed' do
-      let(:data) { parser.parse(fixture('punch_out_order_message_doc.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('punch_out_order_message_doc.xml')).parse }
       include_examples :document_has_mandatory_values
       include_examples :document_has_a_header
       include_examples :document_has_a_timestamp
@@ -100,21 +98,20 @@ describe CXML::Document do
     end
   end
 
-  describe '#render' do
+  describe '#to_xml' do
     let(:doc) { CXML::Document.new(data) }
-    let(:builder) { doc.render }
-    let(:output_xml) { builder.to_xml }
-    let(:output_data) { parser.parse(output_xml) }
+    let(:output_xml) { doc.to_xml }
+    let(:output_data) { CXML::Parser.new(data: output_xml).parse }
 
-    it { should respond_to :render }
+    it { should respond_to :to_xml }
 
     context 'when a request document is rendered' do
-      let(:data) { parser.parse(fixture('request_doc.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('request_doc.xml')).parse }
       include_examples :document_render_defaults
     end
 
     context 'when a valid response is rendered' do
-      let(:data) { parser.parse(fixture('response_status_200.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('response_status_200.xml')).parse }
       it 'returns xml content' do
         output_xml.should_not be_nil
       end
@@ -131,7 +128,7 @@ describe CXML::Document do
     end
 
     context 'when a invalid response is rendered' do
-      let(:data) { parser.parse(fixture('response_status_400.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('response_status_400.xml')).parse }
       it 'returns xml content' do
         output_xml.should_not be_nil
       end
@@ -143,7 +140,7 @@ describe CXML::Document do
     end
 
     context 'when a punch out order message document is rendered' do
-      let(:data) { parser.parse(fixture('punch_out_order_message_doc.xml')) }
+      let(:data) { CXML::Parser.new(data: fixture('punch_out_order_message_doc.xml')).parse }
       include_examples :document_render_defaults
 
       it 'outputs the punch out order message xml' do

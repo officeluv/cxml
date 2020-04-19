@@ -8,12 +8,10 @@ describe CXML::Money do
   it { should respond_to :alternate_amount }
   it { should respond_to :amount }
 
-  let(:parser) { CXML::Parser.new }
-  let(:data) { parser.parse(fixture('punch_out_order_message_doc.xml')) }
+  let(:data) { CXML::Parser.new(data: fixture('punch_out_order_message_doc.xml')).parse }
   let(:doc) { CXML::Document.new(data) }
   let(:punch_out_order_message) { doc.message.punch_out_order_message }
-  let(:builder) { doc.render }
-  let(:item_in) { CXML::ItemIn.new(build_item_in(parser)) }
+  let(:item_in) { CXML::ItemIn.new(build_item_in) }
   let(:item_detail) { item_in.item_detail }
   let(:money) { item_detail.unit_price.money }
 
@@ -26,11 +24,11 @@ describe CXML::Money do
 
   describe '#render' do
     before(:each) do
-      punch_out_order_message.add_item(build_item_in(parser))
+      punch_out_order_message.add_item(build_item_in)
     end
 
-    let(:output_xml) { builder.to_xml }
-    let(:output_data) { parser.parse(output_xml) }
+    let(:output_xml) { doc.to_xml }
+    let(:output_data) { CXML::Parser.new(data: output_xml).parse }
     let(:punch_out_order_message_output_data) { output_data[:message][:punch_out_order_message] }
     let(:item_in_output_data) { punch_out_order_message_output_data[:item_in] }
     let(:item_detail_output_data) { item_in_output_data[:item_detail] }

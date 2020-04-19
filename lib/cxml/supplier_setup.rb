@@ -5,9 +5,5 @@ module CXML
     accessible_nodes %i[
       url
     ]
-
-    def render_nodes(node)
-      node.URL(url)
-    end
   end
 end
