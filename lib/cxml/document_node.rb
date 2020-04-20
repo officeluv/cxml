@@ -54,7 +54,7 @@ module CXML
 
     def to_element
       element = ox_element
-      element << content if content
+      element << content.to_s if content
       self.class.nodes.each do |child_node_name|
         child_value = send(child_node_name)
         if child_value.is_a?(Array)
@@ -88,12 +88,12 @@ module CXML
       value_element = Ox::Element.new(camelize(name))
       if value.is_a? Hash
         value.each do |value_key, value_val|
-          next value_element << value_val if value_key == :content
+          next value_element << value_val.to_s if value_key == :content
 
           value_element[value_key] = value_val
         end
       else
-        value_element << value
+        value_element << value.to_s
       end
       element << value_element
       element

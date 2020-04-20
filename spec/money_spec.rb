@@ -38,5 +38,13 @@ describe CXML::Money do
     it 'contains the required nodes' do
       money_output_data[:currency].should_not be_empty
     end
+
+    it 'can render non-string values' do
+      CXML::Document.new(message: { punch_out_order_message: {
+                           punch_out_order_message_header: {
+                             total: { money: { content: 12.3 } },
+                           },
+                         } }).to_xml
+    end
   end
 end
