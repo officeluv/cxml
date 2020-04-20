@@ -22,10 +22,11 @@ module CXML
 
     private
 
-    def node_to_hash(node)
+    def node_to_hash(node) # rubocop:disable Metrics/AbcSize
       return node if node.is_a? String
+      return node.nodes.first if node.nodes.all?(String) && node.attributes.empty?
 
-      hash = node.attributes || {}
+      hash = node.attributes
       hash.transform_keys!(&method(:underscore_key))
       node.nodes.reduce(hash) do |acc, child_node|
         next acc if child_node.is_a?(Ox::Comment)

@@ -31,6 +31,7 @@ describe CXML::PunchOutSetupRequest do
       punch_out_setup_request_coupa.extrinsics.should be_a Array
       punch_out_setup_request_coupa.extrinsics.first.should be_a CXML::Extrinsic
       punch_out_setup_request_coupa.extrinsics.first.name.should_not be_nil
+      doc_coupa.header.sender.credential.shared_secret.should eq('test')
     end
     it 'sets the shipping attributes when present' do
       data = CXML::Parser.new(data: fixture('punch_out_setup_request_doc_with_ship_to.xml')).parse

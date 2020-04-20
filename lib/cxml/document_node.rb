@@ -127,7 +127,15 @@ module CXML
     rescue NameError => e
       raise(e) unless e.to_s.match?(klass)
 
-      send("#{key}=", val)
+      initialize_attribute_raw(key, val)
+    end
+
+    def initialize_attribute_raw(key, val)
+      if val.is_a?(Hash) && val.keys == [:content]
+        send("#{key}=", val[:content])
+      else
+        send("#{key}=", val)
+      end
     end
 
     def camelize(string, uppercase_first_letter = true)
