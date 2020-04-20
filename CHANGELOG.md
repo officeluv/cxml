@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.4.0] - 2020-04-20
+### Changed
+- Return parsed nodes as plain string if they have no attributes and only string content.
+
 ## [0.3.0] - 2020-04-19
 ### Changed
 - Drop Nokogiri and XMLSimple in favor of Ox.
