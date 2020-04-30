@@ -14,9 +14,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [0.4.1] - 2020-04-20
-### Changed
-- Cast all node content values to strings before passing to Ox serializer.
+## [0.5.0] - 2020-04-30
+### Added
+- Support parsing and specifying different DTDs.
 
 ## [0.4.0] - 2020-04-20
 ### Changed
