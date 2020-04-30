@@ -3,10 +3,11 @@
 module CXML
   class Document < DocumentNode
     accessible_attributes %i[
-      version
+      dtd
       payload_id
-      xml_lang
       timestamp
+      version
+      xml_lang
     ]
     accessible_nodes %i[
       header
@@ -25,6 +26,10 @@ module CXML
 
     def version
       @version ||= '1.2.037'
+    end
+
+    def dtd
+      @dtd ||= 'cXML'
     end
 
     # Check if document is request
@@ -62,7 +67,7 @@ module CXML
     private
 
     def dtd_url
-      "http://xml.cxml.org/schemas/cXML/#{version}/cXML.dtd"
+      "http://xml.cxml.org/schemas/cXML/#{version}/#{dtd}.dtd"
     end
 
     def ox_doc

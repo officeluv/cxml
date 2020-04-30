@@ -11,13 +11,35 @@ module CXML
 
     def parse
       @parsed_data = node_to_hash document
+      if dtd_url
+        @parsed_data[:version] = version
+        @parsed_data[:dtd] = dtd
+      end
+      @parsed_data
     end
 
     def document
       doc = Ox.load(data)
+      @doc_type_string = doc.nodes.detect do |node|
+        node.value&.match?(/^cXML /)
+      end&.value
       doc.nodes.detect do |node|
         node.value&.match?(/^cxml$/i)
       end || doc
+    end
+
+    def version
+      dtd_url&.match(%r{cXML/(.*)/.*\.dtd})&.to_a&.last
+    end
+
+    def dtd
+      dtd_url&.match(%r{cXML/.*/(.*)\.dtd})&.to_a&.last
+    end
+
+    def dtd_url
+      return nil unless @doc_type_string
+
+      @doc_type_string.match(/http.*\.dtd/)&.to_a&.first
     end
 
     private

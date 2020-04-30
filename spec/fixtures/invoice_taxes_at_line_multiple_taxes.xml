@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE cXML SYSTEM "http://xml.cXML.org/schemas/cXML/1.2...oiceDetail.dtd">
+<!DOCTYPE cXML SYSTEM "http://xml.cXML.org/schemas/cXML/1.2.0.11/InvoiceDetail.dtd">
 
 <cXML version="1.0" payloadID="1240598937@SUBDOMAIN.coupahost.com" timestamp="2018-05-04T01:24:51-07:00">
 

@@ -66,6 +66,20 @@ describe CXML::Document do
         doc.response.should be_nil
         doc.message.should be_nil
       end
+
+      it 'sets the correct document version' do
+        doc.version.should be_a String
+        doc.version.should eq '1.2.011'
+      end
+
+      it 'sets the correct document dtd' do
+        doc.dtd.should be_a String
+        doc.dtd.should eq 'cXML'
+        described_class
+          .new
+          .from_xml(fixture('invoice_backed_and_unbacked_by_pos.xml'))
+          .dtd.should eq 'InvoiceDetail'
+      end
     end
 
     context 'when a response document is passed' do
