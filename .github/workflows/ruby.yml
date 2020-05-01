@@ -15,6 +15,7 @@ jobs:
         ruby-version: 2.6.x
     - name: Test with Rake
       run: |
+        apt-get install libxml2-utils
         gem install bundler
         bundle install --jobs 4 --retry 3
         bundle exec rake
