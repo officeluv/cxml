@@ -3,10 +3,14 @@
 module CXML
   class ItemDetail < DocumentNode
     accessible_nodes %i[
+      unit_price
       description
       unit_of_measure
-      unit_price
       classification
+      manufacturer_part_id
+      manufacturer_name
+      url
+      lead_time
       extrinsics
     ]
 

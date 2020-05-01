@@ -23,26 +23,27 @@ module CXML
       type
     ]
     accessible_nodes %i[
+      total
+      ship_to
       bill_to
-      comments
+      shipping
+      tax
+      payment
+      payment_term
       contact
+      comments
+      followup
+      document_reference
+      supplier_order_info
+      extrinsics
       control_keys
       delivery_period
-      document_reference
-      extrinsics
       followup
       id_reference
       legal_identity
       order_request_header_industry
       organizational_unit
-      payment
-      payment_term
-      ship_to
-      shipping
-      supplier_order_info
-      tax
       terms_of_delivery
-      total
     ]
 
     def type

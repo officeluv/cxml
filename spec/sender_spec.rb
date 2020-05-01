@@ -26,5 +26,11 @@ describe CXML::Sender do
       sender_output_data[:user_agent].should_not be_empty
       sender_output_data[:credential].should_not be_empty
     end
+
+    it 'validates against the DTD' do
+      next unless test_for_xmllint
+
+      lint_doc_with_dtd(CXML::Document.new.from_xml(output_xml)).should be true
+    end
   end
 end

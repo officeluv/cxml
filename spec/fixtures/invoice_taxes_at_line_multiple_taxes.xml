@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE cXML SYSTEM "http://xml.cXML.org/schemas/cXML/1.2.0.11/InvoiceDetail.dtd">
+<!DOCTYPE cXML SYSTEM "http://xml.cXML.org/schemas/cXML/1.2.037/InvoiceDetail.dtd">
 
 <cXML version="1.0" payloadID="1240598937@SUBDOMAIN.coupahost.com" timestamp="2018-05-04T01:24:51-07:00">
 
@@ -176,11 +176,9 @@
 
                         <DiscountPercent percent="1" />
 
-                        <DiscountDueDays>1</DiscountDueDays>
 
                     </Discount>
 
-                    <NetDueDays>1</NetDueDays>
 
                 </PaymentTerm>
 

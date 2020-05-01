@@ -19,6 +19,11 @@ describe CXML::OrderRequest do
       order_request_output_data[:item_out].should be_a Array
       order_request_output_data[:item_out].length.should eq 2
     end
+    it 'validates against the DTD' do
+      next unless test_for_xmllint
+
+      lint_doc_with_dtd(doc).should be true
+    end
   end
   describe '#initialize' do
     it 'sets the required nodes' do
@@ -27,7 +32,7 @@ describe CXML::OrderRequest do
       order_request.items_out.first.should_not be_nil
     end
     it 'sets the required nodes via another  order request' do
-      request = CXML::Document.new.from_xml(fixture('order_request.cxml')).request
+      request = CXML::Document.new.from_xml(fixture('order_request.xml')).request
       request.order_request.order_request_header.should_not be_nil
       request.order_request.order_request_header.order_id.should_not be_nil
       request.order_request.items_out.first.should_not be_nil

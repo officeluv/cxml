@@ -5,7 +5,7 @@ require 'spec_helper'
 describe CXML::Document do
   shared_examples_for :document_has_mandatory_values do
     it 'sets the mandatory attributes' do
-      doc.version.should eq(CXML::Protocol::VERSION)
+      doc.version.should_not be_nil
       doc.payload_id.should_not be_nil
     end
   end
@@ -130,6 +130,12 @@ describe CXML::Document do
         output_xml.should_not be_nil
       end
 
+      it 'validates against the DTD' do
+        next unless test_for_xmllint
+
+        lint_doc_with_dtd(CXML::Document.new.from_xml(output_xml)).should be true
+      end
+
       it 'outputs the response with a valid status code' do
         output_data[:response].should_not be_empty
         output_data[:response][:status][:code].should eq('200')
@@ -151,6 +157,12 @@ describe CXML::Document do
         output_data[:response].should_not be_empty
         output_data[:response][:status][:code].should eq('400')
       end
+
+      it 'validates against the DTD' do
+        next unless test_for_xmllint
+
+        lint_doc_with_dtd(CXML::Document.new.from_xml(output_xml)).should be true
+      end
     end
 
     context 'when a punch out order message document is rendered' do
@@ -160,6 +172,12 @@ describe CXML::Document do
       it 'outputs the punch out order message xml' do
         output_data[:message].should_not be_empty
         output_data[:message][:punch_out_order_message].should_not be_empty
+      end
+
+      it 'validates against the DTD' do
+        next unless test_for_xmllint
+
+        lint_doc_with_dtd(CXML::Document.new.from_xml(output_xml)).should be true
       end
     end
   end

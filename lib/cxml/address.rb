@@ -8,9 +8,12 @@ module CXML
       iso_country_code
     ]
     accessible_nodes %i[
-      email
       name
       postal_address
+      email
+      phone
+      fax
+      url
     ]
   end
 end

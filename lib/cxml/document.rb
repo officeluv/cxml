@@ -2,8 +2,8 @@
 
 module CXML
   class Document < DocumentNode
+    attr_writer :dtd
     accessible_attributes %i[
-      dtd
       payload_id
       timestamp
       version
@@ -64,18 +64,17 @@ module CXML
       'cXML'
     end
 
-    private
-
     def dtd_url
       "http://xml.cxml.org/schemas/cXML/#{version}/#{dtd}.dtd"
     end
+
+    private
 
     def ox_doc
       doc = Ox::Document.new
       instruct = Ox::Instruct.new(:xml)
       instruct[:version] = '1.0'
       instruct[:encoding] = 'UTF-8'
-      instruct[:standalone] = 'yes'
       doc << instruct
       doc << Ox::DocType.new("cXML SYSTEM \"#{dtd_url}\"")
       doc

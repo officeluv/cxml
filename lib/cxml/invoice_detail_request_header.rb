@@ -11,16 +11,16 @@ module CXML
       purpose
     ]
     accessible_nodes %i[
-      comments
-      document_reference
-      extrinsics
       invoice_detail_header_indicator
       invoice_detail_line_indicator
-      invoice_detail_shipping
-      invoice_id_info
       invoice_partners
+      document_reference
+      invoice_id_info
+      invoice_detail_shipping
       payment_term
       period
+      comments
+      extrinsics
     ]
 
     def initialize_invoice_partner(value)

@@ -6,12 +6,14 @@ module CXML
       line_number
     ]
     accessible_nodes %i[
-      description
       item_id
+      description
       classification
       manufacturer_part_id
       manufacturer_name
       country
+      serial_number
+      supplier_batch_id
     ]
   end
 end

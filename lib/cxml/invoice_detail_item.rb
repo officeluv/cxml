@@ -14,28 +14,28 @@ module CXML
       reference_date
     ]
     accessible_nodes %i[
-      comments
-      distribution
-      extrinsics
+      unit_of_measure
+      unit_price
+      invoice_detail_item_reference
+      subtotal_amount
+      tax
+      invoice_detail_line_special_handling
+      invoice_detail_line_shipping
       gross_amount
       invoice_detail_discount
-      invoice_detail_item_industry
-      invoice_detail_item_reference
-      invoice_detail_line_shipping
-      invoice_detail_line_special_handling
-      invoice_item_modifications
       net_amount
+      distribution
+      comments
+      extrinsics
+      invoice_detail_item_industry
+      invoice_item_modifications
       packaging
       price_basis_quantity
       ship_notice_id_info
       ship_notice_line_item_reference
-      subtotal_amount
-      tax
       total_allowances
       total_amount_without_tax
       total_charges
-      unit_of_measure
-      unit_price
     ]
 
     def initialize_extrinsic(value)

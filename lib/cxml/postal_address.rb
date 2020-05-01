@@ -8,10 +8,10 @@ module CXML
     ]
     accessible_nodes %i[
       deliver_to
-      state
       street
       municipality
       city
+      state
       postal_code
       country
     ]

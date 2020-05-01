@@ -35,5 +35,10 @@ describe CXML::ItemIn do
       item_in_output_data[:item_id].should_not be_empty
       item_in_output_data[:item_detail].should_not be_empty
     end
+    it 'validates against the DTD' do
+      next unless test_for_xmllint
+
+      lint_doc_with_dtd(CXML::Document.new.from_xml(output_xml)).should be true
+    end
   end
 end

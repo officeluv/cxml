@@ -50,34 +50,54 @@ describe CXML::InvoiceDetailRequest do
       data = CXML::Parser.new(data: fixture('invoice_taxes_at_line.xml')).parse
       doc = CXML::Document.new(data)
       CXML::Parser.new(data: doc.to_xml).parse.should eq(data)
+      next unless test_for_xmllint
+
+      lint_doc_with_dtd(doc).should be true
     end
     it 'serializes the same output' do
       data = CXML::Parser.new(data: fixture('invoice_backed_and_unbacked_by_pos.xml')).parse
       doc = CXML::Document.new(data)
       CXML::Parser.new(data: doc.to_xml).parse.should eq(data)
+      next unless test_for_xmllint
+
+      lint_doc_with_dtd(doc).should be true
     end
     it 'serializes the same output' do
       data = CXML::Parser.new(data: fixture('invoice_backed_by_multiple_pos.xml')).parse
       doc = CXML::Document.new(data)
       CXML::Parser.new(data: doc.to_xml).parse.should eq(data)
+      next unless test_for_xmllint
+
+      lint_doc_with_dtd(doc).should be true
     end
     it 'serializes the same output' do
       data = CXML::Parser.new(data: fixture('invoice_taxes_at_line_multiple_taxes.xml')).parse
       doc = CXML::Document.new(data)
       CXML::Parser.new(data: doc.to_xml).parse.should eq(data)
+      next unless test_for_xmllint
+
+      lint_doc_with_dtd(doc).should be true
     end
     it 'serializes the same output' do
       fixture_xml = fixture('invoice_taxes_at_total.xml')
       data = CXML::Parser.new(data: fixture_xml).parse
       doc = CXML::Document.new(data)
       CXML::Parser.new(data: doc.to_xml).parse.should eq(data)
+      next unless test_for_xmllint
+
+      lint_doc_with_dtd(doc).should be true
     end
     it 'serializes from an instance' do
       money = CXML::Money.new(amount: '5', currency: 'USD')
       summary = CXML::InvoiceDetailSummary.new(gross_amount: CXML::GrossAmount.new(money: money))
       instance = described_class.new(invoice_detail_summary: summary)
       data = CXML::Request.new(invoice_detail_request: instance)
-      doc = CXML::Document.new(request: data)
+      doc = CXML::Document.new(
+        request: data,
+        header: CXML::Header.new,
+        dtd: 'InvoiceDetail',
+        payload_id: 'foo'
+      )
       parsed = CXML::Parser.new(data: doc.to_xml).parse
       parsed[:request][:invoice_detail_request]
         .should eq(instance.serializable_hash)

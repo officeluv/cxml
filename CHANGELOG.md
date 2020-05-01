@@ -14,6 +14,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.6.0] - 2020-05-01
+### Fixed
+- Conform to cXML DTD spec for ordered output of child nodes.
+### Added
+- Support parsing and validating output against DTDs in specs.
+
 ## [0.5.0] - 2020-04-30
 ### Added
 - Support parsing and specifying different DTDs.

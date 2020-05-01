@@ -36,5 +36,10 @@ describe CXML::PunchOutOrderMessage do
       punch_out_order_message_output_data[:buyer_cookie].should_not be_empty
       punch_out_order_message_output_data.should include(:item_in)
     end
+    it 'validates against the DTD' do
+      next unless test_for_xmllint
+
+      lint_doc_with_dtd(CXML::Document.new.from_xml(output_xml)).should be true
+    end
   end
 end

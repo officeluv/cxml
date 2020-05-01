@@ -8,9 +8,12 @@ module CXML
       address_id
     ]
     accessible_nodes %i[
-      email
       name
       postal_address
+      email
+      phone
+      fax
+      url
     ]
   end
 end
