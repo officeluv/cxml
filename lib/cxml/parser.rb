@@ -45,6 +45,8 @@ module CXML
     private
 
     def node_to_hash(node) # rubocop:disable Metrics/AbcSize
+      return node.value if node.is_a?(Ox::CData)
+
       return node if node.is_a? String
       return node.nodes.first if node.nodes.all?(String) && node.attributes.empty?
 
@@ -54,7 +56,7 @@ module CXML
         next acc if child_node.is_a?(Ox::Comment)
 
         node_hash = {}
-        name = child_node.is_a?(String) ? :content : child_node.value
+        name = child_node.is_a?(String) || child_node.is_a?(Ox::CData) ? :content : child_node.value
         node_hash[underscore_key(name)] = node_to_hash(child_node)
         acc.merge(node_hash) do |_key, val1, val2|
           [val1, val2].flatten

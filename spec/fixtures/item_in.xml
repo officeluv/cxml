@@ -4,7 +4,7 @@
     <SupplierPartAuxiliaryID>lkajsdflsdf</SupplierPartAuxiliaryID>
   </ItemID>
   <ItemDetail>
-    <Description xml:lang="en">AGENDA MAGAZINE RACK A4 CHARCOAL 25990</Description>
+    <Description xml:lang="en"><![CDATA[AGENDA MAGAZINE RACK A4 CHARCOAL 25990]]></Description>
     <UnitOfMeasure>EA</UnitOfMeasure>
     <UnitPrice> <Money currency="GBP">5.35</Money> </UnitPrice>
     <Classification domain="UNSPSC">44000000</Classification>
