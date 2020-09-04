@@ -26,7 +26,7 @@ module CXML
   def self.logger
     return @logger if @logger
 
-    @logger ||= Logger.new(STDOUT, level: :warn)
+    @logger ||= Logger.new($stdout, level: :warn)
   end
 
   def self.logger=(new_logger)

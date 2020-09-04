@@ -3,6 +3,7 @@
 module CXML
   class Document < DocumentNode
     attr_writer :dtd
+
     accessible_attributes %i[
       payload_id
       timestamp

@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - Gemfile
     - vendor/**/*
+  NewCops: enable
 
 # # Disable checking for block length
 Metrics/BlockLength:
@@ -52,6 +53,9 @@ Style/Documentation:
   Enabled: false
 
 Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/ArrayCoercion:
   Enabled: false
 
 Style/HashEachMethods:

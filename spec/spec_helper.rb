@@ -25,7 +25,7 @@ def dtd_path_from_url(url)
   return 'spec/fixtures/1.2.037-cXML.dtd' unless url
 
   match = url.match(%r{/(\d+\.\d+\.\d+)/(\w+\.dtd)}).to_a
-  file = 'spec/fixtures/' + match.last(2).join('-')
+  file = "spec/fixtures/#{match.last(2).join('-')}"
   return file if File.exist?(file)
 
   system("curl #{url} -O && mv #{match.last} #{file}")

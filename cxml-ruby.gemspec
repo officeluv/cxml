@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Josh Beckman', 'Eleni Chappen']
   s.email       = ['josh@officeluv.com', 'eleni@officeluv.com']
 
+  s.required_ruby_version = '>= 2.4'
   s.add_dependency('ox', '~> 2.13')
 
   s.add_development_dependency('pry', '~> 0.12')

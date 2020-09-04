@@ -108,7 +108,7 @@ module CXML
         string_attr = if attr.to_sym == :xml_lang
                         'xml:lang'
                       else
-                        camelize(attr, false)
+                        camelize(attr, uppercase_first_letter: false)
                       end
         obj[string_attr] = value
       end
@@ -138,7 +138,7 @@ module CXML
       end
     end
 
-    def camelize(string, uppercase_first_letter = true)
+    def camelize(string, uppercase_first_letter: true)
       string = if uppercase_first_letter
                  string.to_s.sub(/^[a-z\d]*/, &:capitalize)
                else

@@ -44,7 +44,7 @@ module CXML
 
     private
 
-    def node_to_hash(node) # rubocop:disable Metrics/AbcSize
+    def node_to_hash(node) # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity
       return node if node.is_a? String
       return node.nodes.first if node.nodes.all?(String) && node.attributes.empty?
 
