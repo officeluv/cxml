@@ -39,6 +39,13 @@
 <Country isoCountryCode="US">United States</Country>
 </PostalAddress>
 <Email name="default">jmadden@coupa1.com</Email>
+ <Phone name="work">
+  <TelephoneNumber>
+   <CountryCode isoCountryCode="US">1</CountryCode>
+   <AreaOrCityCode>855</AreaOrCityCode>
+   <Number>8671234</Number>
+  </TelephoneNumber>
+ </Phone>
 </Address>
 </ShipTo>
 </PunchOutSetupRequest>

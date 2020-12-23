@@ -38,6 +38,8 @@ describe CXML::PunchOutSetupRequest do
       doc = CXML::Document.new(data)
       doc.request.punch_out_setup_request.ship_to.should_not be_nil
       doc.request.punch_out_setup_request.ship_to.address.name.should_not be_nil
+      doc.request.punch_out_setup_request.ship_to.address.phone.should_not be_nil
+      doc.request.punch_out_setup_request.ship_to.address.phone.telephone_number.should_not be_nil
     end
   end
 
