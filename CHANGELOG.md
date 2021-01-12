@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.7.0] - 2021-01-12
+### Added
+- Support parsing Phone tags.
+
 ## [0.6.1] - 2020-09-04
 ### Fixed
 - Handle parsing CDATA tags in cXML content (Thanks @CRiva!).
