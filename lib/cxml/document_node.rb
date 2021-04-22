@@ -121,9 +121,7 @@ module CXML
       klass = "CXML::#{camelize(key)}"
       send("#{key}=", Object.const_get(klass).new(val))
     rescue NoMethodError => e
-      raise(UnknownAttributeError, e) if CXML.raise_unknown_elements
-
-      CXML.logger.warn(e)
+      handle_unknown_elements_error(e)
     rescue NameError => e
       raise(e) unless e.to_s.match?(klass)
 
@@ -136,6 +134,8 @@ module CXML
       else
         send("#{key}=", val)
       end
+    rescue NoMethodError => e
+      handle_unknown_elements_error(e)
     end
 
     def camelize(string, uppercase_first_letter: true)
@@ -149,6 +149,12 @@ module CXML
       string.gsub(/_id(_)?$/, '_ID\1').gsub(%r{(?:_|(/))([a-z\d]*)}) do
         "#{Regexp.last_match(1)}#{Regexp.last_match(2).capitalize}"
       end.gsub('/', '::')
+    end
+
+    def handle_unknown_elements_error(error)
+      raise(UnknownAttributeError, error) if CXML.raise_unknown_elements
+
+      CXML.logger.warn(error)
     end
   end
 end
