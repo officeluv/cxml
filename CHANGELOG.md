@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.8.0] - 2021-04-25
+### Changed
+- Support continued parsing of child nodes if unknown attribute is encountered with `raise_unknown_elements` set to `false`.
+
 ## [0.7.0] - 2021-01-12
 ### Added
 - Support parsing Phone tags.
