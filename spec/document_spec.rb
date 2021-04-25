@@ -82,6 +82,26 @@ describe CXML::Document do
       end
     end
 
+    context 'when unknown attribute is present' do
+      let(:data) { CXML::Parser.new(data: fixture('document_node_with_unknown_attribute.xml')).parse }
+      let(:doc) { CXML::Document.new(data) }
+
+      it 'does not raise and parses child nodes if CXML.raise_unknown_elements is false' do
+        CXML.raise_unknown_elements = false
+        -> { doc }.should_not raise_error
+
+        doc.response.status.code.should eq(200)
+        doc.response.status.content.should eq('123456')
+
+        # Reset `raise_unknown_elements` for future tests
+        CXML.raise_unknown_elements = true
+      end
+
+      it 'raises UnknownAttributeError' do
+        -> { doc }.should raise_error(CXML::UnknownAttributeError)
+      end
+    end
+
     context 'when a response document is passed' do
       let(:data) { CXML::Parser.new(data: fixture('response_status_200.xml')).parse }
       include_examples :document_has_mandatory_values

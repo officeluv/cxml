@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE cXML SYSTEM "http://xml.cXML.org/schemas/cXML/1.2.020/cXML.dtd">
+<cXML xml:lang="en-US" payloadID="test-id" timestamp="2020-09-10T20:32:26+00:00">
+  <Response invalid="invalid">
+    <Status code="200" text="Ok">123456</Status>
+  </Response>
+</cXML>
