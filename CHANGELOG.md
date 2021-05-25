@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [0.8.1] - 2021-05-24
+### Fixed
+- Reorder the attributes output for `PunchoutSetupRequest`.
+
 ## [0.8.0] - 2021-04-25
 ### Changed
 - Support continued parsing of child nodes if unknown attribute is encountered with `raise_unknown_elements` set to `false`.
