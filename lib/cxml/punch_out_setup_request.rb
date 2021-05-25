@@ -5,12 +5,13 @@ module CXML
     accessible_attributes %i[
       operation
     ]
+
     accessible_nodes %i[
+      buyer_cookie
+      extrinsics
       browser_form_post
       supplier_setup
-      buyer_cookie
       ship_to
-      extrinsics
       contact
     ]
 
